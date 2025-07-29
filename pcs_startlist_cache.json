@@ -1,0 +1,1242 @@
+{
+  "cached_at": "2025-07-28T14:41:01.052604",
+  "startlist_data": {
+    "race/tour-de-france-femmes/2025/startlist": {
+      "startlist": [
+        {
+          "rider_name": "NIEWIADOMA Katarzyna",
+          "rider_url": "rider/katarzyna-niewiadoma",
+          "nationality": "PL",
+          "rider_number": 1,
+          "team_name": "CANYON//SRAM zondacrypto (WTW)",
+          "team_url": "team/canyon-sram-zondacrypto-2025"
+        },
+        {
+          "rider_name": "BAUERNFEIND Ricarda",
+          "rider_url": "rider/ricarda-bauernfeind",
+          "nationality": "DE",
+          "rider_number": 2,
+          "team_name": "CANYON//SRAM zondacrypto (WTW)",
+          "team_url": "team/canyon-sram-zondacrypto-2025"
+        },
+        {
+          "rider_name": "BRADBURY Neve",
+          "rider_url": "rider/neve-bradbury",
+          "nationality": "AU",
+          "rider_number": 3,
+          "team_name": "CANYON//SRAM zondacrypto (WTW)",
+          "team_url": "team/canyon-sram-zondacrypto-2025"
+        },
+        {
+          "rider_name": "DYGERT Chlo\u00e9",
+          "rider_url": "rider/chloe-dygert",
+          "nationality": "US",
+          "rider_number": 4,
+          "team_name": "CANYON//SRAM zondacrypto (WTW)",
+          "team_url": "team/canyon-sram-zondacrypto-2025"
+        },
+        {
+          "rider_name": "LUDWIG Cecilie Uttrup",
+          "rider_url": "rider/cecilie-uttrup-ludwig",
+          "nationality": "DK",
+          "rider_number": 5,
+          "team_name": "CANYON//SRAM zondacrypto (WTW)",
+          "team_url": "team/canyon-sram-zondacrypto-2025"
+        },
+        {
+          "rider_name": "PALADIN Soraya",
+          "rider_url": "rider/soraya-paladin",
+          "nationality": "IT",
+          "rider_number": 6,
+          "team_name": "CANYON//SRAM zondacrypto (WTW)",
+          "team_url": "team/canyon-sram-zondacrypto-2025"
+        },
+        {
+          "rider_name": "SKALNIAK-S\u00d3JKA Agnieszka",
+          "rider_url": "rider/agnieszka-skalniak-sojka",
+          "nationality": "PL",
+          "rider_number": 7,
+          "team_name": "CANYON//SRAM zondacrypto (WTW)",
+          "team_url": "team/canyon-sram-zondacrypto-2025"
+        },
+        {
+          "rider_name": "VOLLERING Demi",
+          "rider_url": "rider/demi-vollering",
+          "nationality": "NL",
+          "rider_number": 11,
+          "team_name": "FDJ - SUEZ (WTW)",
+          "team_url": "team/fdj-suez-2025"
+        },
+        {
+          "rider_name": "CHABBEY Elise",
+          "rider_url": "rider/elise-chabbey",
+          "nationality": "CH",
+          "rider_number": 12,
+          "team_name": "FDJ - SUEZ (WTW)",
+          "team_url": "team/fdj-suez-2025"
+        },
+        {
+          "rider_name": "KRAAK Amber",
+          "rider_url": "rider/amber-kraak",
+          "nationality": "NL",
+          "rider_number": 13,
+          "team_name": "FDJ - SUEZ (WTW)",
+          "team_url": "team/fdj-suez-2025"
+        },
+        {
+          "rider_name": "LABOUS Juliette",
+          "rider_url": "rider/juliette-labous",
+          "nationality": "FR",
+          "rider_number": 14,
+          "team_name": "FDJ - SUEZ (WTW)",
+          "team_url": "team/fdj-suez-2025"
+        },
+        {
+          "rider_name": "LE NET Marie",
+          "rider_url": "rider/marie-le-net",
+          "nationality": "FR",
+          "rider_number": 15,
+          "team_name": "FDJ - SUEZ (WTW)",
+          "team_url": "team/fdj-suez-2025"
+        },
+        {
+          "rider_name": "MUZIC \u00c9vita",
+          "rider_url": "rider/evita-muzic",
+          "nationality": "FR",
+          "rider_number": 16,
+          "team_name": "FDJ - SUEZ (WTW)",
+          "team_url": "team/fdj-suez-2025"
+        },
+        {
+          "rider_name": "WOLLASTON Ally",
+          "rider_url": "rider/ally-wollaston",
+          "nationality": "NZ",
+          "rider_number": 17,
+          "team_name": "FDJ - SUEZ (WTW)",
+          "team_url": "team/fdj-suez-2025"
+        },
+        {
+          "rider_name": "ROOIJAKKERS Pauliena",
+          "rider_url": "rider/pauliena-rooijakkers",
+          "nationality": "NL",
+          "rider_number": 21,
+          "team_name": "Fenix-Deceuninck (WTW)",
+          "team_url": "team/fenix-deceuninck-2025"
+        },
+        {
+          "rider_name": "COUZENS Millie",
+          "rider_url": "rider/millie-couzens",
+          "nationality": "GB",
+          "rider_number": 22,
+          "team_name": "Fenix-Deceuninck (WTW)",
+          "team_url": "team/fenix-deceuninck-2025"
+        },
+        {
+          "rider_name": "KASTELIJN Yara",
+          "rider_url": "rider/yara-kastelijn",
+          "nationality": "NL",
+          "rider_number": 23,
+          "team_name": "Fenix-Deceuninck (WTW)",
+          "team_url": "team/fenix-deceuninck-2025"
+        },
+        {
+          "rider_name": "PERKINS Flora",
+          "rider_url": "rider/flora-perkins",
+          "nationality": "GB",
+          "rider_number": 24,
+          "team_name": "Fenix-Deceuninck (WTW)",
+          "team_url": "team/fenix-deceuninck-2025"
+        },
+        {
+          "rider_name": "PIETERSE Puck",
+          "rider_url": "rider/puck-pieterse",
+          "nationality": "NL",
+          "rider_number": 25,
+          "team_name": "Fenix-Deceuninck (WTW)",
+          "team_url": "team/fenix-deceuninck-2025"
+        },
+        {
+          "rider_name": "SCHWEINBERGER Christina",
+          "rider_url": "rider/christina-schweinberger",
+          "nationality": "AT",
+          "rider_number": 26,
+          "team_name": "Fenix-Deceuninck (WTW)",
+          "team_url": "team/fenix-deceuninck-2025"
+        },
+        {
+          "rider_name": "TRUYEN Marthe",
+          "rider_url": "rider/marthe-truyen",
+          "nationality": "BE",
+          "rider_number": 27,
+          "team_name": "Fenix-Deceuninck (WTW)",
+          "team_url": "team/fenix-deceuninck-2025"
+        },
+        {
+          "rider_name": "KERBAOL C\u00e9drine",
+          "rider_url": "rider/cedrine-kerbaol",
+          "nationality": "FR",
+          "rider_number": 31,
+          "team_name": "EF Education-Oatly (PRW)",
+          "team_url": "team/ef-education-oatly-2025"
+        },
+        {
+          "rider_name": "BORGHESI Letizia",
+          "rider_url": "rider/letizia-borghesi",
+          "nationality": "IT",
+          "rider_number": 32,
+          "team_name": "EF Education-Oatly (PRW)",
+          "team_url": "team/ef-education-oatly-2025"
+        },
+        {
+          "rider_name": "CHRISTIE Henrietta",
+          "rider_url": "rider/henrietta-christie",
+          "nationality": "NZ",
+          "rider_number": 33,
+          "team_name": "EF Education-Oatly (PRW)",
+          "team_url": "team/ef-education-oatly-2025"
+        },
+        {
+          "rider_name": "FAULKNER Kristen",
+          "rider_url": "rider/kristen-faulkner",
+          "nationality": "US",
+          "rider_number": 34,
+          "team_name": "EF Education-Oatly (PRW)",
+          "team_url": "team/ef-education-oatly-2025"
+        },
+        {
+          "rider_name": "JACKSON Alison",
+          "rider_url": "rider/alison-jackson",
+          "nationality": "CA",
+          "rider_number": 35,
+          "team_name": "EF Education-Oatly (PRW)",
+          "team_url": "team/ef-education-oatly-2025"
+        },
+        {
+          "rider_name": "R\u00dcEGG Noemi",
+          "rider_url": "rider/noemi-ruegg",
+          "nationality": "CH",
+          "rider_number": 36,
+          "team_name": "EF Education-Oatly (PRW)",
+          "team_url": "team/ef-education-oatly-2025"
+        },
+        {
+          "rider_name": "VALLIERES Magdeleine",
+          "rider_url": "rider/magdeleine-vallieres",
+          "nationality": "CA",
+          "rider_number": 37,
+          "team_name": "EF Education-Oatly (PRW)",
+          "team_url": "team/ef-education-oatly-2025"
+        },
+        {
+          "rider_name": "KOPECKY Lotte",
+          "rider_url": "rider/lotte-kopecky",
+          "nationality": "BE",
+          "rider_number": 41,
+          "team_name": "Team SD Worx - Protime (WTW)",
+          "team_url": "team/team-sd-worx-protime-2025"
+        },
+        {
+          "rider_name": "BREDEWOLD Mischa",
+          "rider_url": "rider/mischa-bredewold",
+          "nationality": "NL",
+          "rider_number": 42,
+          "team_name": "Team SD Worx - Protime (WTW)",
+          "team_url": "team/team-sd-worx-protime-2025"
+        },
+        {
+          "rider_name": "CECCHINI Elena",
+          "rider_url": "rider/elena-cecchini",
+          "nationality": "IT",
+          "rider_number": 43,
+          "team_name": "Team SD Worx - Protime (WTW)",
+          "team_url": "team/team-sd-worx-protime-2025"
+        },
+        {
+          "rider_name": "GERRITSE Femke",
+          "rider_url": "rider/femke-gerritse",
+          "nationality": "NL",
+          "rider_number": 44,
+          "team_name": "Team SD Worx - Protime (WTW)",
+          "team_url": "team/team-sd-worx-protime-2025"
+        },
+        {
+          "rider_name": "VAN DER BREGGEN Anna",
+          "rider_url": "rider/anna-van-der-breggen",
+          "nationality": "NL",
+          "rider_number": 45,
+          "team_name": "Team SD Worx - Protime (WTW)",
+          "team_url": "team/team-sd-worx-protime-2025"
+        },
+        {
+          "rider_name": "VAS Blanka",
+          "rider_url": "rider/blanka-vas",
+          "nationality": "HU",
+          "rider_number": 46,
+          "team_name": "Team SD Worx - Protime (WTW)",
+          "team_url": "team/team-sd-worx-protime-2025"
+        },
+        {
+          "rider_name": "WIEBES Lorena",
+          "rider_url": "rider/lorena-wiebes",
+          "nationality": "NL",
+          "rider_number": 47,
+          "team_name": "Team SD Worx - Protime (WTW)",
+          "team_url": "team/team-sd-worx-protime-2025"
+        },
+        {
+          "rider_name": "FERRAND-PR\u00c9VOT Pauline",
+          "rider_url": "rider/pauline-ferrand-prevot",
+          "nationality": "FR",
+          "rider_number": 51,
+          "team_name": "Team Visma | Lease a Bike (WTW)",
+          "team_url": "team/team-visma-lease-a-bike-women-2025"
+        },
+        {
+          "rider_name": "BUNEL Marion",
+          "rider_url": "rider/marion-bunel",
+          "nationality": "FR",
+          "rider_number": 52,
+          "team_name": "Team Visma | Lease a Bike (WTW)",
+          "team_url": "team/team-visma-lease-a-bike-women-2025"
+        },
+        {
+          "rider_name": "DE VRIES Femke",
+          "rider_url": "rider/femke-de-vries",
+          "nationality": "NL",
+          "rider_number": 53,
+          "team_name": "Team Visma | Lease a Bike (WTW)",
+          "team_url": "team/team-visma-lease-a-bike-women-2025"
+        },
+        {
+          "rider_name": "NOOIJEN Lieke",
+          "rider_url": "rider/lieke-nooijen",
+          "nationality": "NL",
+          "rider_number": 54,
+          "team_name": "Team Visma | Lease a Bike (WTW)",
+          "team_url": "team/team-visma-lease-a-bike-women-2025"
+        },
+        {
+          "rider_name": "VAN AGT Eva",
+          "rider_url": "rider/eva-van-agt",
+          "nationality": "NL",
+          "rider_number": 55,
+          "team_name": "Team Visma | Lease a Bike (WTW)",
+          "team_url": "team/team-visma-lease-a-bike-women-2025"
+        },
+        {
+          "rider_name": "VOS Marianne",
+          "rider_url": "rider/marianne-vos",
+          "nationality": "NL",
+          "rider_number": 56,
+          "team_name": "Team Visma | Lease a Bike (WTW)",
+          "team_url": "team/team-visma-lease-a-bike-women-2025"
+        },
+        {
+          "rider_name": "WOLFF Imogen",
+          "rider_url": "rider/imogen-wolff",
+          "nationality": "GB",
+          "rider_number": 57,
+          "team_name": "Team Visma | Lease a Bike (WTW)",
+          "team_url": "team/team-visma-lease-a-bike-women-2025"
+        },
+        {
+          "rider_name": "LONGO BORGHINI Elisa",
+          "rider_url": "rider/elisa-longo-borghini",
+          "nationality": "IT",
+          "rider_number": 61,
+          "team_name": "UAE Team ADQ (WTW)",
+          "team_url": "team/uae-team-adq-2025"
+        },
+        {
+          "rider_name": "CHAPMAN Brodie",
+          "rider_url": "rider/brodie-chapman",
+          "nationality": "AU",
+          "rider_number": 62,
+          "team_name": "UAE Team ADQ (WTW)",
+          "team_url": "team/uae-team-adq-2025"
+        },
+        {
+          "rider_name": "GASPARRINI Eleonora Camilla",
+          "rider_url": "rider/eleonora-camilla-gasparrini",
+          "nationality": "IT",
+          "rider_number": 63,
+          "team_name": "UAE Team ADQ (WTW)",
+          "team_url": "team/uae-team-adq-2025"
+        },
+        {
+          "rider_name": "GILLESPIE Lara",
+          "rider_url": "rider/lara-gillespie",
+          "nationality": "IE",
+          "rider_number": 64,
+          "team_name": "UAE Team ADQ (WTW)",
+          "team_url": "team/uae-team-adq-2025"
+        },
+        {
+          "rider_name": "SQUIBAN Maeva",
+          "rider_url": "rider/maeva-squiban",
+          "nationality": "FR",
+          "rider_number": 65,
+          "team_name": "UAE Team ADQ (WTW)",
+          "team_url": "team/uae-team-adq-2025"
+        },
+        {
+          "rider_name": "SWINKELS Karlijn",
+          "rider_url": "rider/karlijn-swinkels",
+          "nationality": "NL",
+          "rider_number": 66,
+          "team_name": "UAE Team ADQ (WTW)",
+          "team_url": "team/uae-team-adq-2025"
+        },
+        {
+          "rider_name": "W\u0141ODARCZYK Dominika",
+          "rider_url": "rider/dominika-wlodarczyk",
+          "nationality": "PL",
+          "rider_number": 67,
+          "team_name": "UAE Team ADQ (WTW)",
+          "team_url": "team/uae-team-adq-2025"
+        },
+        {
+          "rider_name": "REUSSER Marlen",
+          "rider_url": "rider/marlen-reusser",
+          "nationality": "CH",
+          "rider_number": 71,
+          "team_name": "Movistar Team (WTW)",
+          "team_url": "team/movistar-women-team-2025"
+        },
+        {
+          "rider_name": "BIANNIC Aude",
+          "rider_url": "rider/aude-biannic",
+          "nationality": "FR",
+          "rider_number": 72,
+          "team_name": "Movistar Team (WTW)",
+          "team_url": "team/movistar-women-team-2025"
+        },
+        {
+          "rider_name": "ERI\u0106 Jelena",
+          "rider_url": "rider/jelena-eric",
+          "nationality": "RS",
+          "rider_number": 73,
+          "team_name": "Movistar Team (WTW)",
+          "team_url": "team/movistar-women-team-2025"
+        },
+        {
+          "rider_name": "LIPPERT Liane",
+          "rider_url": "rider/liane-lippert",
+          "nationality": "DE",
+          "rider_number": 74,
+          "team_name": "Movistar Team (WTW)",
+          "team_url": "team/movistar-women-team-2025"
+        },
+        {
+          "rider_name": "MAGALH\u00c3ES Ana Vit\u00f3ria",
+          "rider_url": "rider/ana-vitoria-gouvea-vieira-almeida-magalhaes",
+          "nationality": "BR",
+          "rider_number": 75,
+          "team_name": "Movistar Team (WTW)",
+          "team_url": "team/movistar-women-team-2025"
+        },
+        {
+          "rider_name": "MART\u00cdN Sara",
+          "rider_url": "rider/sara-martin-martin",
+          "nationality": "ES",
+          "rider_number": 76,
+          "team_name": "Movistar Team (WTW)",
+          "team_url": "team/movistar-women-team-2025"
+        },
+        {
+          "rider_name": "MEIJERING Mareille",
+          "rider_url": "rider/mareille-meijering",
+          "nationality": "NL",
+          "rider_number": 77,
+          "team_name": "Movistar Team (WTW)",
+          "team_url": "team/movistar-women-team-2025"
+        },
+        {
+          "rider_name": "BALSAMO Elisa",
+          "rider_url": "rider/elisa-balsamo",
+          "nationality": "IT",
+          "rider_number": 81,
+          "team_name": "Lidl - Trek (WTW)",
+          "team_url": "team/lidl-trek-women-2025"
+        },
+        {
+          "rider_name": "BRAND Lucinda",
+          "rider_url": "rider/lucinda-brand",
+          "nationality": "NL",
+          "rider_number": 82,
+          "team_name": "Lidl - Trek (WTW)",
+          "team_url": "team/lidl-trek-women-2025"
+        },
+        {
+          "rider_name": "FISHER-BLACK Niamh",
+          "rider_url": "rider/niamh-fisher-black",
+          "nationality": "NZ",
+          "rider_number": 83,
+          "team_name": "Lidl - Trek (WTW)",
+          "team_url": "team/lidl-trek-women-2025"
+        },
+        {
+          "rider_name": "MARKUS Riejanne",
+          "rider_url": "rider/riejanne-markus",
+          "nationality": "NL",
+          "rider_number": 84,
+          "team_name": "Lidl - Trek (WTW)",
+          "team_url": "team/lidl-trek-women-2025"
+        },
+        {
+          "rider_name": "NORSGAARD Emma",
+          "rider_url": "rider/emma-norsgaard",
+          "nationality": "DK",
+          "rider_number": 85,
+          "team_name": "Lidl - Trek (WTW)",
+          "team_url": "team/lidl-trek-women-2025"
+        },
+        {
+          "rider_name": "HANSON Lauretta",
+          "rider_url": "rider/lauretta-hanson",
+          "nationality": "AU",
+          "rider_number": 86,
+          "team_name": "Lidl - Trek (WTW)",
+          "team_url": "team/lidl-trek-women-2025"
+        },
+        {
+          "rider_name": "VAN ANROOIJ Shirin",
+          "rider_url": "rider/shirin-van-anrooij",
+          "nationality": "NL",
+          "rider_number": 87,
+          "team_name": "Lidl - Trek (WTW)",
+          "team_url": "team/lidl-trek-women-2025"
+        },
+        {
+          "rider_name": "(LE COURT) PIENAAR Kimberley",
+          "rider_url": "rider/kimberley-le-court",
+          "nationality": "MU",
+          "rider_number": 91,
+          "team_name": "AG Insurance - Soudal Team (WTW)",
+          "team_url": "team/ag-insurance-soudal-team-2025"
+        },
+        {
+          "rider_name": "BOSSUYT Shari",
+          "rider_url": "rider/shari-bossuyt",
+          "nationality": "BE",
+          "rider_number": 92,
+          "team_name": "AG Insurance - Soudal Team (WTW)",
+          "team_url": "team/ag-insurance-soudal-team-2025"
+        },
+        {
+          "rider_name": "GHEKIERE Justine",
+          "rider_url": "rider/justine-ghekiere",
+          "nationality": "BE",
+          "rider_number": 93,
+          "team_name": "AG Insurance - Soudal Team (WTW)",
+          "team_url": "team/ag-insurance-soudal-team-2025"
+        },
+        {
+          "rider_name": "GIGANTE Sarah",
+          "rider_url": "rider/sarah-gigante",
+          "nationality": "AU",
+          "rider_number": 94,
+          "team_name": "AG Insurance - Soudal Team (WTW)",
+          "team_url": "team/ag-insurance-soudal-team-2025"
+        },
+        {
+          "rider_name": "PLUIMERS Ilse",
+          "rider_url": "rider/ilse-pluimers",
+          "nationality": "NL",
+          "rider_number": 95,
+          "team_name": "AG Insurance - Soudal Team (WTW)",
+          "team_url": "team/ag-insurance-soudal-team-2025"
+        },
+        {
+          "rider_name": "VAN DE VELDE Julie",
+          "rider_url": "rider/julie-van-de-velde",
+          "nationality": "BE",
+          "rider_number": 96,
+          "team_name": "AG Insurance - Soudal Team (WTW)",
+          "team_url": "team/ag-insurance-soudal-team-2025"
+        },
+        {
+          "rider_name": "VERHULST-WILD Gladys",
+          "rider_url": "rider/gladys-verhulst-wild",
+          "nationality": "FR",
+          "rider_number": 97,
+          "team_name": "AG Insurance - Soudal Team (WTW)",
+          "team_url": "team/ag-insurance-soudal-team-2025"
+        },
+        {
+          "rider_name": "KOOL Charlotte",
+          "rider_url": "rider/charlotte-kool",
+          "nationality": "NL",
+          "rider_number": 101,
+          "team_name": "Team Picnic PostNL (WTW)",
+          "team_url": "team/team-picnic-postnl-women-2025"
+        },
+        {
+          "rider_name": "BARALE Francesca",
+          "rider_url": "rider/francesca-barale",
+          "nationality": "IT",
+          "rider_number": 102,
+          "team_name": "Team Picnic PostNL (WTW)",
+          "team_url": "team/team-picnic-postnl-women-2025"
+        },
+        {
+          "rider_name": "BARBIERI Rachele",
+          "rider_url": "rider/rachele-barbieri",
+          "nationality": "IT",
+          "rider_number": 103,
+          "team_name": "Team Picnic PostNL (WTW)",
+          "team_url": "team/team-picnic-postnl-women-2025"
+        },
+        {
+          "rider_name": "GEORGI Pfeiffer",
+          "rider_url": "rider/pfeiffer-georgi",
+          "nationality": "GB",
+          "rider_number": 104,
+          "team_name": "Team Picnic PostNL (WTW)",
+          "team_url": "team/team-picnic-postnl-women-2025"
+        },
+        {
+          "rider_name": "JASTRAB Megan",
+          "rider_url": "rider/megan-jastrab",
+          "nationality": "US",
+          "rider_number": 105,
+          "team_name": "Team Picnic PostNL (WTW)",
+          "team_url": "team/team-picnic-postnl-women-2025"
+        },
+        {
+          "rider_name": "KOCH Franziska",
+          "rider_url": "rider/franziska-koch",
+          "nationality": "DE",
+          "rider_number": 106,
+          "team_name": "Team Picnic PostNL (WTW)",
+          "team_url": "team/team-picnic-postnl-women-2025"
+        },
+        {
+          "rider_name": "VINKE Nienke",
+          "rider_url": "rider/nienke-vinke",
+          "nationality": "NL",
+          "rider_number": 107,
+          "team_name": "Team Picnic PostNL (WTW)",
+          "team_url": "team/team-picnic-postnl-women-2025"
+        },
+        {
+          "rider_name": "CAVALLAR Valentina",
+          "rider_url": "rider/valentina-cavallar",
+          "nationality": "AT",
+          "rider_number": 111,
+          "team_name": "Ark\u00e9a - B&B Hotels Women (PRW)",
+          "team_url": "team/arkea-b-b-hotels-women-2025"
+        },
+        {
+          "rider_name": "CLAES Lotte",
+          "rider_url": "rider/lotte-claes",
+          "nationality": "BE",
+          "rider_number": 112,
+          "team_name": "Ark\u00e9a - B&B Hotels Women (PRW)",
+          "team_url": "team/arkea-b-b-hotels-women-2025"
+        },
+        {
+          "rider_name": "FAHLIN Emilia",
+          "rider_url": "rider/emilia-fahlin",
+          "nationality": "SE",
+          "rider_number": 113,
+          "team_name": "Ark\u00e9a - B&B Hotels Women (PRW)",
+          "team_url": "team/arkea-b-b-hotels-women-2025"
+        },
+        {
+          "rider_name": "LATIMIER Cl\u00e9mence",
+          "rider_url": "rider/clemence-latimier",
+          "nationality": "FR",
+          "rider_number": 114,
+          "team_name": "Ark\u00e9a - B&B Hotels Women (PRW)",
+          "team_url": "team/arkea-b-b-hotels-women-2025"
+        },
+        {
+          "rider_name": "RYO Titia",
+          "rider_url": "rider/titia-ryo",
+          "nationality": "FR",
+          "rider_number": 115,
+          "team_name": "Ark\u00e9a - B&B Hotels Women (PRW)",
+          "team_url": "team/arkea-b-b-hotels-women-2025"
+        },
+        {
+          "rider_name": "TR\u00c9GOU\u00cbT Maur\u00e8ne",
+          "rider_url": "rider/maurene-tregouet",
+          "nationality": "FR",
+          "rider_number": 116,
+          "team_name": "Ark\u00e9a - B&B Hotels Women (PRW)",
+          "team_url": "team/arkea-b-b-hotels-women-2025"
+        },
+        {
+          "rider_name": "VAN 'T GELOOF Marjolein",
+          "rider_url": "rider/marjolein-van-t-geloof",
+          "nationality": "NL",
+          "rider_number": 117,
+          "team_name": "Ark\u00e9a - B&B Hotels Women (PRW)",
+          "team_url": "team/arkea-b-b-hotels-women-2025"
+        },
+        {
+          "rider_name": "PATERNOSTER Letizia",
+          "rider_url": "rider/letizia-paternoster",
+          "nationality": "IT",
+          "rider_number": 121,
+          "team_name": "Liv AlUla Jayco (WTW)",
+          "team_url": "team/liv-alula-jayco-2025"
+        },
+        {
+          "rider_name": "GARC\u00cdA Mavi",
+          "rider_url": "rider/mavi-garcia",
+          "nationality": "ES",
+          "rider_number": 122,
+          "team_name": "Liv AlUla Jayco (WTW)",
+          "team_url": "team/liv-alula-jayco-2025"
+        },
+        {
+          "rider_name": "KOREVAAR Jeanne",
+          "rider_url": "rider/jeanne-korevaar",
+          "nationality": "NL",
+          "rider_number": 123,
+          "team_name": "Liv AlUla Jayco (WTW)",
+          "team_url": "team/liv-alula-jayco-2025"
+        },
+        {
+          "rider_name": "ROSEMAN-GANNON Ruby",
+          "rider_url": "rider/ruby-roseman-gannon",
+          "nationality": "AU",
+          "rider_number": 124,
+          "team_name": "Liv AlUla Jayco (WTW)",
+          "team_url": "team/liv-alula-jayco-2025"
+        },
+        {
+          "rider_name": "SMULDERS Silke",
+          "rider_url": "rider/silke-smulders",
+          "nationality": "NL",
+          "rider_number": 125,
+          "team_name": "Liv AlUla Jayco (WTW)",
+          "team_url": "team/liv-alula-jayco-2025"
+        },
+        {
+          "rider_name": "TRINCA COLONEL Monica",
+          "rider_url": "rider/monica-trinca-colonel",
+          "nationality": "IT",
+          "rider_number": 126,
+          "team_name": "Liv AlUla Jayco (WTW)",
+          "team_url": "team/liv-alula-jayco-2025"
+        },
+        {
+          "rider_name": "WYLLIE Ella",
+          "rider_url": "rider/ella-wyllie",
+          "nationality": "NZ",
+          "rider_number": 127,
+          "team_name": "Liv AlUla Jayco (WTW)",
+          "team_url": "team/liv-alula-jayco-2025"
+        },
+        {
+          "rider_name": "AALERUD Katrine",
+          "rider_url": "rider/katrine-aalerud",
+          "nationality": "NO",
+          "rider_number": 131,
+          "team_name": "Uno-X Mobility (WTW)",
+          "team_url": "team/uno-x-mobility-we-2025"
+        },
+        {
+          "rider_name": "ANDERSEN Susanne",
+          "rider_url": "rider/susanne-andersen",
+          "nationality": "NO",
+          "rider_number": 132,
+          "team_name": "Uno-X Mobility (WTW)",
+          "team_url": "team/uno-x-mobility-we-2025"
+        },
+        {
+          "rider_name": "BEEKHUIS Teuntje",
+          "rider_url": "rider/teuntje-beekhuis",
+          "nationality": "NL",
+          "rider_number": 133,
+          "team_name": "Uno-X Mobility (WTW)",
+          "team_url": "team/uno-x-mobility-we-2025"
+        },
+        {
+          "rider_name": "CONFALONIERI Maria Giulia",
+          "rider_url": "rider/maria-giulia-confalonieri",
+          "nationality": "IT",
+          "rider_number": 134,
+          "team_name": "Uno-X Mobility (WTW)",
+          "team_url": "team/uno-x-mobility-we-2025"
+        },
+        {
+          "rider_name": "KOERNER Rebecca",
+          "rider_url": "rider/rebecca-koerner",
+          "nationality": "DK",
+          "rider_number": 135,
+          "team_name": "Uno-X Mobility (WTW)",
+          "team_url": "team/uno-x-mobility-we-2025"
+        },
+        {
+          "rider_name": "OTTESTAD Mie Bj\u00f8rndal",
+          "rider_url": "rider/mie-bjorndal-ottestad",
+          "nationality": "NO",
+          "rider_number": 136,
+          "team_name": "Uno-X Mobility (WTW)",
+          "team_url": "team/uno-x-mobility-we-2025"
+        },
+        {
+          "rider_name": "ZANETTI Linda",
+          "rider_url": "rider/linda-zanetti",
+          "nationality": "CH",
+          "rider_number": 137,
+          "team_name": "Uno-X Mobility (WTW)",
+          "team_url": "team/uno-x-mobility-we-2025"
+        },
+        {
+          "rider_name": "BERTEAU Victoire",
+          "rider_url": "rider/victoire-berteau",
+          "nationality": "FR",
+          "rider_number": 141,
+          "team_name": "Cofidis Women Team (PRW)",
+          "team_url": "team/cofidis-women-team-2025"
+        },
+        {
+          "rider_name": "BEGO Julie",
+          "rider_url": "rider/julie-bego",
+          "nationality": "FR",
+          "rider_number": 142,
+          "team_name": "Cofidis Women Team (PRW)",
+          "team_url": "team/cofidis-women-team-2025"
+        },
+        {
+          "rider_name": "BUJAK Eugenia",
+          "rider_url": "rider/eugenia-bujak",
+          "nationality": "SI",
+          "rider_number": 143,
+          "team_name": "Cofidis Women Team (PRW)",
+          "team_url": "team/cofidis-women-team-2025"
+        },
+        {
+          "rider_name": "DIDERIKSEN Amalie",
+          "rider_url": "rider/amalie-dideriksen",
+          "nationality": "DK",
+          "rider_number": 144,
+          "team_name": "Cofidis Women Team (PRW)",
+          "team_url": "team/cofidis-women-team-2025"
+        },
+        {
+          "rider_name": "KOPPENBURG Clara",
+          "rider_url": "rider/clara-koppenburg",
+          "nationality": "DE",
+          "rider_number": 145,
+          "team_name": "Cofidis Women Team (PRW)",
+          "team_url": "team/cofidis-women-team-2025"
+        },
+        {
+          "rider_name": "LUDWIG Hannah",
+          "rider_url": "rider/hannah-ludwig",
+          "nationality": "DE",
+          "rider_number": 146,
+          "team_name": "Cofidis Women Team (PRW)",
+          "team_url": "team/cofidis-women-team-2025"
+        },
+        {
+          "rider_name": "QUAGLIOTTO Nadia",
+          "rider_url": "rider/nadia-quagliotto",
+          "nationality": "IT",
+          "rider_number": 147,
+          "team_name": "Cofidis Women Team (PRW)",
+          "team_url": "team/cofidis-women-team-2025"
+        },
+        {
+          "rider_name": "VAN DAM Sarah",
+          "rider_url": "rider/sarah-van-dam",
+          "nationality": "CA",
+          "rider_number": 151,
+          "team_name": "CERATIZIT Pro Cycling Team (WTW)",
+          "team_url": "team/ceratizit-pro-cycling-2025"
+        },
+        {
+          "rider_name": "BRAU\u00dfE Franziska",
+          "rider_url": "rider/franziska-brausse",
+          "nationality": "DE",
+          "rider_number": 152,
+          "team_name": "CERATIZIT Pro Cycling Team (WTW)",
+          "team_url": "team/ceratizit-pro-cycling-2025"
+        },
+        {
+          "rider_name": "BURLOV\u00c1 Krist\u00fdna",
+          "rider_url": "rider/kristyna-burlova",
+          "nationality": "CZ",
+          "rider_number": 153,
+          "team_name": "CERATIZIT Pro Cycling Team (WTW)",
+          "team_url": "team/ceratizit-pro-cycling-2025"
+        },
+        {
+          "rider_name": "HARTMANN Elena",
+          "rider_url": "rider/elena-hartmann",
+          "nationality": "CH",
+          "rider_number": 154,
+          "team_name": "CERATIZIT Pro Cycling Team (WTW)",
+          "team_url": "team/ceratizit-pro-cycling-2025"
+        },
+        {
+          "rider_name": "HENGEVELD Daniek",
+          "rider_url": "rider/daniek-hengeveld",
+          "nationality": "NL",
+          "rider_number": 155,
+          "team_name": "CERATIZIT Pro Cycling Team (WTW)",
+          "team_url": "team/ceratizit-pro-cycling-2025"
+        },
+        {
+          "rider_name": "LE MOUEL C\u00e9lia",
+          "rider_url": "rider/celia-le-mouel",
+          "nationality": "FR",
+          "rider_number": 156,
+          "team_name": "CERATIZIT Pro Cycling Team (WTW)",
+          "team_url": "team/ceratizit-pro-cycling-2025"
+        },
+        {
+          "rider_name": "MIERMONT Dilyxine",
+          "rider_url": "rider/dilyxine-miermont",
+          "nationality": "FR",
+          "rider_number": 157,
+          "team_name": "CERATIZIT Pro Cycling Team (WTW)",
+          "team_url": "team/ceratizit-pro-cycling-2025"
+        },
+        {
+          "rider_name": "MALCOTTI Barbara",
+          "rider_url": "rider/barbara-malcotti",
+          "nationality": "IT",
+          "rider_number": 161,
+          "team_name": "Human Powered Health (WTW)",
+          "team_url": "team/human-powered-health-2025"
+        },
+        {
+          "rider_name": "DE JONG Thalita",
+          "rider_url": "rider/thalita-de-jong",
+          "nationality": "NL",
+          "rider_number": 162,
+          "team_name": "Human Powered Health (WTW)",
+          "team_url": "team/human-powered-health-2025"
+        },
+        {
+          "rider_name": "EDWARDS Ruth",
+          "rider_url": "rider/ruth-winder",
+          "nationality": "US",
+          "rider_number": 163,
+          "team_name": "Human Powered Health (WTW)",
+          "team_url": "team/human-powered-health-2025"
+        },
+        {
+          "rider_name": "KASPER Romy",
+          "rider_url": "rider/romy-kasper",
+          "nationality": "DE",
+          "rider_number": 164,
+          "team_name": "Human Powered Health (WTW)",
+          "team_url": "team/human-powered-health-2025"
+        },
+        {
+          "rider_name": "MITTERWALLNER Mona",
+          "rider_url": "rider/mona-mitterwallner",
+          "nationality": "AT",
+          "rider_number": 165,
+          "team_name": "Human Powered Health (WTW)",
+          "team_url": "team/human-powered-health-2025"
+        },
+        {
+          "rider_name": "RAAIJMAKERS Marit",
+          "rider_url": "rider/marit-raaijmakers",
+          "nationality": "NL",
+          "rider_number": 166,
+          "team_name": "Human Powered Health (WTW)",
+          "team_url": "team/human-powered-health-2025"
+        },
+        {
+          "rider_name": "WILLIAMS Lily",
+          "rider_url": "rider/lily-williams",
+          "nationality": "US",
+          "rider_number": 167,
+          "team_name": "Human Powered Health (WTW)",
+          "team_url": "team/human-powered-health-2025"
+        },
+        {
+          "rider_name": "GONZ\u00c1LEZ Alicia",
+          "rider_url": "rider/alicia-gonzalez",
+          "nationality": "ES",
+          "rider_number": 171,
+          "team_name": "St Michel - Preference Home - Auber93 WE (PRW)",
+          "team_url": "team/st-michel-preference-home-auber93-we-2025"
+        },
+        {
+          "rider_name": "AVOINE Alison",
+          "rider_url": "rider/alison-avoine",
+          "nationality": "FR",
+          "rider_number": 172,
+          "team_name": "St Michel - Preference Home - Auber93 WE (PRW)",
+          "team_url": "team/st-michel-preference-home-auber93-we-2025"
+        },
+        {
+          "rider_name": "FITYUS Lucie",
+          "rider_url": "rider/lucie-fityus",
+          "nationality": "AU",
+          "rider_number": 173,
+          "team_name": "St Michel - Preference Home - Auber93 WE (PRW)",
+          "team_url": "team/st-michel-preference-home-auber93-we-2025"
+        },
+        {
+          "rider_name": "MORIER Emilie",
+          "rider_url": "rider/emilie-morier",
+          "nationality": "FR",
+          "rider_number": 174,
+          "team_name": "St Michel - Preference Home - Auber93 WE (PRW)",
+          "team_url": "team/st-michel-preference-home-auber93-we-2025"
+        },
+        {
+          "rider_name": "ROUSSEL Elyne",
+          "rider_url": "rider/elyne-roussel",
+          "nationality": "FR",
+          "rider_number": 175,
+          "team_name": "St Michel - Preference Home - Auber93 WE (PRW)",
+          "team_url": "team/st-michel-preference-home-auber93-we-2025"
+        },
+        {
+          "rider_name": "THOMAS S\u00e9gol\u00e8ne",
+          "rider_url": "rider/segolene-thomas",
+          "nationality": "FR",
+          "rider_number": 176,
+          "team_name": "St Michel - Preference Home - Auber93 WE (PRW)",
+          "team_url": "team/st-michel-preference-home-auber93-we-2025"
+        },
+        {
+          "rider_name": "WATTS Emily",
+          "rider_url": "rider/emily-watts",
+          "nationality": "AU",
+          "rider_number": 177,
+          "team_name": "St Michel - Preference Home - Auber93 WE (PRW)",
+          "team_url": "team/st-michel-preference-home-auber93-we-2025"
+        },
+        {
+          "rider_name": "SANTESTEBAN Ane",
+          "rider_url": "rider/ane-santesteban",
+          "nationality": "ES",
+          "rider_number": 181,
+          "team_name": "Laboral Kutxa - Fundaci\u00f3n Euskadi (PRW)",
+          "team_url": "team/laboral-kutxa-fundacion-euskadi-2025"
+        },
+        {
+          "rider_name": "ARZUFFI Alice Maria",
+          "rider_url": "rider/alice-maria-arzuffi",
+          "nationality": "IT",
+          "rider_number": 182,
+          "team_name": "Laboral Kutxa - Fundaci\u00f3n Euskadi (PRW)",
+          "team_url": "team/laboral-kutxa-fundacion-euskadi-2025"
+        },
+        {
+          "rider_name": "ERASO Idoia",
+          "rider_url": "rider/idoia-eraso-lasa",
+          "nationality": "ES",
+          "rider_number": 183,
+          "team_name": "Laboral Kutxa - Fundaci\u00f3n Euskadi (PRW)",
+          "team_url": "team/laboral-kutxa-fundacion-euskadi-2025"
+        },
+        {
+          "rider_name": "OSTOLAZA Usoa",
+          "rider_url": "rider/usoa-ostolaza",
+          "nationality": "ES",
+          "rider_number": 184,
+          "team_name": "Laboral Kutxa - Fundaci\u00f3n Euskadi (PRW)",
+          "team_url": "team/laboral-kutxa-fundacion-euskadi-2025"
+        },
+        {
+          "rider_name": "SOTO Catalina Anais",
+          "rider_url": "rider/catalina-anais-soto-campos",
+          "nationality": "CL",
+          "rider_number": 185,
+          "team_name": "Laboral Kutxa - Fundaci\u00f3n Euskadi (PRW)",
+          "team_url": "team/laboral-kutxa-fundacion-euskadi-2025"
+        },
+        {
+          "rider_name": "TERUEL Alba",
+          "rider_url": "rider/alba-teruel-ribes",
+          "nationality": "ES",
+          "rider_number": 186,
+          "team_name": "Laboral Kutxa - Fundaci\u00f3n Euskadi (PRW)",
+          "team_url": "team/laboral-kutxa-fundacion-euskadi-2025"
+        },
+        {
+          "rider_name": "TOMASI Laura",
+          "rider_url": "rider/laura-tomasi",
+          "nationality": "IT",
+          "rider_number": 187,
+          "team_name": "Laboral Kutxa - Fundaci\u00f3n Euskadi (PRW)",
+          "team_url": "team/laboral-kutxa-fundacion-euskadi-2025"
+        },
+        {
+          "rider_name": "PEREKITKO Karolina",
+          "rider_url": "rider/karolina-perekitko",
+          "nationality": "PL",
+          "rider_number": 191,
+          "team_name": "Winspace Orange Seal (PRW)",
+          "team_url": "team/winspace-orange-seal-2025"
+        },
+        {
+          "rider_name": "ALLIONE Marine",
+          "rider_url": "rider/marine-allione",
+          "nationality": "FR",
+          "rider_number": 192,
+          "team_name": "Winspace Orange Seal (PRW)",
+          "team_url": "team/winspace-orange-seal-2025"
+        },
+        {
+          "rider_name": "GONTOVA Nadia",
+          "rider_url": "rider/nadia-gontova",
+          "nationality": "CA",
+          "rider_number": 193,
+          "team_name": "Winspace Orange Seal (PRW)",
+          "team_url": "team/winspace-orange-seal-2025"
+        },
+        {
+          "rider_name": "LYLYK Kiara",
+          "rider_url": "rider/kiara-lylyk",
+          "nationality": "CA",
+          "rider_number": 194,
+          "team_name": "Winspace Orange Seal (PRW)",
+          "team_url": "team/winspace-orange-seal-2025"
+        },
+        {
+          "rider_name": "MANGAN Fiona",
+          "rider_url": "rider/fiona-mangan",
+          "nationality": "IE",
+          "rider_number": 195,
+          "team_name": "Winspace Orange Seal (PRW)",
+          "team_url": "team/winspace-orange-seal-2025"
+        },
+        {
+          "rider_name": "LE DEUNFF Marie-Morgane",
+          "rider_url": "rider/marie-morgane-le-deunff",
+          "nationality": "FR",
+          "rider_number": 196,
+          "team_name": "Winspace Orange Seal (PRW)",
+          "team_url": "team/winspace-orange-seal-2025"
+        },
+        {
+          "rider_name": "VALENTIN Constance",
+          "rider_url": "rider/constance-valentin",
+          "nationality": "FR",
+          "rider_number": 197,
+          "team_name": "Winspace Orange Seal (PRW)",
+          "team_url": "team/winspace-orange-seal-2025"
+        },
+        {
+          "rider_name": "JANSEN Eline",
+          "rider_url": "rider/eline-jansen",
+          "nationality": "NL",
+          "rider_number": 201,
+          "team_name": "VolkerWessels Cycling Team (PRW)",
+          "team_url": "team/volkerwessels-cycling-team-we-2025"
+        },
+        {
+          "rider_name": "DEMEY Valerie",
+          "rider_url": "rider/valerie-demey",
+          "nationality": "BE",
+          "rider_number": 202,
+          "team_name": "VolkerWessels Cycling Team (PRW)",
+          "team_url": "team/volkerwessels-cycling-team-we-2025"
+        },
+        {
+          "rider_name": "DIJKSTRA Anneke",
+          "rider_url": "rider/anneke-dijkstra",
+          "nationality": "NL",
+          "rider_number": 203,
+          "team_name": "VolkerWessels Cycling Team (PRW)",
+          "team_url": "team/volkerwessels-cycling-team-we-2025"
+        },
+        {
+          "rider_name": "MOLENAAR Laura",
+          "rider_url": "rider/laura-molenaar",
+          "nationality": "NL",
+          "rider_number": 204,
+          "team_name": "VolkerWessels Cycling Team (PRW)",
+          "team_url": "team/volkerwessels-cycling-team-we-2025"
+        },
+        {
+          "rider_name": "RIJNBEEK Maud",
+          "rider_url": "rider/maud-rijnbeek",
+          "nationality": "NL",
+          "rider_number": 205,
+          "team_name": "VolkerWessels Cycling Team (PRW)",
+          "team_url": "team/volkerwessels-cycling-team-we-2025"
+        },
+        {
+          "rider_name": "UNEKEN Lonneke",
+          "rider_url": "rider/lonneke-uneken",
+          "nationality": "NL",
+          "rider_number": 206,
+          "team_name": "VolkerWessels Cycling Team (PRW)",
+          "team_url": "team/volkerwessels-cycling-team-we-2025"
+        },
+        {
+          "rider_name": "VANPACHTENBEKE Margot",
+          "rider_url": "rider/margot-vanpachtenbeke",
+          "nationality": "BE",
+          "rider_number": 207,
+          "team_name": "VolkerWessels Cycling Team (PRW)",
+          "team_url": "team/volkerwessels-cycling-team-we-2025"
+        },
+        {
+          "rider_name": "COSTON Morgane",
+          "rider_url": "rider/morgane-coston",
+          "nationality": "FR",
+          "rider_number": 211,
+          "team_name": "Roland Le D\u00e9voluy (WTW)",
+          "team_url": "team/roland-le-devoluy-2025"
+        },
+        {
+          "rider_name": "DRONOVA-BALABOLINA Tamara",
+          "rider_url": "rider/tamara-dronova-balabolina",
+          "nationality": "RU",
+          "rider_number": 212,
+          "team_name": "Roland Le D\u00e9voluy (WTW)",
+          "team_url": "team/roland-le-devoluy-2025"
+        },
+        {
+          "rider_name": "GRIFFIN Mia",
+          "rider_url": "rider/mia-griffin",
+          "nationality": "IE",
+          "rider_number": 213,
+          "team_name": "Roland Le D\u00e9voluy (WTW)",
+          "team_url": "team/roland-le-devoluy-2025"
+        },
+        {
+          "rider_name": "PIRRONE Elena",
+          "rider_url": "rider/elena-pirrone",
+          "nationality": "IT",
+          "rider_number": 214,
+          "team_name": "Roland Le D\u00e9voluy (WTW)",
+          "team_url": "team/roland-le-devoluy-2025"
+        },
+        {
+          "rider_name": "RYSZ Kaja",
+          "rider_url": "rider/kaja-rysz",
+          "nationality": "PL",
+          "rider_number": 215,
+          "team_name": "Roland Le D\u00e9voluy (WTW)",
+          "team_url": "team/roland-le-devoluy-2025"
+        },
+        {
+          "rider_name": "STIASNY Petra",
+          "rider_url": "rider/petra-stiasny",
+          "nationality": "CH",
+          "rider_number": 216,
+          "team_name": "Roland Le D\u00e9voluy (WTW)",
+          "team_url": "team/roland-le-devoluy-2025"
+        },
+        {
+          "rider_name": "SWINKELS Sylvie",
+          "rider_url": "rider/sylvie-swinkels",
+          "nationality": "NL",
+          "rider_number": 217,
+          "team_name": "Roland Le D\u00e9voluy (WTW)",
+          "team_url": "team/roland-le-devoluy-2025"
+        }
+      ],
+      "fetched_at": "2025-07-28T14:41:01.052563"
+    }
+  }
+}

@@ -1,0 +1,878 @@
+{
+    "L. KOPECKY": {
+        "name": "L. KOPECKY",
+        "team": "Team SD Worx - Protime",
+        "position": "Sprinters",
+        "stars": "24"
+    },
+    "D. VOLLERING": {
+        "name": "D. VOLLERING",
+        "team": "FDJ - Suez",
+        "position": "Leaders",
+        "stars": "24"
+    },
+    "M. VOS": {
+        "name": "M. VOS",
+        "team": "Team Visma | Lease a Bike",
+        "position": "Sprinters",
+        "stars": "23"
+    },
+    "L. WIEBES": {
+        "name": "L. WIEBES",
+        "team": "Team SD Worx - Protime",
+        "position": "Sprinters",
+        "stars": "23"
+    },
+    "K. NIEWIADOMA": {
+        "name": "K. NIEWIADOMA",
+        "team": "Canyon//Sram Zondacrypto",
+        "position": "Leaders",
+        "stars": "22"
+    },
+    "E. BALSAMO": {
+        "name": "E. BALSAMO",
+        "team": "Lidl-Trek",
+        "position": "Sprinters",
+        "stars": "20"
+    },
+    "P. FERRAND PREVOT": {
+        "name": "P. FERRAND PREVOT",
+        "team": "Team Visma | Lease a Bike",
+        "position": "Leaders",
+        "stars": "19"
+    },
+    "A. VAN DER BREGGEN": {
+        "name": "A. VAN DER BREGGEN",
+        "team": "Team SD Worx - Protime",
+        "position": "Leaders",
+        "stars": "19"
+    },
+    "K. LE COURT PIENAAR": {
+        "name": "K. LE COURT PIENAAR",
+        "team": "AG Insurance - Soudal Team",
+        "position": "Leaders",
+        "stars": "19"
+    },
+    "E. MUZIC": {
+        "name": "E. MUZIC",
+        "team": "FDJ - Suez",
+        "position": "Climbers",
+        "stars": "19"
+    },
+    "P. PIETERSE": {
+        "name": "P. PIETERSE",
+        "team": "Fenix - Deceuninck",
+        "position": "All-rounders",
+        "stars": "18"
+    },
+    "P. ROOIJAKKERS": {
+        "name": "P. ROOIJAKKERS",
+        "team": "Fenix - Deceuninck",
+        "position": "Leaders",
+        "stars": "18"
+    },
+    "S. GIGANTE": {
+        "name": "S. GIGANTE",
+        "team": "AG Insurance - Soudal Team",
+        "position": "Climbers",
+        "stars": "18"
+    },
+    "J. LABOUS": {
+        "name": "J. LABOUS",
+        "team": "FDJ - Suez",
+        "position": "Leaders",
+        "stars": "18"
+    },
+    "L. LIPPERT": {
+        "name": "L. LIPPERT",
+        "team": "Movistar Team",
+        "position": "Leaders",
+        "stars": "18"
+    },
+    "S. VAN ANROOIJ": {
+        "name": "S. VAN ANROOIJ",
+        "team": "Lidl-Trek",
+        "position": "All-rounders",
+        "stars": "17"
+    },
+    "M. TRINCA COLONEL": {
+        "name": "M. TRINCA COLONEL",
+        "team": "Liv AlUla Jayco",
+        "position": "All-rounders",
+        "stars": "16"
+    },
+    "M. GARCIA CAÑELLAS": {
+        "name": "M. GARCIA CAÑELLAS",
+        "team": "Liv AlUla Jayco",
+        "position": "Leaders",
+        "stars": "16"
+    },
+    "C. DYGERT": {
+        "name": "C. DYGERT",
+        "team": "Canyon//Sram Zondacrypto",
+        "position": "All-rounders",
+        "stars": "16"
+    },
+    "N. BRADBURY": {
+        "name": "N. BRADBURY",
+        "team": "Canyon//Sram Zondacrypto",
+        "position": "Leaders",
+        "stars": "16"
+    },
+    "C. KERBAOL": {
+        "name": "C. KERBAOL",
+        "team": "EF Education - Oatly",
+        "position": "Leaders",
+        "stars": "16"
+    },
+    "K. SWINKELS": {
+        "name": "K. SWINKELS",
+        "team": "UAE Team ADQ",
+        "position": "All-rounders",
+        "stars": "16"
+    },
+    "R. MARKUS": {
+        "name": "R. MARKUS",
+        "team": "Lidl-Trek",
+        "position": "Leaders",
+        "stars": "16"
+    },
+    "M. BREDEWOLD": {
+        "name": "M. BREDEWOLD",
+        "team": "Team SD Worx - Protime",
+        "position": "All-rounders",
+        "stars": "16"
+    },
+    "E. NORSGAARD BJERG": {
+        "name": "E. NORSGAARD BJERG",
+        "team": "Lidl-Trek",
+        "position": "Sprinters",
+        "stars": "16"
+    },
+    "L. GILLESPIE": {
+        "name": "L. GILLESPIE",
+        "team": "UAE Team ADQ",
+        "position": "Sprinters",
+        "stars": "15"
+    },
+    "K. FAULKNER": {
+        "name": "K. FAULKNER",
+        "team": "EF Education - Oatly",
+        "position": "Climbers",
+        "stars": "15"
+    },
+    "M. FISHER-BLACK": {
+        "name": "M. FISHER-BLACK",
+        "team": "Lidl-Trek",
+        "position": "Climbers",
+        "stars": "15"
+    },
+    "B. MALCOTTI": {
+        "name": "B. MALCOTTI",
+        "team": "Human Powered Health",
+        "position": "Climbers",
+        "stars": "15"
+    },
+    "S. ANDERSEN": {
+        "name": "S. ANDERSEN",
+        "team": "Uno-X Mobility",
+        "position": "Sprinters",
+        "stars": "15"
+    },
+    "Y. KASTELIJN": {
+        "name": "Y. KASTELIJN",
+        "team": "Fenix - Deceuninck",
+        "position": "Leaders",
+        "stars": "15"
+    },
+    "J. GHEKIERE": {
+        "name": "J. GHEKIERE",
+        "team": "AG Insurance - Soudal Team",
+        "position": "Climbers",
+        "stars": "15"
+    },
+    "C. LUDWIG": {
+        "name": "C. LUDWIG",
+        "team": "Canyon//Sram Zondacrypto",
+        "position": "All-rounders",
+        "stars": "15"
+    },
+    "P. GEORGI": {
+        "name": "P. GEORGI",
+        "team": "Team Picnic PostNL",
+        "position": "All-rounders",
+        "stars": "15"
+    },
+    "E. GASPARRINI": {
+        "name": "E. GASPARRINI",
+        "team": "UAE Team ADQ",
+        "position": "All-rounders",
+        "stars": "15"
+    },
+    "E. CHABBEY": {
+        "name": "E. CHABBEY",
+        "team": "FDJ - Suez",
+        "position": "Climbers",
+        "stars": "15"
+    },
+    "B. VAS": {
+        "name": "B. VAS",
+        "team": "Team SD Worx - Protime",
+        "position": "All-rounders",
+        "stars": "15"
+    },
+    "S. VAN DAM": {
+        "name": "S. VAN DAM",
+        "team": "Ceratizit Pro Cycling Team",
+        "position": "Leaders",
+        "stars": "14"
+    },
+    "S. SMULDERS": {
+        "name": "S. SMULDERS",
+        "team": "Liv AlUla Jayco",
+        "position": "Leaders",
+        "stars": "14"
+    },
+    "K. AALERUD": {
+        "name": "K. AALERUD",
+        "team": "Uno-X Mobility",
+        "position": "Leaders",
+        "stars": "14"
+    },
+    "L. WILLIAMS": {
+        "name": "L. WILLIAMS",
+        "team": "Human Powered Health",
+        "position": "Sprinters",
+        "stars": "14"
+    },
+    "A. WOLLASTON": {
+        "name": "A. WOLLASTON",
+        "team": "FDJ - Suez",
+        "position": "All-rounders",
+        "stars": "14"
+    },
+    "M. OTTESTAD": {
+        "name": "M. OTTESTAD",
+        "team": "Uno-X Mobility",
+        "position": "Leaders",
+        "stars": "14"
+    },
+    "M. CONFALONIERI": {
+        "name": "M. CONFALONIERI",
+        "team": "Uno-X Mobility",
+        "position": "Sprinters",
+        "stars": "14"
+    },
+    "T. DE JONG": {
+        "name": "T. DE JONG",
+        "team": "Human Powered Health",
+        "position": "All-rounders",
+        "stars": "14"
+    },
+    "R. BARBIERI": {
+        "name": "R. BARBIERI",
+        "team": "Team Picnic PostNL",
+        "position": "Sprinters",
+        "stars": "14"
+    },
+    "L. BRAND": {
+        "name": "L. BRAND",
+        "team": "Lidl-Trek",
+        "position": "All-rounders",
+        "stars": "14"
+    },
+    "N. RÜEGG": {
+        "name": "N. RÜEGG",
+        "team": "EF Education - Oatly",
+        "position": "All-rounders",
+        "stars": "14"
+    },
+    "R. BAUERNFEIND": {
+        "name": "R. BAUERNFEIND",
+        "team": "Canyon//Sram Zondacrypto",
+        "position": "Climbers",
+        "stars": "14"
+    },
+    "L. ZANETTI": {
+        "name": "L. ZANETTI",
+        "team": "Uno-X Mobility",
+        "position": "Sprinters",
+        "stars": "13"
+    },
+    "D. WLODARCZYK": {
+        "name": "D. WLODARCZYK",
+        "team": "UAE Team ADQ",
+        "position": "All-rounders",
+        "stars": "13"
+    },
+    "P. STIASNY": {
+        "name": "P. STIASNY",
+        "team": "Roland",
+        "position": "Climbers",
+        "stars": "13"
+    },
+    "V. CAVALLAR": {
+        "name": "V. CAVALLAR",
+        "team": "Arkea-B&B Hotels Women",
+        "position": "Climbers",
+        "stars": "13"
+    },
+    "M. BUNEL": {
+        "name": "M. BUNEL",
+        "team": "Team Visma | Lease a Bike",
+        "position": "Climbers",
+        "stars": "13"
+    },
+    "R. EDWARDS": {
+        "name": "R. EDWARDS",
+        "team": "Human Powered Health",
+        "position": "All-rounders",
+        "stars": "13"
+    },
+    "F. KOCH": {
+        "name": "F. KOCH",
+        "team": "Team Picnic PostNL",
+        "position": "All-rounders",
+        "stars": "13"
+    },
+    "A. SANTESTEBAN GONZALEZ": {
+        "name": "A. SANTESTEBAN GONZALEZ",
+        "team": "Laboral Kutxa-Fundacion Euskadi",
+        "position": "Climbers",
+        "stars": "13"
+    },
+    "M. TRUYEN": {
+        "name": "M. TRUYEN",
+        "team": "Fenix - Deceuninck",
+        "position": "Sprinters",
+        "stars": "13"
+    },
+    "L. BORGHESI": {
+        "name": "L. BORGHESI",
+        "team": "EF Education - Oatly",
+        "position": "All-rounders",
+        "stars": "13"
+    },
+    "A. KRAAK": {
+        "name": "A. KRAAK",
+        "team": "FDJ - Suez",
+        "position": "All-rounders",
+        "stars": "13"
+    },
+    "S. PALADIN": {
+        "name": "S. PALADIN",
+        "team": "Canyon//Sram Zondacrypto",
+        "position": "All-rounders",
+        "stars": "13"
+    },
+    "E. WYLLIE": {
+        "name": "E. WYLLIE",
+        "team": "Liv AlUla Jayco",
+        "position": "Climbers",
+        "stars": "12"
+    },
+    "L. PATERNOSTER": {
+        "name": "L. PATERNOSTER",
+        "team": "Liv AlUla Jayco",
+        "position": "Sprinters",
+        "stars": "12"
+    },
+    "M. VANPACHTENBEKE": {
+        "name": "M. VANPACHTENBEKE",
+        "team": "VolkerWessels Cycling Team",
+        "position": "All-rounders",
+        "stars": "12"
+    },
+    "M. GRIFFIN": {
+        "name": "M. GRIFFIN",
+        "team": "Roland",
+        "position": "Climbers",
+        "stars": "12"
+    },
+    "N. VINKE": {
+        "name": "N. VINKE",
+        "team": "Team Picnic PostNL",
+        "position": "All-rounders",
+        "stars": "12"
+    },
+    "V. BERTEAU": {
+        "name": "V. BERTEAU",
+        "team": "Cofidis Women Team",
+        "position": "All-rounders",
+        "stars": "12"
+    },
+    "M. MEIJERING": {
+        "name": "M. MEIJERING",
+        "team": "Movistar Team",
+        "position": "All-rounders",
+        "stars": "12"
+    },
+    "U. OSTOLAZA ZABALA": {
+        "name": "U. OSTOLAZA ZABALA",
+        "team": "Laboral Kutxa-Fundacion Euskadi",
+        "position": "Climbers",
+        "stars": "12"
+    },
+    "L. NOOIJEN": {
+        "name": "L. NOOIJEN",
+        "team": "Team Visma | Lease a Bike",
+        "position": "All-rounders",
+        "stars": "12"
+    },
+    "F. GERRITSE": {
+        "name": "F. GERRITSE",
+        "team": "Team SD Worx - Protime",
+        "position": "All-rounders",
+        "stars": "12"
+    },
+    "B. CHAPMAN": {
+        "name": "B. CHAPMAN",
+        "team": "UAE Team ADQ",
+        "position": "Climbers",
+        "stars": "12"
+    },
+    "M. JASTRAB": {
+        "name": "M. JASTRAB",
+        "team": "Team Picnic PostNL",
+        "position": "Sprinters",
+        "stars": "12"
+    },
+    "J. ERIĆ": {
+        "name": "J. ERIĆ",
+        "team": "Movistar Team",
+        "position": "All-rounders",
+        "stars": "12"
+    },
+    "M. LE NET": {
+        "name": "M. LE NET",
+        "team": "FDJ - Suez",
+        "position": "All-rounders",
+        "stars": "11"
+    },
+    "R. ROSEMAN-GANNON": {
+        "name": "R. ROSEMAN-GANNON",
+        "team": "Liv AlUla Jayco",
+        "position": "All-rounders",
+        "stars": "11"
+    },
+    "N. GONTOVA": {
+        "name": "N. GONTOVA",
+        "team": "Winspace Orange Seal",
+        "position": "Leaders",
+        "stars": "11"
+    },
+    "L. UNEKEN": {
+        "name": "L. UNEKEN",
+        "team": "VolkerWessels Cycling Team",
+        "position": "Sprinters",
+        "stars": "11"
+    },
+    "E. JANSEN": {
+        "name": "E. JANSEN",
+        "team": "VolkerWessels Cycling Team",
+        "position": "All-rounders",
+        "stars": "11"
+    },
+    "I. WOLFF": {
+        "name": "I. WOLFF",
+        "team": "Team Visma | Lease a Bike",
+        "position": "All-rounders",
+        "stars": "11"
+    },
+    "L. CLAES": {
+        "name": "L. CLAES",
+        "team": "Arkea-B&B Hotels Women",
+        "position": "All-rounders",
+        "stars": "11"
+    },
+    "M. VAN 'T GELOOF": {
+        "name": "M. VAN 'T GELOOF",
+        "team": "Arkea-B&B Hotels Women",
+        "position": "All-rounders",
+        "stars": "11"
+    },
+    "H. CHRISTIE": {
+        "name": "H. CHRISTIE",
+        "team": "EF Education - Oatly",
+        "position": "Climbers",
+        "stars": "11"
+    },
+    "E. HARTMANN": {
+        "name": "E. HARTMANN",
+        "team": "Ceratizit Pro Cycling Team",
+        "position": "All-rounders",
+        "stars": "11"
+    },
+    "T. DRONOVA": {
+        "name": "T. DRONOVA",
+        "team": "Roland",
+        "position": "Leaders",
+        "stars": "11"
+    },
+    "J. VAN DE VELDE": {
+        "name": "J. VAN DE VELDE",
+        "team": "AG Insurance - Soudal Team",
+        "position": "All-rounders",
+        "stars": "11"
+    },
+    "C. SCHWEINBERGER": {
+        "name": "C. SCHWEINBERGER",
+        "team": "Fenix - Deceuninck",
+        "position": "All-rounders",
+        "stars": "11"
+    },
+    "A. JACKSON": {
+        "name": "A. JACKSON",
+        "team": "EF Education - Oatly",
+        "position": "All-rounders",
+        "stars": "11"
+    },
+    "E. VAN AGT": {
+        "name": "E. VAN AGT",
+        "team": "Team Visma | Lease a Bike",
+        "position": "All-rounders",
+        "stars": "11"
+    },
+    "A. SKALNIAK-SOJKA": {
+        "name": "A. SKALNIAK-SOJKA",
+        "team": "Canyon//Sram Zondacrypto",
+        "position": "All-rounders",
+        "stars": "11"
+    },
+    "A. TERUEL RIBES": {
+        "name": "A. TERUEL RIBES",
+        "team": "Laboral Kutxa-Fundacion Euskadi",
+        "position": "Sprinters",
+        "stars": "10"
+    },
+    "F. BRAUßE": {
+        "name": "F. BRAUßE",
+        "team": "Ceratizit Pro Cycling Team",
+        "position": "All-rounders",
+        "stars": "10"
+    },
+    "K. BURLOVÁ": {
+        "name": "K. BURLOVÁ",
+        "team": "Ceratizit Pro Cycling Team",
+        "position": "Sprinters",
+        "stars": "10"
+    },
+    "D. HENGEVELD": {
+        "name": "D. HENGEVELD",
+        "team": "Ceratizit Pro Cycling Team",
+        "position": "All-rounders",
+        "stars": "10"
+    },
+    "J. BEGO": {
+        "name": "J. BEGO",
+        "team": "Cofidis Women Team",
+        "position": "All-rounders",
+        "stars": "10"
+    },
+    "K. PEREKITKO": {
+        "name": "K. PEREKITKO",
+        "team": "Winspace Orange Seal",
+        "position": "Climbers",
+        "stars": "10"
+    },
+    "M. MITTERWALLNER": {
+        "name": "M. MITTERWALLNER",
+        "team": "Human Powered Health",
+        "position": "Climbers",
+        "stars": "10"
+    },
+    "A. DIDERIKSEN": {
+        "name": "A. DIDERIKSEN",
+        "team": "Cofidis Women Team",
+        "position": "Sprinters",
+        "stars": "10"
+    },
+    "M. SQUIBAN": {
+        "name": "M. SQUIBAN",
+        "team": "UAE Team ADQ",
+        "position": "All-rounders",
+        "stars": "10"
+    },
+    "C. SOTO CAMPOS": {
+        "name": "C. SOTO CAMPOS",
+        "team": "Laboral Kutxa-Fundacion Euskadi",
+        "position": "All-rounders",
+        "stars": "10"
+    },
+    "N. QUAGLIOTTO": {
+        "name": "N. QUAGLIOTTO",
+        "team": "Cofidis Women Team",
+        "position": "All-rounders",
+        "stars": "10"
+    },
+    "F. DE VRIES": {
+        "name": "F. DE VRIES",
+        "team": "Team Visma | Lease a Bike",
+        "position": "Climbers",
+        "stars": "10"
+    },
+    "F. BARALE": {
+        "name": "F. BARALE",
+        "team": "Team Picnic PostNL",
+        "position": "All-rounders",
+        "stars": "10"
+    },
+    "A. ARZUFFI": {
+        "name": "A. ARZUFFI",
+        "team": "Laboral Kutxa-Fundacion Euskadi",
+        "position": "All-rounders",
+        "stars": "10"
+    },
+    "C. KOPPENBURG": {
+        "name": "C. KOPPENBURG",
+        "team": "Cofidis Women Team",
+        "position": "Climbers",
+        "stars": "10"
+    },
+    "D. MIERMONT": {
+        "name": "D. MIERMONT",
+        "team": "Ceratizit Pro Cycling Team",
+        "position": "Climbers",
+        "stars": "10"
+    },
+    "R. KASPER": {
+        "name": "R. KASPER",
+        "team": "Human Powered Health",
+        "position": "Sprinters",
+        "stars": "10"
+    },
+    "G. VERHULST WILD": {
+        "name": "G. VERHULST WILD",
+        "team": "AG Insurance - Soudal Team",
+        "position": "Sprinters",
+        "stars": "10"
+    },
+    "E. BUJAK": {
+        "name": "E. BUJAK",
+        "team": "Cofidis Women Team",
+        "position": "All-rounders",
+        "stars": "10"
+    },
+    "A. BIANNIC": {
+        "name": "A. BIANNIC",
+        "team": "Movistar Team",
+        "position": "All-rounders",
+        "stars": "10"
+    },
+    "J. KOREVAAR": {
+        "name": "J. KOREVAAR",
+        "team": "Liv AlUla Jayco",
+        "position": "All-rounders",
+        "stars": "9"
+    },
+    "C. VALENTIN": {
+        "name": "C. VALENTIN",
+        "team": "Winspace Orange Seal",
+        "position": "Climbers",
+        "stars": "9"
+    },
+    "K. LYLYK": {
+        "name": "K. LYLYK",
+        "team": "Winspace Orange Seal",
+        "position": "Sprinters",
+        "stars": "9"
+    },
+    "A. GOUVEA VIEIRA ALMEIDA MAGALHAES": {
+        "name": "A. GOUVEA VIEIRA ALMEIDA MAGALHAES",
+        "team": "Movistar Team",
+        "position": "All-rounders",
+        "stars": "9"
+    },
+    "M. RAAIJMAKERS": {
+        "name": "M. RAAIJMAKERS",
+        "team": "Human Powered Health",
+        "position": "All-rounders",
+        "stars": "9"
+    },
+    "R. KOERNER": {
+        "name": "R. KOERNER",
+        "team": "Uno-X Mobility",
+        "position": "All-rounders",
+        "stars": "9"
+    },
+    "I. PLUIMERS": {
+        "name": "I. PLUIMERS",
+        "team": "AG Insurance - Soudal Team",
+        "position": "All-rounders",
+        "stars": "9"
+    },
+    "M. VALLIERES MILL": {
+        "name": "M. VALLIERES MILL",
+        "team": "EF Education - Oatly",
+        "position": "All-rounders",
+        "stars": "9"
+    },
+    "L. HANSON": {
+        "name": "L. HANSON",
+        "team": "Lidl-Trek",
+        "position": "All-rounders",
+        "stars": "9"
+    },
+    "L. TOMASI": {
+        "name": "L. TOMASI",
+        "team": "Laboral Kutxa-Fundacion Euskadi",
+        "position": "Sprinters",
+        "stars": "9"
+    },
+    "T. BEEKHUIS": {
+        "name": "T. BEEKHUIS",
+        "team": "Uno-X Mobility",
+        "position": "All-rounders",
+        "stars": "9"
+    },
+    "S. MARTIN MARTIN": {
+        "name": "S. MARTIN MARTIN",
+        "team": "Movistar Team",
+        "position": "All-rounders",
+        "stars": "9"
+    },
+    "F. PERKINS": {
+        "name": "F. PERKINS",
+        "team": "Fenix - Deceuninck",
+        "position": "All-rounders",
+        "stars": "8"
+    },
+    "F. MANGAN": {
+        "name": "F. MANGAN",
+        "team": "Winspace Orange Seal",
+        "position": "All-rounders",
+        "stars": "8"
+    },
+    "A. DIJKSTRA": {
+        "name": "A. DIJKSTRA",
+        "team": "VolkerWessels Cycling Team",
+        "position": "All-rounders",
+        "stars": "8"
+    },
+    "V. DEMEY": {
+        "name": "V. DEMEY",
+        "team": "VolkerWessels Cycling Team",
+        "position": "All-rounders",
+        "stars": "8"
+    },
+    "E. WATTS": {
+        "name": "E. WATTS",
+        "team": "St Michel – Preference Home – Auber93",
+        "position": "All-rounders",
+        "stars": "8"
+    },
+    "A. GONZALEZ BLANCO": {
+        "name": "A. GONZALEZ BLANCO",
+        "team": "St Michel – Preference Home – Auber93",
+        "position": "All-rounders",
+        "stars": "8"
+    },
+    "S. BOSSUYT": {
+        "name": "S. BOSSUYT",
+        "team": "AG Insurance - Soudal Team",
+        "position": "Sprinters",
+        "stars": "8"
+    },
+    "T. RYO": {
+        "name": "T. RYO",
+        "team": "Arkea-B&B Hotels Women",
+        "position": "All-rounders",
+        "stars": "8"
+    },
+    "E. FAHLIN": {
+        "name": "E. FAHLIN",
+        "team": "Arkea-B&B Hotels Women",
+        "position": "All-rounders",
+        "stars": "8"
+    },
+    "K. RYSZ": {
+        "name": "K. RYSZ",
+        "team": "Roland",
+        "position": "Sprinters",
+        "stars": "8"
+    },
+    "M. COSTON": {
+        "name": "M. COSTON",
+        "team": "Roland",
+        "position": "Climbers",
+        "stars": "8"
+    },
+    "C. LE MOUEL": {
+        "name": "C. LE MOUEL",
+        "team": "Ceratizit Pro Cycling Team",
+        "position": "All-rounders",
+        "stars": "8"
+    },
+    "H. LUDWIG": {
+        "name": "H. LUDWIG",
+        "team": "Cofidis Women Team",
+        "position": "All-rounders",
+        "stars": "8"
+    },
+    "M. RIJNBEEK": {
+        "name": "M. RIJNBEEK",
+        "team": "VolkerWessels Cycling Team",
+        "position": "All-rounders",
+        "stars": "7"
+    },
+    "L. MOLENAAR": {
+        "name": "L. MOLENAAR",
+        "team": "VolkerWessels Cycling Team",
+        "position": "All-rounders",
+        "stars": "7"
+    },
+    "I. ERASO LASA": {
+        "name": "I. ERASO LASA",
+        "team": "Laboral Kutxa-Fundacion Euskadi",
+        "position": "Climbers",
+        "stars": "7"
+    },
+    "C. LATIMIER": {
+        "name": "C. LATIMIER",
+        "team": "Arkea-B&B Hotels Women",
+        "position": "All-rounders",
+        "stars": "7"
+    },
+    "E. ROUSSEL": {
+        "name": "E. ROUSSEL",
+        "team": "St Michel – Preference Home – Auber93",
+        "position": "All-rounders",
+        "stars": "7"
+    },
+    "A. AVOINE": {
+        "name": "A. AVOINE",
+        "team": "St Michel – Preference Home – Auber93",
+        "position": "All-rounders",
+        "stars": "7"
+    },
+    "M. COUZENS": {
+        "name": "M. COUZENS",
+        "team": "Fenix - Deceuninck",
+        "position": "All-rounders",
+        "stars": "7"
+    },
+    "E. CECCHINI": {
+        "name": "E. CECCHINI",
+        "team": "Team SD Worx - Protime",
+        "position": "All-rounders",
+        "stars": "7"
+    },
+    "M. ALLIONE": {
+        "name": "M. ALLIONE",
+        "team": "Winspace Orange Seal",
+        "position": "Climbers",
+        "stars": "6"
+    },
+    "M. TREGOUET": {
+        "name": "M. TREGOUET",
+        "team": "Arkea-B&B Hotels Women",
+        "position": "All-rounders",
+        "stars": "6"
+    },
+    "E. MORIER": {
+        "name": "E. MORIER",
+        "team": "St Michel – Preference Home – Auber93",
+        "position": "All-rounders",
+        "stars": "5"
+    }
+}

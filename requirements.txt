@@ -1,0 +1,7 @@
+streamlit
+procyclingstats
+numpy
+pandas
+plotly
+statsmodels
+scipy

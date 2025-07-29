@@ -1,0 +1,206 @@
+{
+  "cached_at": "2025-07-28T13:58:45.011105",
+  "race_data": {
+    "race/tour-de-france-femmes/2025": {
+      "race_data": {
+        "category": "Woman Elite",
+        "edition": null,
+        "enddate": "2025-08-03",
+        "is_one_day_race": false,
+        "name": "Tour de France Femmes",
+        "nationality": "FR",
+        "prev_editions_select": [
+          {
+            "text": "2025",
+            "value": "race/tour-de-france-femmes/2025/statistics/start"
+          },
+          {
+            "text": "2024",
+            "value": "race/tour-de-france-femmes/2024/statistics/start"
+          },
+          {
+            "text": "2023",
+            "value": "race/tour-de-france-femmes/2023/statistics/start"
+          },
+          {
+            "text": "2022",
+            "value": "race/tour-de-france-femmes/2022/statistics/start"
+          }
+        ],
+        "stages": [
+          {
+            "profile_icon": "p3",
+            "stage_name": "Stage 1 | Vannes - Plumelec",
+            "stage_url": "race/tour-de-france-femmes/2025/stage-1",
+            "date": "07-26"
+          },
+          {
+            "profile_icon": "p3",
+            "stage_name": "Stage 2 | Brest - Quimper",
+            "stage_url": "race/tour-de-france-femmes/2025/stage-2",
+            "date": "07-27"
+          },
+          {
+            "profile_icon": "p1",
+            "stage_name": "Stage 3 | La Gacilly - Angers",
+            "stage_url": "race/tour-de-france-femmes/2025/stage-3",
+            "date": "07-28"
+          },
+          {
+            "profile_icon": "p1",
+            "stage_name": "Stage 4 | Saumur - Poitiers",
+            "stage_url": "race/tour-de-france-femmes/2025/stage-4",
+            "date": "07-29"
+          },
+          {
+            "profile_icon": "p2",
+            "stage_name": "Stage 5 | Chasseneuil-du-Poitou (Futuroscope) - Gu\u00e9ret",
+            "stage_url": "race/tour-de-france-femmes/2025/stage-5",
+            "date": "07-30"
+          },
+          {
+            "profile_icon": "p4",
+            "stage_name": "Stage 6 | Clermont-Ferrand - Ambert",
+            "stage_url": "race/tour-de-france-femmes/2025/stage-6",
+            "date": "07-31"
+          },
+          {
+            "profile_icon": "p4",
+            "stage_name": "Stage 7 | Bourg-en-Bresse - Chamb\u00e9ry",
+            "stage_url": "race/tour-de-france-femmes/2025/stage-7",
+            "date": "08-01"
+          },
+          {
+            "profile_icon": "p5",
+            "stage_name": "Stage 8 | Chamb\u00e9ry - Saint-Fran\u00e7ois Longchamp (Col de la Madeleine)",
+            "stage_url": "race/tour-de-france-femmes/2025/stage-8",
+            "date": "08-02"
+          },
+          {
+            "profile_icon": "p4",
+            "stage_name": "Stage 9 | Praz-sur-Arly - Ch\u00e2tel Les Portes du Soleil",
+            "stage_url": "race/tour-de-france-femmes/2025/stage-9",
+            "date": "08-03"
+          }
+        ],
+        "stages_winners": [
+          {
+            "rider_name": "VOS Marianne",
+            "rider_url": "rider/marianne-vos",
+            "nationality": "NL",
+            "stage_name": "Stage 1"
+          },
+          {
+            "rider_name": "GARC\u00cdA Mavi",
+            "rider_url": "rider/mavi-garcia",
+            "nationality": "ES",
+            "stage_name": "Stage 2"
+          },
+          {
+            "rider_name": "WIEBES Lorena",
+            "rider_url": "rider/lorena-wiebes",
+            "nationality": "NL",
+            "stage_name": "Stage 3"
+          },
+          {
+            "rider_name": "",
+            "rider_url": "rider/",
+            "nationality": null,
+            "stage_name": "Stage 4"
+          },
+          {
+            "rider_name": "",
+            "rider_url": "rider/",
+            "nationality": null,
+            "stage_name": "Stage 5"
+          },
+          {
+            "rider_name": "",
+            "rider_url": "rider/",
+            "nationality": null,
+            "stage_name": "Stage 6"
+          },
+          {
+            "rider_name": "",
+            "rider_url": "rider/",
+            "nationality": null,
+            "stage_name": "Stage 7"
+          },
+          {
+            "rider_name": "",
+            "rider_url": "rider/",
+            "nationality": null,
+            "stage_name": "Stage 8"
+          },
+          {
+            "rider_name": "",
+            "rider_url": "rider/",
+            "nationality": null,
+            "stage_name": "Stage 9"
+          }
+        ],
+        "startdate": "2025-07-26",
+        "uci_tour": "UCI Women's WorldTour",
+        "year": 2025
+      },
+      "fetched_at": "2025-07-28T13:58:43.746180",
+      "stages": [
+        {
+          "profile_icon": "p3",
+          "stage_name": "Stage 1 | Vannes - Plumelec",
+          "stage_url": "race/tour-de-france-femmes/2025/stage-1",
+          "date": "07-26"
+        },
+        {
+          "profile_icon": "p3",
+          "stage_name": "Stage 2 | Brest - Quimper",
+          "stage_url": "race/tour-de-france-femmes/2025/stage-2",
+          "date": "07-27"
+        },
+        {
+          "profile_icon": "p1",
+          "stage_name": "Stage 3 | La Gacilly - Angers",
+          "stage_url": "race/tour-de-france-femmes/2025/stage-3",
+          "date": "07-28"
+        },
+        {
+          "profile_icon": "p1",
+          "stage_name": "Stage 4 | Saumur - Poitiers",
+          "stage_url": "race/tour-de-france-femmes/2025/stage-4",
+          "date": "07-29"
+        },
+        {
+          "profile_icon": "p2",
+          "stage_name": "Stage 5 | Chasseneuil-du-Poitou (Futuroscope) - Gu\u00e9ret",
+          "stage_url": "race/tour-de-france-femmes/2025/stage-5",
+          "date": "07-30"
+        },
+        {
+          "profile_icon": "p4",
+          "stage_name": "Stage 6 | Clermont-Ferrand - Ambert",
+          "stage_url": "race/tour-de-france-femmes/2025/stage-6",
+          "date": "07-31"
+        },
+        {
+          "profile_icon": "p4",
+          "stage_name": "Stage 7 | Bourg-en-Bresse - Chamb\u00e9ry",
+          "stage_url": "race/tour-de-france-femmes/2025/stage-7",
+          "date": "08-01"
+        },
+        {
+          "profile_icon": "p5",
+          "stage_name": "Stage 8 | Chamb\u00e9ry - Saint-Fran\u00e7ois Longchamp (Col de la Madeleine)",
+          "stage_url": "race/tour-de-france-femmes/2025/stage-8",
+          "date": "08-02"
+        },
+        {
+          "profile_icon": "p4",
+          "stage_name": "Stage 9 | Praz-sur-Arly - Ch\u00e2tel Les Portes du Soleil",
+          "stage_url": "race/tour-de-france-femmes/2025/stage-9",
+          "date": "08-03"
+        }
+      ],
+      "climbs": []
+    }
+  }
+}
