@@ -6,7 +6,7 @@ import streamlit as st
 from datetime import datetime
 from procyclingstats import Race, RaceClimbs, Stage
 
-from config.settings import RACE_CACHE_FILE, TDF_FEMMES_2025_PATH
+from config.settings import RACE_CACHE_FILE, SUPPORTED_RACES
 from utils.cache_manager import load_cache, save_cache, refresh_cache
 
 
@@ -34,15 +34,18 @@ def fetch_tdf_femmes_2025_data():
     # Check cache first
     cached_data = load_race_cache()
 
-    if TDF_FEMMES_2025_PATH in cached_data:
+    race_info = SUPPORTED_RACES["TDF_FEMMES_2025"]
+    race_info_key = race_info["url_path"]
+
+    if race_info_key in cached_data:
         st.toast("📋 Using cached Tour de France Femmes 2025 data")
-        return cached_data[TDF_FEMMES_2025_PATH]
+        return cached_data[race_info_key]
 
     try:
         st.toast("🌐 Fetching fresh Tour de France Femmes 2025 data...")
 
         # Create Race object
-        race = Race(TDF_FEMMES_2025_PATH)
+        race = Race(race_info_key)
 
         # Parse race data
         race_data = race.parse()
@@ -60,7 +63,7 @@ def fetch_tdf_femmes_2025_data():
 
         # Try to get race climbs
         try:
-            climbs = RaceClimbs(f"{TDF_FEMMES_2025_PATH}/route/climbs")
+            climbs = RaceClimbs(f"{race_info_key}/route/climbs")
             race_info["climbs"] = climbs
             # Add the climbs to each stage
             stages_climbs = {}
@@ -75,7 +78,7 @@ def fetch_tdf_femmes_2025_data():
 
         # Update cache
         new_cache_data = cached_data.copy()
-        new_cache_data[TDF_FEMMES_2025_PATH] = race_info
+        new_cache_data[race_info_key] = race_info
         save_race_cache(new_cache_data)
 
         return race_info
@@ -102,10 +105,13 @@ def get_stage_results(stage_number):
     Returns:
         dict: Stage results data
     """
-    try:
-        race = Race(TDF_FEMMES_2025_PATH)
-        stage_results = race.stage_results(stage_number)
-        return stage_results
-    except Exception as e:
-        st.error(f"❌ Error fetching stage {stage_number} results: {e}")
-        return {}
+    race_info = SUPPORTED_RACES["TDF_FEMMES_2025"]
+    race_info_key = race_info["url_path"]
+    return {}
+    # try:
+    #     race = Race(race_info_key)
+    #     stage_results = race.stage_results(stage_number)
+    #     return stage_results
+    # except Exception as e:
+    #     st.error(f"❌ Error fetching stage {stage_number} results: {e}")
+    #     return {}

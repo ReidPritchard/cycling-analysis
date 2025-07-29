@@ -79,10 +79,12 @@ def main():
     # Load and filter data
     filtered_riders = apply_filters(riders, filters)
 
+    # st.dataframe(filtered_riders, use_container_width=True)
+
     # Main content area
     # TODO: Add support for other races?
-    tab1, tab2, tab3, tab4 = st.tabs(
-        ["📊 Overview", "🏆 Riders", "📈 Analytics", "🏁 TdF Femmes 2025"]
+    tab1, tab2, tab3 = st.tabs(
+        ["📊 Overview", "🏆 Riders", "📈 Analytics"]
     )
 
     with tab1:
@@ -94,8 +96,8 @@ def main():
     with tab3:
         show_analytics_tab(filtered_riders)
 
-    with tab4:
-        show_race_tab()
+#     with tab4:
+#         show_race_tab()
 
     # Footer
     st.divider()

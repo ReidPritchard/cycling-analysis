@@ -3,7 +3,7 @@ Sidebar components for the Fantasy Cycling Stats app.
 """
 
 import streamlit as st
-from config.settings import PCS_CACHE_FILE, RACE_CACHE_FILE, PCS_STARTLIST_CACHE_FILE
+from config.settings import PCS_CACHE_FILE, RACE_CACHE_FILE, SUPPORTED_RACES
 from utils.cache_manager import get_cache_info
 from data.pcs_data import fetch_pcs_data, refresh_pcs_cache, refresh_startlist_cache
 from data.race_data import fetch_tdf_femmes_2025_data, refresh_race_cache
@@ -15,11 +15,18 @@ def render_sidebar_controls(riders):
     with st.sidebar:
         st.header("🎛️ Controls")
 
+        # Race selection
+        race = st.selectbox(
+            "Selected Race:",
+            [race['name'] for race in SUPPORTED_RACES.values()],
+        )
+
         # Cache management
         st.subheader("Cache Management")
         if st.button("🌐 Fetch PCS Data", use_container_width=True):
             with st.spinner("Fetching ProCyclingStats data..."):
-                riders = fetch_pcs_data(load_fantasy_data())
+                # FIXME: Use the race from the selectbox
+                riders = fetch_pcs_data("TDF_FEMMES_2025", load_fantasy_data())
                 st.success("✅ PCS data fetched successfully!")
 
         if st.button("🗑️ Clear Cache", use_container_width=True):
@@ -67,7 +74,8 @@ def _display_cache_info():
         )
 
     # PCS startlist cache info
-    startlist_cache_info = get_cache_info(PCS_STARTLIST_CACHE_FILE)
+    # FIXME: Make dynamic based on race selection
+    startlist_cache_info = get_cache_info(SUPPORTED_RACES["TDF_FEMMES_2025"]["startlist_cache_path"])
     if startlist_cache_info:
         st.markdown(
             f"""
@@ -106,9 +114,9 @@ def _render_filters(riders):
         teams = ["All"] + sorted(riders["team"].unique().tolist())
         selected_team = st.selectbox("Team", teams)
 
-        # Star rating filter
+        # Star cost filter
         min_stars, max_stars = st.slider(
-            "Star Rating Range",
+            "Star Cost Range",
             min_value=int(riders["stars"].min()),
             max_value=int(riders["stars"].max()),
             value=(int(riders["stars"].min()), int(riders["stars"].max())),

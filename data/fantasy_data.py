@@ -10,10 +10,11 @@ from difflib import SequenceMatcher as SM
 
 from config.settings import (
     PCS_CACHE_FILE,
-    PCS_STARTLIST_CACHE_FILE,
-    TDF_FEMMES_2025_STARTLIST_PATH,
+    SUPPORTED_RACES,
 )
 from utils.cache_manager import load_cache
+from utils.url_patterns import startlist_path
+from utils.name_utils import match_rider_names
 
 
 # =============================================================================
@@ -158,22 +159,32 @@ def load_fantasy_data():
     with open("fantasy-data.json", "r") as f:
         riders = json.load(f)
 
+
+    race_info = SUPPORTED_RACES["TDF_FEMMES_2025"]
+    startlist_cache_path = race_info["startlist_cache_path"]
+    startlist_cache_key = startlist_path(race_info["url_path"])
+
     # Load cached PCS data
     cached_rider_data = load_cache(PCS_CACHE_FILE, "riders_data")
     cached_startlist_data = load_cache(
-        PCS_STARTLIST_CACHE_FILE, "startlist_data"
+        startlist_cache_path, "startlist_data"
     )
 
     # Get startlist for matching if available
     startlist_riders = []
-    if TDF_FEMMES_2025_STARTLIST_PATH in cached_startlist_data:
-        startlist_riders = cached_startlist_data[TDF_FEMMES_2025_STARTLIST_PATH][
+    if startlist_cache_key in cached_startlist_data:
+        startlist_riders = cached_startlist_data[startlist_cache_key][
             "startlist"
         ]
 
     # Log a little bit about the cached data
     st.write(f"Cached PCS data: {len(cached_rider_data)} riders")
     st.write(f"Cached startlist data: {len(startlist_riders)} riders")
+
+    # Create the name mappings
+    rider_mappings = match_rider_names(
+        riders, startlist_riders
+    )
 
     matched_pcs_rider_count = 0
 
@@ -187,30 +198,17 @@ def load_fantasy_data():
         rider["pcs_rider_url"] = None
 
         # Try to find matching rider in startlist
-        matched_pcs_rider = None
-
-        for pcs_rider in startlist_riders:
-            pcs_name = pcs_rider["rider_name"]
-            rider_url = pcs_rider["rider_url"]
-
-            # Use fuzzy matching to find the best match 
-            # (same logic as fetch_pcs_data)
-            similarity = SM(None, full_name, pcs_name).ratio()
-
-            if similarity > 0.9:
-                matched_pcs_rider = pcs_rider
-                matched_pcs_rider_count += 1
-                break
-
-        # If we found a match, check for cached data
-        if matched_pcs_rider:
-            rider_url = matched_pcs_rider["rider_url"]
-
-            # Check if we have cached data for this rider URL
-            if rider_url in cached_rider_data:
-                rider["pcs_data"] = cached_rider_data[rider_url]
-                rider["pcs_matched_name"] = matched_pcs_rider["rider_name"]
-                rider["pcs_rider_url"] = rider_url
+        matched_startlist_rider = None
+        if full_name in rider_mappings:
+            matched_pcs_rider_count += 1
+            matched_startlist_rider = rider_mappings[full_name]
+            # Save the matched startlist data
+            rider["matched_startlist_rider"] = matched_startlist_rider.get("matched_startlist_rider", {})
+            rider["pcs_matched_name"] = matched_startlist_rider.get("pcs_matched_name", "")
+            rider["pcs_rider_url"] = matched_startlist_rider.get("pcs_rider_url", "")
+            # Check if the cached PCS data exists for this rider
+            if matched_startlist_rider.get("pcs_rider_url") in cached_rider_data:
+                rider["pcs_data"] = cached_rider_data[matched_startlist_rider["pcs_rider_url"]]
 
     # If we were able to match any riders, render a toast
     if matched_pcs_rider_count > 0:

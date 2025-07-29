@@ -47,10 +47,10 @@ def show_riders_tab(filtered_riders):
     """Display the riders tab content"""
     st.subheader(f"🏆 Riders ({len(filtered_riders)} found)")
 
+    display_summary_stats(filtered_riders)
+
     # Display format options
     display_format = st.radio("Display as:", ["Cards", "Table"])
-
-    display_summary_stats(filtered_riders)
 
     if display_format == "Cards":
         display_rider_cards(filtered_riders)

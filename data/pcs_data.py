@@ -16,6 +16,7 @@ from config.settings import (
 )
 from utils.cache_manager import load_cache, refresh_cache, save_cache
 from utils.url_patterns import startlist_path
+from utils.name_utils import match_rider_names
 
 
 def load_pcs_cache():
@@ -96,7 +97,7 @@ def fetch_startlist_data(race_name="TDF_FEMMES_2025"):
 
 
 @st.cache_data
-def fetch_pcs_data(riders_df):
+def fetch_pcs_data(race_name, riders_df):
     """
     Fetch ProCyclingStats data for each rider.
     First fetches the Tour de France 2022 startlist to get rider URLs,
@@ -109,8 +110,15 @@ def fetch_pcs_data(riders_df):
 
     # Step 1: Get Tour de France 2025 startlist
     st.toast("📋 Loading Tour de France 2025 startlist...")
+    startlist_riders = fetch_startlist_data(race_name)
     # Convert dataframe to list of dictionaries for processing
     riders_list = riders_df.to_dict("records")
+
+    # Create the name mappings
+    rider_mappings = match_rider_names(
+        riders_df, startlist_riders
+    )
+
     updated_riders = []
     new_cache_data = cached_rider_data.copy()
 
@@ -127,47 +135,31 @@ def fetch_pcs_data(riders_df):
         progress_bar.progress(progress)
         status_text.text(f"🔄 Processing rider {i+1}/{len(riders_list)}: {full_name}")
 
+        rider_url = None
         # Try to find matching rider in startlist
         matched_pcs_rider = None
-        for pcs_rider in startlist_riders:
-            pcs_name = pcs_rider["rider_name"]
-            rider_url = pcs_rider["rider_url"]
+        if full_name in rider_mappings:
+            matched_pcs_rider = rider_mappings[full_name]
 
-            # Use fuzzy matching to find the best match
-            similarity = SM(None, full_name, pcs_name).ratio()
-            if similarity > 0.9:  # Adjust threshold as needed
-                matched_pcs_rider = pcs_rider
-                break
-
-        if not matched_pcs_rider:
-            # If no match found, add empty PCS data
-            st.toast(f"⚠️ No PCS match found for {full_name}")
-            rider["pcs_data"] = {
-                "error": "No matching rider found in TdF Femmes 2025 startlist",
-                "fetched_at": datetime.now().isoformat(),
-            }
-            updated_riders.append(rider)
-            continue
-
-        rider_url = matched_pcs_rider["rider_url"]
-        st.toast(f"✅ Matched {full_name} with {matched_pcs_rider['rider_name']}")
+            rider_url = matched_pcs_rider.get("pcs_rider_url", None)
+            st.toast(f"✅ Matched {full_name} with {matched_pcs_rider['pcs_matched_name']}")
 
         # Check if we have cached data for this rider URL
-        if rider_url in cached_rider_data:
+        if rider_url in cached_rider_data and matched_pcs_rider:
             st.toast(f"Using cached data for {full_name}")
             rider["pcs_data"] = cached_rider_data[rider_url]
-            rider["pcs_matched_name"] = matched_pcs_rider["rider_name"]
+            rider["pcs_matched_name"] = matched_pcs_rider["pcs_matched_name"]
             rider["pcs_rider_url"] = rider_url
-        else:
+        elif rider_url and matched_pcs_rider:
             # Fetch fresh data from ProCyclingStats
             try:
                 st.toast(f"🌐 Fetching fresh data for {full_name}")
                 rider_pcs = Rider(rider_url)
-                pcs_data = rider_pcs.parse()
+                pcs_data = rider_pcs.parse(IndexError, True)
 
                 # Add the PCS data to the rider
                 rider["pcs_data"] = pcs_data
-                rider["pcs_matched_name"] = matched_pcs_rider["rider_name"]
+                rider["pcs_matched_name"] = matched_pcs_rider.get("pcs_matched_name", "")
                 rider["pcs_rider_url"] = rider_url
 
                 # Update cache with rider URL as key
@@ -176,15 +168,15 @@ def fetch_pcs_data(riders_df):
             except Exception as e:
                 # FIXME: This is catching an "index out of range" error
                 # I'm not sure why exactly, but it's happening a lot
-                st.toast(
-                    f"❌ Error fetching data for {matched_pcs_rider['rider_name']}: {e}"
+                st.error(
+                    f"❌ Error fetching data for {matched_pcs_rider['pcs_matched_name']} ({rider_url}): {e}"
                 )
                 # Add empty PCS data to avoid breaking the dataframe
                 rider["pcs_data"] = {
                     "error": str(e),
                     "fetched_at": datetime.now().isoformat(),
                 }
-                rider["pcs_matched_name"] = matched_pcs_rider["rider_name"]
+                rider["pcs_matched_name"] = matched_pcs_rider.get("pcs_matched_name", "")
                 rider["pcs_rider_url"] = rider_url
 
         updated_riders.append(rider)

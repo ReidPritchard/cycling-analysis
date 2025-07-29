@@ -5,7 +5,6 @@ Refactored rider display components for the Fantasy Cycling Stats app.
 import re
 import pandas as pd
 import streamlit as st
-from datetime import datetime
 from config.settings import POSITION_ICONS
 
 
