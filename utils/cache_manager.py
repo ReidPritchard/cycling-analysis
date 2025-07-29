@@ -4,7 +4,7 @@ Cache management utilities for the Fantasy Cycling Stats app.
 
 import json
 import os
-import streamlit as st
+import logging
 from datetime import datetime
 from config.settings import CACHE_EXPIRY_DELTA
 
@@ -21,12 +21,12 @@ def load_cache(cache_file, data_key="data"):
         # Check if cache is expired
         cache_date = datetime.fromisoformat(cache_data.get("cached_at", "1970-01-01"))
         if datetime.now() - cache_date > CACHE_EXPIRY_DELTA:
-            st.info(f"🔄 Cache expired. Will refresh data.")
+            logging.info(f"🔄 Cache expired. Will refresh data.")
             return {}
 
         return cache_data.get(data_key, {})
     except (json.JSONDecodeError, ValueError) as e:
-        st.error(f"❌ Error reading cache file: {e}")
+        logging.error(f"❌ Error reading cache file: {e}")
         return {}
 
 
@@ -37,20 +37,20 @@ def save_cache(cache_file, data, data_key="data"):
     try:
         with open(cache_file, "w") as f:
             json.dump(cache_data, f, indent=2)
-        st.success(f"✅ Data cached to {cache_file}")
+        logging.info(f"✅ Data cached to {cache_file}")
     except Exception as e:
-        st.error(f"❌ Error saving cache: {e}")
+        logging.error(f"❌ Error saving cache: {e}")
 
 
 def refresh_cache(cache_file, cache_type=""):
     """Force refresh of cache by deleting the cache file."""
     if os.path.exists(cache_file):
         os.remove(cache_file)
-        st.success(
+        logging.info(
             f"🗑️ {cache_type} cache cleared. Data will be refreshed on next fetch."
         )
     else:
-        st.info(f"ℹ️ No {cache_type.lower()} cache file found to clear.")
+        logging.info(f"ℹ️ No {cache_type.lower()} cache file found to clear.")
 
 
 def get_cache_info(cache_file):

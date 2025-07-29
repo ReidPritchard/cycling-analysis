@@ -6,9 +6,11 @@ from datetime import datetime
 import json
 import pandas as pd
 import streamlit as st
-from difflib import SequenceMatcher as SM
+import numpy as np
+import logging
 
 from config.settings import (
+    FANTASY_DATA_FILE,
     PCS_CACHE_FILE,
     SUPPORTED_RACES,
 )
@@ -25,12 +27,12 @@ from utils.name_utils import match_rider_names
 def process_season_results(pcs_data):
     """Process and clean season results from PCS data."""
     if not pcs_data or "season_results" not in pcs_data:
-        return pd.DataFrame(), 0, 0
+        return pd.DataFrame(), 0, 0, 0.0, 0.0
 
     season_results = pcs_data.get("season_results", [])
 
     if not season_results:
-        return pd.DataFrame(), 0, 0
+        return pd.DataFrame(), 0, 0, 0.0, 0.0
 
     # Convert to DataFrame and process
     df_results = pd.DataFrame(season_results)
@@ -54,19 +56,44 @@ def process_season_results(pcs_data):
         int(df_results["uci_points"].sum()) if not df_results.empty else 0
     )
 
+    # Calculate consistency and trend metrics
+    consistency_score = 0.0
+    trend_score = 0.0
+    
+    if not df_results.empty and len(df_results) >= 2:
+        # Consistency: coefficient of variation of results (lower is more consistent)
+        results_positions = pd.to_numeric(df_results["result"], errors="coerce").dropna()
+        if len(results_positions) >= 2:
+            consistency_score = results_positions.std() / results_positions.mean() if results_positions.mean() > 0 else 0
+        
+        # Trend: linear regression slope of results over time (negative = improving)
+        if len(results_positions) >= 2:
+            # Sort by date ascending for trend calculation
+            df_trend = df_results.copy()
+            df_trend["result_numeric"] = pd.to_numeric(df_trend["result"], errors="coerce")
+            df_trend = df_trend.dropna(subset=["result_numeric"]).sort_values("date")
+            
+            if len(df_trend) >= 2:
+                x_days = (df_trend["date"] - df_trend["date"].min()).dt.days.values
+                y_results = df_trend["result_numeric"].values
+                trend_score = np.polyfit(x_days, y_results, 1)[0]  # slope
+
     # Clean up for display
     if not df_results.empty:
-        df_results = df_results.drop(columns=["stage_url", "distance"])
+        # Only drop columns that exist
+        columns_to_drop = ["stage_url", "distance"]
+        df_results = df_results.drop(columns=columns_to_drop)
+        
         df_results.columns = [
             "Name",
-            "Date",
+            "Date", 
             "Result",
             "GC Position",
             "PCS Points",
             "UCI Points",
         ]
 
-    return df_results, total_pcs_points, total_uci_points
+    return df_results, total_pcs_points, total_uci_points, consistency_score, trend_score
 
 
 def calculate_rider_demographics(pcs_data):
@@ -114,15 +141,19 @@ def calculate_rider_metrics(df):
     df["nationality"] = ""
     df["season_results_count"] = 0
     df["season_results"] = None
+    df["consistency_score"] = 0.0
+    df["trend_score"] = 0.0
 
     # Process each rider
     for idx, row in df.iterrows():
         pcs_data = row.get("pcs_data", {})
 
         # Process season results
-        season_results, total_pcs, total_uci = process_season_results(pcs_data)
+        season_results, total_pcs, total_uci, consistency, trend = process_season_results(pcs_data)
         df.at[idx, "total_pcs_points"] = total_pcs
         df.at[idx, "total_uci_points"] = total_uci
+        df.at[idx, "consistency_score"] = consistency
+        df.at[idx, "trend_score"] = trend
         if season_results is not None:
             df.at[idx, "season_results"] = season_results
 
@@ -150,16 +181,18 @@ def prepare_rider_data(df):
     return calculate_rider_metrics(df)
 
 
+@st.cache_data(show_spinner=True, ttl=60 * 60 * 24, max_entries=10)
 def load_fantasy_data():
     """
         Load the riders fantasy data into a pandas dataframe and merge with
         cached PCS data
     """
     # Load basic fantasy data
-    with open("fantasy-data.json", "r") as f:
+    with open(FANTASY_DATA_FILE, "r") as f:
         riders = json.load(f)
 
 
+    # TODO: Get info for the selected race (remove hardcoded)
     race_info = SUPPORTED_RACES["TDF_FEMMES_2025"]
     startlist_cache_path = race_info["startlist_cache_path"]
     startlist_cache_key = startlist_path(race_info["url_path"])
@@ -170,7 +203,7 @@ def load_fantasy_data():
         startlist_cache_path, "startlist_data"
     )
 
-    # Get startlist for matching if available
+    # Get startlist for race (if available)
     startlist_riders = []
     if startlist_cache_key in cached_startlist_data:
         startlist_riders = cached_startlist_data[startlist_cache_key][
@@ -178,8 +211,8 @@ def load_fantasy_data():
         ]
 
     # Log a little bit about the cached data
-    st.write(f"Cached PCS data: {len(cached_rider_data)} riders")
-    st.write(f"Cached startlist data: {len(startlist_riders)} riders")
+    # st.write(f"Cached PCS data: {len(cached_rider_data)} riders")
+    # st.write(f"Cached startlist data: {len(startlist_riders)} riders")
 
     # Create the name mappings
     rider_mappings = match_rider_names(
@@ -210,11 +243,11 @@ def load_fantasy_data():
             if matched_startlist_rider.get("pcs_rider_url") in cached_rider_data:
                 rider["pcs_data"] = cached_rider_data[matched_startlist_rider["pcs_rider_url"]]
 
-    # If we were able to match any riders, render a toast
+    # Log matching results
     if matched_pcs_rider_count > 0:
-        st.toast(f"✅ Matched {matched_pcs_rider_count} riders")
+        logging.info(f"✅ Matched {matched_pcs_rider_count} riders")
     else:
-        st.toast("❌ No riders matched")
+        logging.warning("❌ No riders matched")
 
     riders_df = pd.DataFrame(riders)
 

@@ -2,7 +2,7 @@
 Race data fetching and caching for Tour de France Femmes.
 """
 
-import streamlit as st
+import logging
 from datetime import datetime
 from procyclingstats import Race, RaceClimbs, Stage
 
@@ -25,7 +25,6 @@ def refresh_race_cache():
     refresh_cache(RACE_CACHE_FILE, "Race")
 
 
-@st.cache_data
 def fetch_tdf_femmes_2025_data():
     """
     Fetch Tour de France Femmes 2025 race data.
@@ -38,11 +37,11 @@ def fetch_tdf_femmes_2025_data():
     race_info_key = race_info["url_path"]
 
     if race_info_key in cached_data:
-        st.toast("📋 Using cached Tour de France Femmes 2025 data")
+        logging.info("📋 Using cached Tour de France Femmes 2025 data")
         return cached_data[race_info_key]
 
     try:
-        st.toast("🌐 Fetching fresh Tour de France Femmes 2025 data...")
+        logging.info("🌐 Fetching fresh Tour de France Femmes 2025 data...")
 
         # Create Race object
         race = Race(race_info_key)
@@ -58,7 +57,7 @@ def fetch_tdf_femmes_2025_data():
             stages = race.stages()
             race_info["stages"] = stages
         except Exception as e:
-            st.toast(f"Could not fetch stages data: {e}")
+            logging.warning(f"Could not fetch stages data: {e}")
             race_info["stages"] = []
 
         # Try to get race climbs
@@ -73,7 +72,7 @@ def fetch_tdf_femmes_2025_data():
                 stages_climbs[stage_info["stage_url"]] = stage_climbs
             race_info["stages_climbs"] = stages_climbs
         except Exception as e:
-            st.toast(f"Could not fetch climbs data: {e}")
+            logging.warning(f"Could not fetch climbs data: {e}")
             race_info["climbs"] = []
 
         # Update cache
@@ -84,7 +83,7 @@ def fetch_tdf_femmes_2025_data():
         return race_info
 
     except Exception as e:
-        st.error(f"❌ Error fetching Tour de France Femmes 2025 data: {e}")
+        logging.error(f"❌ Error fetching Tour de France Femmes 2025 data: {e}")
         return {
             "error": str(e),
             "fetched_at": datetime.now().isoformat(),

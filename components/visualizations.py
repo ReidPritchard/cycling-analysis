@@ -610,7 +610,7 @@ def _show_statistical_insights(df):
                     f"{df[df['total_pcs_points'] > 0]['total_pcs_points'].mean():.1f}",
                     f"{df[df['total_pcs_points'] > 0]['total_pcs_points'].median():.1f}",
                     f"{df[df['total_pcs_points'] > 0]['total_pcs_points'].std():.1f}",
-                    f"{df['total_pcs_points'].max():.0f}",
+                    f"{df['total_pcs_points'].max():.0f} - ({df[df['total_pcs_points'] == df['total_pcs_points'].max()]['full_name'].values[0]})",
                     f"{df[df['total_pcs_points'] > 0]['pcs_per_star'].mean():.2f}"
                 ]
             }

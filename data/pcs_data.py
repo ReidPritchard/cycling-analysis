@@ -5,10 +5,10 @@ ProCyclingStats data fetching and caching.
 from datetime import datetime
 from difflib import SequenceMatcher as SM
 import time
+import logging
 
 import pandas as pd
 from procyclingstats import RaceStartlist, Rider
-import streamlit as st
 
 from config.settings import (
     PCS_CACHE_FILE,
@@ -69,13 +69,13 @@ def fetch_startlist_data(race_name="TDF_FEMMES_2025"):
     startlist_key = startlist_path(base_url)
 
     if cached_startlist_data and startlist_key in cached_startlist_data:
-        st.toast("Using cached startlist data")
+        logging.info("Using cached startlist data")
         startlist_riders = cached_startlist_data[startlist_key][
             "startlist"
         ]
     else:
         try:
-            st.toast("🌐 Fetching fresh startlist data...")
+            logging.info("🌐 Fetching fresh startlist data...")
             startlist = RaceStartlist(startlist_key)
             startlist_data = startlist.parse()
             startlist_riders = startlist_data["startlist"]
@@ -89,15 +89,14 @@ def fetch_startlist_data(race_name="TDF_FEMMES_2025"):
             save_startlist_cache(race_name, new_startlist_cache)
 
         except Exception as e:
-            st.error(f"❌ Error fetching startlist: {e}")
+            logging.error(f"❌ Error fetching startlist: {e}")
             return []
 
     # return the startlist riders
     return startlist_riders
 
 
-@st.cache_data
-def fetch_pcs_data(race_name, riders_df):
+def fetch_pcs_data(race_name, riders_df, progress_callback=None):
     """
     Fetch ProCyclingStats data for each rider.
     First fetches the Tour de France 2022 startlist to get rider URLs,
@@ -109,7 +108,7 @@ def fetch_pcs_data(race_name, riders_df):
     cached_rider_data = load_pcs_cache()
 
     # Step 1: Get Tour de France 2025 startlist
-    st.toast("📋 Loading Tour de France 2025 startlist...")
+    logging.info("📋 Loading Tour de France 2025 startlist...")
     startlist_riders = fetch_startlist_data(race_name)
     # Convert dataframe to list of dictionaries for processing
     riders_list = riders_df.to_dict("records")
@@ -123,17 +122,18 @@ def fetch_pcs_data(race_name, riders_df):
     new_cache_data = cached_rider_data.copy()
 
     # Track progress
-    progress_bar = st.progress(0)
-    status_text = st.empty()
+    total_riders = len(riders_list)
 
     # Step 2: Match fantasy riders with PCS riders and fetch data
     for i, rider in enumerate(riders_list):
         full_name = rider.get("full_name", "")
 
         # Update progress
-        progress = (i + 1) / len(riders_list)
-        progress_bar.progress(progress)
-        status_text.text(f"🔄 Processing rider {i+1}/{len(riders_list)}: {full_name}")
+        progress = (i + 1) / total_riders
+        current_status = f"🔄 Processing rider {i+1}/{total_riders}: {full_name}"
+        logging.info(current_status)
+        if progress_callback:
+            progress_callback(progress, current_status)
 
         rider_url = None
         # Try to find matching rider in startlist
@@ -142,18 +142,18 @@ def fetch_pcs_data(race_name, riders_df):
             matched_pcs_rider = rider_mappings[full_name]
 
             rider_url = matched_pcs_rider.get("pcs_rider_url", None)
-            st.toast(f"✅ Matched {full_name} with {matched_pcs_rider['pcs_matched_name']}")
+            logging.info(f"✅ Matched {full_name} with {matched_pcs_rider['pcs_matched_name']}")
 
         # Check if we have cached data for this rider URL
         if rider_url in cached_rider_data and matched_pcs_rider:
-            st.toast(f"Using cached data for {full_name}")
+            logging.info(f"Using cached data for {full_name}")
             rider["pcs_data"] = cached_rider_data[rider_url]
             rider["pcs_matched_name"] = matched_pcs_rider["pcs_matched_name"]
             rider["pcs_rider_url"] = rider_url
         elif rider_url and matched_pcs_rider:
             # Fetch fresh data from ProCyclingStats
             try:
-                st.toast(f"🌐 Fetching fresh data for {full_name}")
+                logging.info(f"🌐 Fetching fresh data for {full_name}")
                 rider_pcs = Rider(rider_url)
                 pcs_data = rider_pcs.parse(IndexError, True)
 
@@ -168,7 +168,7 @@ def fetch_pcs_data(race_name, riders_df):
             except Exception as e:
                 # FIXME: This is catching an "index out of range" error
                 # I'm not sure why exactly, but it's happening a lot
-                st.error(
+                logging.error(
                     f"❌ Error fetching data for {matched_pcs_rider['pcs_matched_name']} ({rider_url}): {e}"
                 )
                 # Add empty PCS data to avoid breaking the dataframe
@@ -186,9 +186,8 @@ def fetch_pcs_data(race_name, riders_df):
     if new_cache_data != cached_rider_data:
         save_pcs_cache(new_cache_data)
 
-    # Clear progress indicators
-    progress_bar.empty()
-    status_text.empty()
+    # Log completion
+    logging.info(f"Completed processing {total_riders} riders")
 
     # Convert back to dataframe
     return pd.DataFrame(updated_riders)

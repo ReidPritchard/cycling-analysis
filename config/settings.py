@@ -4,7 +4,8 @@ Configuration settings for the Fantasy Cycling Stats app.
 
 from datetime import timedelta
 
-from pandas._libs.algos import take_1d_float32_float32
+# Fantasy data file scraped from TdF site (star data)
+FANTASY_DATA_FILE = "fantasy-data.json"
 
 # Cache file settings
 PCS_CACHE_FILE = "pcs_data_cache.json"
@@ -18,7 +19,7 @@ SUPPORTED_RACES = {
     "TDF_FEMMES_2025": {
         "name": "Tour de France Femmes 2025",
         "url_path": "race/tour-de-france-femmes/2025",
-        "startlist_cache_path": "data/tdf_femmes_2025_startlist.json",
+        "startlist_cache_path": "tdf_femmes_2025_startlist.json",
     },
 }
 
