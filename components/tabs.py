@@ -2,24 +2,23 @@
 Tab content components for the Fantasy Cycling Stats app.
 """
 
-import streamlit as st
-import pandas as pd
 from datetime import datetime
 
-from components.visualizations import (
-    create_stats_overview,
-    show_detailed_analytics,
-    create_star_cost_distribution_chart,
-)
+import pandas as pd
+import streamlit as st
+
 from components.rider_display import (
     display_rider_cards,
     display_rider_table,
     display_summary_stats,
 )
+from components.visualizations import (
+    create_star_cost_distribution_chart,
+    create_stats_overview,
+    show_detailed_analytics,
+)
 from data.race_data import (
-    fetch_tdf_femmes_2025_data,
     refresh_race_cache,
-    get_stage_results,
 )
 
 
@@ -67,153 +66,193 @@ def show_race_tab(race_data):
     """Display the TdF Femmes 2025 tab content"""
     st.header("🏁 Tour de France Femmes 2025")
 
-    col1, col2 = st.columns([1, 1])
+    # Check if race data has an error
+    if "error" in race_data:
+        st.error(f"❌ Error loading race data: {race_data['error']}")
 
-    with col1:
-        if st.button("📥 Load Race Data", use_container_width=True):
-            with st.spinner("Loading Tour de France Femmes 2025 data..."):
-                race_data = fetch_tdf_femmes_2025_data()
-                st.session_state.race_data = race_data
-
-    with col2:
+        # Show refresh option for errors
         if st.button("🔄 Refresh Race Data", use_container_width=True):
             refresh_race_cache()
-            with st.spinner("Refreshing Tour de France Femmes 2025 data..."):
-                race_data = fetch_tdf_femmes_2025_data()
-                st.session_state.race_data = race_data
+            st.rerun()
+        return
 
-    # Display race data if available
-    if "race_data" in st.session_state:
-        race_data = st.session_state.race_data
+    # Display race status and last updated info
+    col1, col2, col3 = st.columns([2, 2, 1])
 
-        if "error" in race_data:
-            st.error(f"❌ Error loading race data: {race_data['error']}")
-        else:
-            st.success("✅ Race data loaded successfully!")
+    with col1:
+        race_info = race_data.get("race_data", {})
+        race_name = race_info.get("name", "Tour de France Femmes 2025")
+        st.markdown(f"**{race_name}**")
 
-            # Create sub-tabs for different race data views
-            race_tab1, race_tab2, race_tab3 = st.tabs(
-                ["📋 Race Info", "🏆 General Classification", "🚩 Stages"]
-            )
+    with col2:
+        if "fetched_at" in race_data:
+            fetch_time = datetime.fromisoformat(race_data["fetched_at"])
+            st.markdown(f"*Updated: {fetch_time.strftime('%m/%d %H:%M')}*")
 
-            with race_tab1:
-                _show_race_info_tab(race_data)
+    with col3:
+        if st.button("🔄", help="Refresh race data", use_container_width=True):
+            refresh_race_cache()
+            st.rerun()
 
-            with race_tab2:
-                _show_gc_tab(race_data)
+    # climbs = race_data.get("climbs", [])
+    # if climbs:
+    #     st.markdown(f"**🏔️ Climbs:** {len(climbs)} major climbs identified")
 
-            with race_tab3:
-                _show_stages_tab(race_data)
-    else:
-        _show_race_info_placeholder()
+    #     st.dataframe(
+    #         pd.DataFrame(climbs),
+    #         use_container_width=True,
+    #         hide_index=True,
+    #         height=200,
+    #     )
+
+    _show_race_info_tab(race_data)
+
+    st.caption("Work in progress")
+
+    # # Create compact tabs for different race data views
+    # race_tab1, race_tab2, race_tab3 = st.tabs(
+    #     ["📋 Overview", "🏆 Classification", "🚩 Stages"]
+    # )
+
+    # with race_tab1:
+    #     _show_race_info_tab(race_data)
+
+    # with race_tab2:
+    #     _show_gc_tab(race_data)
+
+    # with race_tab3:
+    #     _show_stages_tab(race_data)
 
 
 def _show_race_info_tab(race_data):
     """Display race information tab"""
-    st.subheader("📋 Race Information")
-
     if race_data.get("race_data"):
         race_info = race_data["race_data"]
 
-        # Display basic race info
-        col1, col2, col3 = st.columns(3)
+        # Display key race metrics in a compact format
+        if isinstance(race_info, dict) and race_info:
+            # Show key information if available
+            col1, col2, col3 = st.columns(3)
 
-        with col1:
-            st.metric("Race", race_info.get("name", "Tour de France Femmes"))
+            with col1:
+                if "startdate" in race_info:
+                    st.metric("Start Date", race_info["startdate"])
+                elif "date" in race_info:
+                    st.metric("Date", race_info["date"])
 
-        with col2:
-            st.metric("Year", race_info.get("year", "2025"))
+            with col2:
+                if "enddate" in race_info:
+                    st.metric("End Date", race_info["enddate"])
+                elif "year" in race_info:
+                    st.metric("Year", race_info["year"])
 
-        with col3:
-            if "fetched_at" in race_data:
-                fetch_time = datetime.fromisoformat(race_data["fetched_at"])
-                st.metric("Last Updated", fetch_time.strftime("%m/%d %H:%M"))
+            with col3:
+                if "distance" in race_info:
+                    st.metric("Total Distance", f"{race_info['distance']} km")
 
-        # Display additional race details if available
-        if isinstance(race_info, dict):
-            st.json(race_info)
+            # Show expandable details
+            with st.expander("📄 Detailed Race Information"):
+                st.json(race_info)
+        else:
+            st.info(
+                "ℹ️ Detailed race information will be available when the race data is loaded."
+            )
     else:
-        st.info("ℹ️ No detailed race information available yet.")
+        st.info("ℹ️ No race information available yet.")
 
 
 def _show_gc_tab(race_data):
     """Display general classification tab"""
-    st.subheader("🏆 General Classification")
+    # Check multiple possible locations for GC data
+    gc_data = race_data.get("gc") or race_data.get("race_data", {}).get("gc")
 
-    if race_data.get("gc") and len(race_data["gc"]) > 0:
-        gc_data = race_data["gc"]
-
+    if gc_data and len(gc_data) > 0:
         # Convert to DataFrame for better display
         if isinstance(gc_data, list) and len(gc_data) > 0:
             gc_df = pd.DataFrame(gc_data)
-            st.dataframe(gc_df, use_container_width=True)
+            st.dataframe(gc_df, use_container_width=True, height=400)
         else:
-            st.json(gc_data)
+            with st.expander("📊 Classification Data"):
+                st.json(gc_data)
     else:
-        st.info(
-            "ℹ️ General Classification data not available yet. The race may not have started."
-        )
+        st.info("🏁 General Classification will appear here once the race begins.")
+
+        # Show what to expect
+        st.markdown("""
+        **What you'll see here:**
+        - Current race leader and yellow jersey holder
+        - Time gaps between riders
+        - Overall standings updated after each stage
+        - Points and mountain classification leaders
+        """)
 
 
 def _show_stages_tab(race_data):
     """Display stages information tab"""
-    st.subheader("🚩 Stage Information")
+    stages_data = race_data.get("stages", [])
 
-    if race_data.get("stages") and len(race_data["stages"]) > 0:
-        stages_data = race_data["stages"]
-
-        # Display stages information
+    if stages_data and len(stages_data) > 0:
+        # Display stages in a more compact format
         if isinstance(stages_data, list):
+            # Create a summary table first
+            stage_summary = []
             for i, stage in enumerate(stages_data):
-                with st.expander(f"Stage {i+1}: {stage.get('name', f'Stage {i+1}')}"):
-                    if isinstance(stage, dict):
-                        # Display stage details
-                        stage_col1, stage_col2 = st.columns(2)
+                if isinstance(stage, dict):
+                    stage_summary.append(
+                        {
+                            "Stage": i + 1,
+                            "Name": stage.get("name", f"Stage {i + 1}"),
+                            "Date": stage.get("date", "TBD"),
+                            "Distance": stage.get("distance", "N/A"),
+                            "Type": stage.get("type", "N/A"),
+                        }
+                    )
 
-                        with stage_col1:
-                            st.write(f"**Distance:** {stage.get('distance', 'N/A')}")
-                            st.write(f"**Type:** {stage.get('type', 'N/A')}")
+            if stage_summary:
+                st.subheader("📊 Stage Overview")
+                stage_df = pd.DataFrame(stage_summary)
+                st.dataframe(stage_df, use_container_width=True, hide_index=True)
 
-                        with stage_col2:
-                            st.write(f"**Date:** {stage.get('date', 'N/A')}")
-                            st.write(f"**Profile:** {stage.get('profile', 'N/A')}")
+            st.subheader("🚩 Stage Details")
+            # Show stages in expandable sections
+            for i, stage in enumerate(stages_data):
+                if isinstance(stage, dict):
+                    stage_name = stage.get("name", f"Stage {i + 1}")
+                    stage_date = stage.get("date", "TBD")
 
-                        # Option to get stage results
-                        if st.button(f"Get Stage {i+1} Results", key=f"stage_{i+1}"):
-                            with st.spinner(f"Fetching Stage {i+1} results..."):
-                                stage_results = get_stage_results(i + 1)
-                                if stage_results:
-                                    st.json(stage_results)
-                                else:
-                                    st.info("No results available for this stage yet.")
-                    else:
+                    with st.expander(f"Stage {i + 1}: {stage_name} ({stage_date})"):
+                        # Display stage details in columns
+                        col1, col2, col3 = st.columns(3)
+
+                        with col1:
+                            st.metric("Distance", stage.get("distance", "N/A"))
+
+                        with col2:
+                            st.metric("Type", stage.get("type", "N/A"))
+
+                        with col3:
+                            st.metric("Profile", stage.get("profile", "N/A"))
+
+                        # Show additional stage details if available
+                        if len(stage) > 5:  # More than basic fields
+                            with st.expander("📄 Additional Stage Details"):
+                                st.json(stage)
+                else:
+                    with st.expander(f"Stage {i + 1}"):
                         st.json(stage)
         else:
-            st.json(stages_data)
+            with st.expander("📊 Stages Data"):
+                st.json(stages_data)
     else:
-        st.info("ℹ️ Stage information not available yet.")
+        st.info(
+            "🚩 Stage information will be available when the race route is published."
+        )
 
-
-def _show_race_info_placeholder():
-    """Show placeholder information when race data is not loaded"""
-    st.info(
-        "👆 Click 'Load Race Data' to fetch Tour de France Femmes 2025 information."
-    )
-
-    # Show some helpful information about what data will be available
-    st.markdown(
-        """
-    ### 📊 What data will be available?
-    
-    - **Race Information**: Basic details about the race
-    - **General Classification**: Overall standings and time gaps  
-    - **Stage Information**: Details about each stage including distance, profile, and type
-    - **Stage Results**: Individual stage winners and results (when available)
-    
-    ### 🔄 Data Updates
-    
-    - Data is cached for 7 days to improve performance
-    - Use 'Refresh Race Data' to get the latest information
-    - Stage results will be available as the race progresses
-    """
-    )
+        # Show what to expect
+        st.markdown("""
+        **What you'll see here:**
+        - Complete stage breakdown with distances and profiles
+        - Stage types (flat, hilly, mountain, time trial)
+        - Start/finish locations for each stage
+        - Elevation profiles and key climbs
+        """)

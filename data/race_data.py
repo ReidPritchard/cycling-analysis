@@ -5,10 +5,12 @@ Race data fetching and caching for Tour de France Femmes.
 import logging
 from datetime import datetime
 
+import streamlit as st
 from procyclingstats import Race, RaceClimbs, Stage
 
 from config.settings import RACE_CACHE_FILE, SUPPORTED_RACES
 from utils.cache_manager import load_cache, refresh_cache, save_cache
+from utils.url_patterns import race_climbs_path
 
 
 def load_race_cache():
@@ -26,11 +28,107 @@ def refresh_race_cache():
     refresh_cache(RACE_CACHE_FILE, "Race")
 
 
+# @st.cache_data(show_spinner=True, ttl=60 * 60 * 24, max_entries=10)
 def load_race_data(race_key):
     """
-    Loads the race data for the specified race key.
+    Load race data for the specified race key from cache or fetch fresh data.
+
+    Args:
+        race_key (str): The race key from SUPPORTED_RACES
+
+    Returns:
+        dict: Race data including race_data, stages, climbs, etc.
     """
-    # TODO: Implement
+    # Check if race_key is supported
+    if race_key not in SUPPORTED_RACES:
+        logging.error(f"❌ Unsupported race key: {race_key}")
+        return {
+            "error": f"Unsupported race key: {race_key}",
+            "fetched_at": datetime.now().isoformat(),
+            "race_data": {},
+            "stages": [],
+            "climbs": [],
+            "stages_climbs": {},
+        }
+
+    # Load cached race data
+    cached_data = load_race_cache()
+    race_info = SUPPORTED_RACES[race_key]
+    race_info_key = race_info["url_path"]
+
+    # Return cached data if available
+    if race_info_key in cached_data:
+        logging.info(f"📋 Using cached race data for {race_key}")
+        return cached_data[race_info_key]
+
+    # Fetch fresh data if not in cache
+    try:
+        logging.info(f"🌐 Fetching fresh race data for {race_key}...")
+
+        # Create Race object
+        race = Race(race_info_key)
+
+        # Parse race data
+        race_data = race.parse()
+
+        # Get additional data if available
+        race_result = {"race_data": race_data, "fetched_at": datetime.now().isoformat()}
+
+        # Try to get stages data
+        try:
+            stages = []
+            stages_overview = race.stages()
+            race_result["stages_overview"] = stages_overview
+            for stage in stages_overview:
+                stage_obj = Stage(stage["stage_url"])
+                stage_data = {
+                    "stage_url": stage["stage_url"],
+                    "distance": stage_obj.distance(),
+                    "start_time": stage_obj.start_time(),
+                    "stage_type": stage_obj.stage_type(),
+                    "profile_score": stage_obj.profile_score(),
+                }
+                stages.append(stage_data)
+
+            race_result["race_data"]["stages"] = stages
+        except Exception as e:
+            st.error(f"❌ Error fetching stages data: {e}")
+            logging.warning(f"Could not fetch stages data: {e}")
+            race_result["stages_overview"] = []
+            race_result["race_data"]["stages"] = []
+
+        # Try to get race climbs
+        try:
+            race_climbs = RaceClimbs(race_climbs_path(race_info_key))
+            race_result["climbs"] = race_climbs.climbs()
+            # Add the climbs to each stage
+            # stages_climbs = {}
+            # for stage_info in stages:
+            #     stage = Stage(stage_info["stage_url"])
+            #     stage_climbs = [climbs[s["climb_url"]] for s in stage.climbs()]
+            #     stages_climbs[stage_info["stage_url"]] = stage_climbs
+            # race_result["stages_climbs"] = stages_climbs
+        except Exception as e:
+            logging.warning(f"Could not fetch climbs data: {e}")
+            race_result["climbs"] = []
+
+        # Update cache
+        new_cache_data = cached_data.copy()
+        new_cache_data[race_info_key] = race_result
+        save_race_cache(new_cache_data)
+
+        return race_result
+
+    except Exception as e:
+        logging.error(f"❌ Error fetching race data for {race_key}: {e}")
+        return {
+            "error": str(e),
+            "fetched_at": datetime.now().isoformat(),
+            "race_data": {},
+            "stages": [],
+            "climbs": [],
+            "stages_climbs": {},
+        }
 
 
 def fetch_tdf_femmes_2025_data():

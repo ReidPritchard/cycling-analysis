@@ -12,6 +12,7 @@ from components.sidebar import render_sidebar_controls
 from components.tabs import (
     show_analytics_tab,
     show_overview_tab,
+    show_race_tab,
     show_riders_tab,
 )
 
@@ -74,7 +75,7 @@ def main():
     riders = load_fantasy_data()
 
     # Load race data (also only once)
-    race_data = load_race_data("tdf_femmes_2025")
+    race_data = load_race_data("TDF_FEMMES_2025")
 
     # Render sidebar and get filter values
     filters = render_sidebar_controls(riders)
@@ -98,8 +99,7 @@ def main():
         show_analytics_tab(filtered_riders)
 
     with tab4:
-        st.header("🏁 Coming Soon!")
-        # show_race_tab(race_data)
+        show_race_tab(race_data)
 
     # Footer
     st.divider()
