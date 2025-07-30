@@ -1,5 +1,5 @@
 {
-  "cached_at": "2025-07-30T13:16:38.318134",
+  "cached_at": "2025-07-30T13:53:59.838426",
   "race_data": {
     "race/tour-de-france-femmes/2025": {
       "race_data": {
@@ -31,65 +31,292 @@
           {
             "stage_url": "race/tour-de-france-femmes/2025/stage-1",
             "distance": 78.8,
-            "start_time": "17:40 ",
+            "profile_icon": "p3",
             "stage_type": "RR",
-            "profile_score": 43
+            "vertical_meters": 926,
+            "avg_temperature": 22.0,
+            "date": "2025-07-26",
+            "departure": "Vannes",
+            "arrival": "Plumelec",
+            "won_how": "Sprint of small group",
+            "race_startlist_quality_score": [
+              1875,
+              1875
+            ],
+            "profile_score": 43,
+            "pcs_points_scale": "F-2.WWT.Stage",
+            "uci_points_scale": "UCI.WE.WWT.Stage",
+            "start_time": "17:40 ",
+            "climbs": [
+              {
+                "climb_name": "C\u00f4te de Bots\u00e9galo",
+                "climb_url": "location/cote-de-botsegalo"
+              },
+              {
+                "climb_name": "C\u00f4te de Cadoudal",
+                "climb_url": "location/cote-de-cadoudal"
+              }
+            ]
           },
           {
             "stage_url": "race/tour-de-france-femmes/2025/stage-2",
             "distance": 110.4,
-            "start_time": "12:30 ",
+            "profile_icon": "p3",
             "stage_type": "RR",
-            "profile_score": 83
+            "vertical_meters": 1651,
+            "avg_temperature": 20.0,
+            "date": "2025-07-27",
+            "departure": "Brest",
+            "arrival": "Quimper",
+            "won_how": "10.8 km solo",
+            "race_startlist_quality_score": [
+              1875,
+              1805
+            ],
+            "profile_score": 83,
+            "pcs_points_scale": "F-2.WWT.Stage",
+            "uci_points_scale": "UCI.WE.WWT.Stage",
+            "start_time": "12:30 ",
+            "climbs": [
+              {
+                "climb_name": "Menez Quelerc'h",
+                "climb_url": "location/cote-de-menez-quelerc-h"
+              },
+              {
+                "climb_name": "C\u00f4te de Locronan",
+                "climb_url": "location/cote-de-locronan"
+              },
+              {
+                "climb_name": "C\u00f4te du Chemin de Troh\u00e9ir",
+                "climb_url": "location/cote-du-chemin-de-troheir"
+              }
+            ]
           },
           {
             "stage_url": "race/tour-de-france-femmes/2025/stage-3",
             "distance": 163.5,
-            "start_time": "13:55 ",
+            "profile_icon": "p1",
             "stage_type": "RR",
-            "profile_score": 12
+            "vertical_meters": 1050,
+            "avg_temperature": 23.0,
+            "date": "2025-07-28",
+            "departure": "La Gacilly",
+            "arrival": "Angers",
+            "won_how": "Sprint of large group",
+            "race_startlist_quality_score": [
+              1875,
+              1739
+            ],
+            "profile_score": 12,
+            "pcs_points_scale": "F-2.WWT.Stage",
+            "uci_points_scale": "UCI.WE.WWT.Stage",
+            "start_time": "13:55 ",
+            "climbs": [
+              {
+                "climb_name": "C\u00f4te de la Richardi\u00e8re",
+                "climb_url": "location/cote-de-la-richardiere"
+              }
+            ]
           },
           {
             "stage_url": "race/tour-de-france-femmes/2025/stage-4",
             "distance": 130.7,
-            "start_time": "14:45 ",
+            "profile_icon": "p1",
             "stage_type": "RR",
-            "profile_score": 9
+            "vertical_meters": 748,
+            "avg_temperature": 25.0,
+            "date": "2025-07-29",
+            "departure": "Saumur",
+            "arrival": "Poitiers",
+            "won_how": "Sprint of large group",
+            "race_startlist_quality_score": [
+              1875,
+              1717
+            ],
+            "profile_score": 9,
+            "pcs_points_scale": "F-2.WWT.Stage",
+            "uci_points_scale": "UCI.WE.WWT.Stage",
+            "start_time": "14:45 ",
+            "climbs": [
+              {
+                "climb_name": "C\u00f4te de Marigny",
+                "climb_url": "location/cote-de-marigny-brizay"
+              }
+            ]
           },
           {
             "stage_url": "race/tour-de-france-femmes/2025/stage-5",
             "distance": 165.8,
-            "start_time": "13:35 ",
+            "profile_icon": "p2",
             "stage_type": "RR",
-            "profile_score": 63
+            "vertical_meters": 1861,
+            "avg_temperature": 23.0,
+            "date": "2025-07-30",
+            "departure": "Chasseneuil-du-Poitou (Futuroscope)",
+            "arrival": "Gu\u00e9ret",
+            "won_how": "Sprint of small group",
+            "race_startlist_quality_score": [
+              1875,
+              1717
+            ],
+            "profile_score": 63,
+            "pcs_points_scale": "F-2.WWT.Stage",
+            "uci_points_scale": "UCI.WE.WWT.Stage",
+            "start_time": "13:35 ",
+            "climbs": [
+              {
+                "climb_name": "C\u00f4te de Chabannes",
+                "climb_url": "location/cote-de-chabannes"
+              },
+              {
+                "climb_name": "C\u00f4te du Peyroux",
+                "climb_url": "location/cote-de-le-peyroux"
+              },
+              {
+                "climb_name": "Le Maupuy",
+                "climb_url": "location/le-maupuy"
+              }
+            ]
           },
           {
             "stage_url": "race/tour-de-france-femmes/2025/stage-6",
             "distance": 123.7,
-            "start_time": "14:25 ",
+            "profile_icon": "p4",
             "stage_type": "RR",
-            "profile_score": 131
+            "vertical_meters": 2397,
+            "avg_temperature": null,
+            "date": "2025-07-31",
+            "departure": "Clermont-Ferrand",
+            "arrival": "Ambert",
+            "won_how": "-",
+            "race_startlist_quality_score": [
+              1875,
+              1875
+            ],
+            "profile_score": 131,
+            "pcs_points_scale": "F-2.WWT.Stage",
+            "uci_points_scale": "UCI.WE.WWT.Stage",
+            "start_time": "14:25 ",
+            "climbs": [
+              {
+                "climb_name": "C\u00f4te de Courpi\u00e8re",
+                "climb_url": "location/cote-de-croupiere"
+              },
+              {
+                "climb_name": "C\u00f4te d'Augerolles",
+                "climb_url": "location/cote-daugerolles"
+              },
+              {
+                "climb_name": "Col du B\u00e9al",
+                "climb_url": "location/col-du-beal"
+              },
+              {
+                "climb_name": "Col du Chansert",
+                "climb_url": "location/col-du-chansert"
+              }
+            ]
           },
           {
             "stage_url": "race/tour-de-france-femmes/2025/stage-7",
             "distance": 159.7,
-            "start_time": "13:40 ",
+            "profile_icon": "p4",
             "stage_type": "RR",
-            "profile_score": 124
+            "vertical_meters": 1986,
+            "avg_temperature": null,
+            "date": "2025-08-01",
+            "departure": "Bourg-en-Bresse",
+            "arrival": "Chamb\u00e9ry",
+            "won_how": "-",
+            "race_startlist_quality_score": [
+              1875,
+              1875
+            ],
+            "profile_score": 124,
+            "pcs_points_scale": "F-2.WWT.Stage",
+            "uci_points_scale": "UCI.WE.WWT.Stage",
+            "start_time": "13:40 ",
+            "climbs": [
+              {
+                "climb_name": "C\u00f4te de Saint-Franc",
+                "climb_url": "location/cote-de-saint-franc"
+              },
+              {
+                "climb_name": "C\u00f4te de Berland",
+                "climb_url": "location/cote-de-berland"
+              },
+              {
+                "climb_name": "Col du Granier",
+                "climb_url": "location/col-du-granier"
+              }
+            ]
           },
           {
             "stage_url": "race/tour-de-france-femmes/2025/stage-8",
             "distance": 111.9,
-            "start_time": "14:00 ",
+            "profile_icon": "p5",
             "stage_type": "RR",
-            "profile_score": 357
+            "vertical_meters": 3517,
+            "avg_temperature": null,
+            "date": "2025-08-02",
+            "departure": "Chamb\u00e9ry",
+            "arrival": "Saint-Fran\u00e7ois Longchamp (Col de la Madeleine)",
+            "won_how": "-",
+            "race_startlist_quality_score": [
+              1875,
+              1875
+            ],
+            "profile_score": 357,
+            "pcs_points_scale": "F-2.WWT.Stage",
+            "uci_points_scale": "UCI.WE.WWT.Stage",
+            "start_time": "14:00 ",
+            "climbs": [
+              {
+                "climb_name": "Col de Plainpalais",
+                "climb_url": "location/col-de-plainpalais"
+              },
+              {
+                "climb_name": "C\u00f4te de Saint-Georges-d'Hurti\u00e8res",
+                "climb_url": "location/cote-de-saint-georges-dhurtieres"
+              },
+              {
+                "climb_name": "Col de la Madeleine",
+                "climb_url": "location/col-de-la-madeleine"
+              }
+            ]
           },
           {
             "stage_url": "race/tour-de-france-femmes/2025/stage-9",
             "distance": 124.1,
-            "start_time": "15:25 ",
+            "profile_icon": "p4",
             "stage_type": "RR",
-            "profile_score": 221
+            "vertical_meters": 2925,
+            "avg_temperature": null,
+            "date": "2025-08-03",
+            "departure": "Praz-sur-Arly",
+            "arrival": "Ch\u00e2tel Les Portes du Soleil",
+            "won_how": "-",
+            "race_startlist_quality_score": [
+              1875,
+              1875
+            ],
+            "profile_score": 221,
+            "pcs_points_scale": "F-2.WWT.Stage",
+            "uci_points_scale": "UCI.WE.WWT.Stage",
+            "start_time": "15:25 ",
+            "climbs": [
+              {
+                "climb_name": "C\u00f4te d'Ar\u00e2ches-la-Frasse",
+                "climb_url": "location/cote-d-araches"
+              },
+              {
+                "climb_name": "Col de Joux Plane",
+                "climb_url": "location/col-de-joux-plane"
+              },
+              {
+                "climb_name": "Col du Corbier",
+                "climb_url": "location/col-du-corbier"
+              }
+            ]
           }
         ],
         "stages_winners": [
@@ -152,7 +379,7 @@
         "uci_tour": "UCI Women's WorldTour",
         "year": 2025
       },
-      "fetched_at": "2025-07-30T13:16:32.918159",
+      "fetched_at": "2025-07-30T13:53:54.820000",
       "stages_overview": [
         {
           "profile_icon": "p3",

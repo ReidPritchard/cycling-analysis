@@ -29,7 +29,7 @@ def refresh_race_cache():
 
 
 # @st.cache_data(show_spinner=True, ttl=60 * 60 * 24, max_entries=10)
-def load_race_data(race_key):
+def load_race_data(race_key: str) -> dict[str, any]:
     """
     Load race data for the specified race key from cache or fetch fresh data.
 
@@ -72,7 +72,10 @@ def load_race_data(race_key):
         race_data = race.parse()
 
         # Get additional data if available
-        race_result = {"race_data": race_data, "fetched_at": datetime.now().isoformat()}
+        race_result: dict[str, any] = {
+            "race_data": race_data,
+            "fetched_at": datetime.now().isoformat(),
+        }
 
         # Try to get stages data
         try:
@@ -80,13 +83,30 @@ def load_race_data(race_key):
             stages_overview = race.stages()
             race_result["stages_overview"] = stages_overview
             for stage in stages_overview:
-                stage_obj = Stage(stage["stage_url"])
+                stage_url = stage["stage_url"]
+                if not stage_url or type(stage_url) is not str:
+                    logging.warning(f"Stage URL is empty for stage: {stage}")
+                    continue
+                stage_obj = Stage(stage_url)
                 stage_data = {
-                    "stage_url": stage["stage_url"],
+                    "stage_url": stage_url,
                     "distance": stage_obj.distance(),
-                    "start_time": stage_obj.start_time(),
+                    "profile_icon": stage_obj.profile_icon(),
                     "stage_type": stage_obj.stage_type(),
+                    "vertical_meters": stage_obj.vertical_meters(),
+                    "avg_temperature": stage_obj.avg_temperature(),
+                    "date": stage_obj.date(),
+                    "departure": stage_obj.departure(),
+                    "arrival": stage_obj.arrival(),
+                    "won_how": stage_obj.won_how(),
+                    "race_startlist_quality_score": stage_obj.race_startlist_quality_score(),
                     "profile_score": stage_obj.profile_score(),
+                    "pcs_points_scale": stage_obj.pcs_points_scale(),
+                    "uci_points_scale": stage_obj.uci_points_scale(),
+                    # "avg_speed_winner": stage_obj.avg_speed_winner(),
+                    "start_time": stage_obj.start_time(),
+                    "climbs": stage_obj.climbs(),
+                    # "results": stage_obj.results(),
                 }
                 stages.append(stage_data)
 
@@ -129,94 +149,3 @@ def load_race_data(race_key):
             "climbs": [],
             "stages_climbs": {},
         }
-
-
-def fetch_tdf_femmes_2025_data():
-    """
-    Fetch Tour de France Femmes 2025 race data.
-    Returns comprehensive race data including overall classifications and stage results.
-    """
-    # Check cache first
-    cached_data = load_race_cache()
-
-    race_info = SUPPORTED_RACES["TDF_FEMMES_2025"]
-    race_info_key = race_info["url_path"]
-
-    if race_info_key in cached_data:
-        logging.info("📋 Using cached Tour de France Femmes 2025 data")
-        return cached_data[race_info_key]
-
-    try:
-        logging.info("🌐 Fetching fresh Tour de France Femmes 2025 data...")
-
-        # Create Race object
-        race = Race(race_info_key)
-
-        # Parse race data
-        race_data = race.parse()
-
-        # Get additional data if available
-        race_info = {"race_data": race_data, "fetched_at": datetime.now().isoformat()}
-
-        # Try to get stages data
-        try:
-            stages = race.stages()
-            race_info["stages"] = stages
-        except Exception as e:
-            logging.warning(f"Could not fetch stages data: {e}")
-            race_info["stages"] = []
-
-        # Try to get race climbs
-        try:
-            climbs = RaceClimbs(f"{race_info_key}/route/climbs")
-            race_info["climbs"] = climbs
-            # Add the climbs to each stage
-            stages_climbs = {}
-            for stage_info in stages:
-                stage = Stage(stage_info["stage_url"])
-                stage_climbs = [climbs[s["climb_url"]] for s in stage.climbs()]
-                stages_climbs[stage_info["stage_url"]] = stage_climbs
-            race_info["stages_climbs"] = stages_climbs
-        except Exception as e:
-            logging.warning(f"Could not fetch climbs data: {e}")
-            race_info["climbs"] = []
-
-        # Update cache
-        new_cache_data = cached_data.copy()
-        new_cache_data[race_info_key] = race_info
-        save_race_cache(new_cache_data)
-
-        return race_info
-
-    except Exception as e:
-        logging.error(f"❌ Error fetching Tour de France Femmes 2025 data: {e}")
-        return {
-            "error": str(e),
-            "fetched_at": datetime.now().isoformat(),
-            "race_data": {},
-            "stages": [],
-            "climbs": [],
-            "stages_climbs": {},
-        }
-
-
-def get_stage_results(stage_number):
-    """
-    Get results for a specific stage of TdF Femmes 2025.
-
-    Args:
-        stage_number (int): The stage number to fetch results for
-
-    Returns:
-        dict: Stage results data
-    """
-    race_info = SUPPORTED_RACES["TDF_FEMMES_2025"]
-    race_info_key = race_info["url_path"]
-    return {}
-    # try:
-    #     race = Race(race_info_key)
-    #     stage_results = race.stage_results(stage_number)
-    #     return stage_results
-    # except Exception as e:
-    #     st.error(f"❌ Error fetching stage {stage_number} results: {e}")
-    #     return {}
