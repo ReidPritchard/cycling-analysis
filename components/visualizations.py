@@ -632,3 +632,5 @@ def _show_statistical_insights(df):
             st.dataframe(position_stats, use_container_width=True)
         else:
             st.info("No performance data available")
+
+
