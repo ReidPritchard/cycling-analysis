@@ -4,7 +4,7 @@ Race data fetching and caching for Tour de France Femmes.
 
 import logging
 from datetime import datetime
-from typing import Any, Dict, List, Optional, TypedDict
+from typing import Any, TypedDict
 
 from procyclingstats import Race, RaceClimbs, Stage
 
@@ -19,23 +19,23 @@ class StageData(TypedDict, total=False):
     """Type definition for stage data structure."""
 
     stage_url: str
-    distance: Optional[str]
-    profile_icon: Optional[str]
-    stage_type: Optional[str]
-    vertical_meters: Optional[int]
-    avg_temperature: Optional[float]
-    date: Optional[str]
-    departure: Optional[str]
-    arrival: Optional[str]
-    won_how: Optional[str]
-    race_startlist_quality_score: Optional[float]
-    profile_score: Optional[float]
-    pcs_points_scale: Optional[str]
-    uci_points_scale: Optional[str]
-    avg_speed_winner: Optional[float]
-    start_time: Optional[str]
-    climbs: List[Dict[str, Any]]
-    results: Optional[List[Dict[str, Any]]]
+    distance: str | None
+    profile_icon: str | None
+    stage_type: str | None
+    vertical_meters: int | None
+    avg_temperature: float | None
+    date: str | None
+    departure: str | None
+    arrival: str | None
+    won_how: str | None
+    race_startlist_quality_score: float | None
+    profile_score: float | None
+    pcs_points_scale: str | None
+    uci_points_scale: str | None
+    avg_speed_winner: float | None
+    start_time: str | None
+    climbs: list[dict[str, Any]]
+    results: list[dict[str, Any]] | None
 
 
 class ComputedRaceInfo(TypedDict, total=False):
@@ -44,41 +44,41 @@ class ComputedRaceInfo(TypedDict, total=False):
     # FIXME: Add more computed properties based on
     # what information provides insights for the user
 
-    total_distance: Optional[str]
-    total_distance_completed: Optional[str]
-    total_distance_incomplete: Optional[str]
-    total_vertical_meters: Optional[int]
+    total_distance: str | None
+    total_distance_completed: str | None
+    total_distance_incomplete: str | None
+    total_vertical_meters: int | None
 
-    stages_completed: Optional[int]
-    stages_incomplete: Optional[int]
-    shortest_stage: Optional[Dict[str, Any]]
-    longest_stage: Optional[Dict[str, Any]]
-    avg_stage_distance: Optional[float]
-    avg_stage_vertical_meters: Optional[float]
+    stages_completed: int | None
+    stages_incomplete: int | None
+    shortest_stage: dict[str, Any] | None
+    longest_stage: dict[str, Any] | None
+    avg_stage_distance: float | None
+    avg_stage_vertical_meters: float | None
     # most_common_win_type:
 
-    climbs_completed: Optional[int]
-    climbs_incomplete: Optional[int]
+    climbs_completed: int | None
+    climbs_incomplete: int | None
 
 
 class RaceData(TypedDict, total=False):
     """Type definition for race data structure."""
 
-    race_data: Dict[str, Any]
-    computed_race_info: Optional[ComputedRaceInfo]
-    stages_overview: List[Dict[str, Any]]
-    stages: List[StageData]
-    climbs: List[Dict[str, Any]]
+    race_data: dict[str, Any]
+    computed_race_info: ComputedRaceInfo | None
+    stages_overview: list[dict[str, Any]]
+    stages: list[StageData]
+    climbs: list[dict[str, Any]]
     fetched_at: str
-    error: Optional[str]
+    error: str | None
 
 
-def load_race_cache() -> Dict[str, Any]:
+def load_race_cache() -> dict[str, Any]:
     """Load race data from cache file if it exists and is not expired."""
     return load_cache(RACE_CACHE_FILE, "race_data")
 
 
-def save_race_cache(race_data: Dict[str, Any]) -> None:
+def save_race_cache(race_data: dict[str, Any]) -> None:
     """Save race data to cache file with timestamp."""
     save_cache(RACE_CACHE_FILE, race_data, "race_data")
 
@@ -99,7 +99,7 @@ def _is_stage_completed(stage: StageData) -> bool:
         # Assuming date format is "MM-DD" for 2025
         stage_date_obj = datetime.strptime(f"2025-{stage_date}", "%Y-%m-%d").date()
         is_completed = stage_date_obj <= today
-    except:
+    except ValueError:
         # Check for alternative completion indicators
         is_completed = (
             stage.get("results") is not None
@@ -110,7 +110,7 @@ def _is_stage_completed(stage: StageData) -> bool:
     return is_completed
 
 
-def _calculate_stage_stats(stages: List[StageData]) -> Dict[str, Any]:
+def _calculate_stage_stats(stages: list[StageData]) -> dict[str, Any]:
     """Calculate statistics about stages."""
     if not stages:
         return {}
@@ -172,7 +172,7 @@ def _calculate_stage_stats(stages: List[StageData]) -> Dict[str, Any]:
     }
 
 
-def _calculate_climb_stats(stages: List[StageData]) -> Dict[str, Any]:
+def _calculate_climb_stats(stages: list[StageData]) -> dict[str, Any]:
     """Calculate statistics about climbs across all stages."""
     total_climbs = 0
     completed_climbs = 0
@@ -402,7 +402,7 @@ def load_race_data(race_key: str) -> RaceData:
             race_result["stages_overview"] = stages_overview
 
             # Fetch detailed data for each stage
-            stages: List[StageData] = []
+            stages: list[StageData] = []
             for stage_overview in stages_overview:
                 stage_url = stage_overview.get("stage_url", "")
                 if stage_url:

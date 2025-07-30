@@ -3,7 +3,7 @@ Tab content components for the Fantasy Cycling Stats app.
 """
 
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 import streamlit as st
 
@@ -236,7 +236,7 @@ def _show_stage_difficulty_analysis(race_data: RaceData):
     _show_stage_timeline(stages, computed_info)
 
 
-def _show_stage_timeline(stages: List[Dict[str, Any]], computed_info: Dict[str, Any]):
+def _show_stage_timeline(stages: list[dict[str, Any]], computed_info: dict[str, Any]):
     """Show visual timeline of stages with difficulty and completion status"""
     _ = st.markdown("#### Stage Timeline")
 

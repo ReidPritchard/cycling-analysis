@@ -2,12 +2,13 @@
 Fantasy data loading and processing.
 """
 
-from datetime import datetime
 import json
-import pandas as pd
-import streamlit as st
-import numpy as np
 import logging
+from datetime import datetime
+from typing import Any, TypedDict
+
+import numpy as np
+import pandas as pd
 
 from config.settings import (
     FANTASY_DATA_FILE,
@@ -15,8 +16,25 @@ from config.settings import (
     SUPPORTED_RACES,
 )
 from utils.cache_manager import load_cache
-from utils.url_patterns import startlist_path
 from utils.name_utils import match_rider_names
+from utils.url_patterns import startlist_path
+
+# =============================================================================
+# Types
+# =============================================================================
+
+
+class RiderData(TypedDict):
+    """TypedDict for rider data structure."""
+
+    full_name: str
+    fantasy_name: str
+    team: str
+    stars: int
+    pcs_data: dict[str, Any] | None
+    pcs_matched_name: str | None
+    pcs_rider_url: str | None
+    matched_startlist_rider: dict[str, Any] | None
 
 
 # =============================================================================
@@ -63,7 +81,7 @@ def process_season_results(pcs_data):
     if not df_results.empty and len(df_results) >= 2:
         # Consistency: coefficient of variation of results (lower is more consistent)
         results_positions = pd.to_numeric(
-            df_results["result"], errors="coerce"
+            df_results["gc_position"], errors="coerce"
         ).dropna()
         if len(results_positions) >= 2:
             consistency_score = (
@@ -77,7 +95,7 @@ def process_season_results(pcs_data):
             # Sort by date ascending for trend calculation
             df_trend = df_results.copy()
             df_trend["result_numeric"] = pd.to_numeric(
-                df_trend["result"], errors="coerce"
+                df_trend["gc_position"], errors="coerce"
             )
             df_trend = df_trend.dropna(subset=["result_numeric"]).sort_values("date")
 
@@ -197,14 +215,14 @@ def prepare_rider_data(df):
     return calculate_rider_metrics(df)
 
 
-@st.cache_data(show_spinner=True, ttl=60 * 60 * 24, max_entries=10)
+# @st.cache_data(show_spinner=True, ttl=60 * 60 * 24, max_entries=10)
 def load_fantasy_data():
     """
     Load the riders fantasy data into a pandas dataframe and merge with
     cached PCS data
     """
     # Load basic fantasy data
-    with open(FANTASY_DATA_FILE, "r") as f:
+    with open(FANTASY_DATA_FILE) as f:
         riders = json.load(f)
 
     # TODO: Get info for the selected race (remove hardcoded)

@@ -2,10 +2,9 @@
 ProCyclingStats data fetching and caching.
 """
 
-from datetime import datetime
-from difflib import SequenceMatcher as SM
-import time
 import logging
+import time
+from datetime import datetime
 
 import pandas as pd
 from procyclingstats import RaceStartlist, Rider
@@ -15,8 +14,8 @@ from config.settings import (
     SUPPORTED_RACES,
 )
 from utils.cache_manager import load_cache, refresh_cache, save_cache
-from utils.url_patterns import startlist_path
 from utils.name_utils import match_rider_names
+from utils.url_patterns import startlist_path
 
 
 def load_pcs_cache():
@@ -62,7 +61,7 @@ def refresh_startlist_cache(race_name="TDF_FEMMES_2025"):
 
 
 def fetch_startlist_data(race_name="TDF_FEMMES_2025"):
-    """ Fetch the startlist data for a race."""
+    """Fetch the startlist data for a race."""
     cached_startlist_data = load_startlist_cache(race_name)
     base_url = SUPPORTED_RACES[race_name]["url_path"]
 
@@ -70,9 +69,7 @@ def fetch_startlist_data(race_name="TDF_FEMMES_2025"):
 
     if cached_startlist_data and startlist_key in cached_startlist_data:
         logging.info("Using cached startlist data")
-        startlist_riders = cached_startlist_data[startlist_key][
-            "startlist"
-        ]
+        startlist_riders = cached_startlist_data[startlist_key]["startlist"]
     else:
         try:
             logging.info("🌐 Fetching fresh startlist data...")
@@ -114,9 +111,7 @@ def fetch_pcs_data(race_name, riders_df, progress_callback=None):
     riders_list = riders_df.to_dict("records")
 
     # Create the name mappings
-    rider_mappings = match_rider_names(
-        riders_df, startlist_riders
-    )
+    rider_mappings = match_rider_names(riders_df, startlist_riders)
 
     updated_riders = []
     new_cache_data = cached_rider_data.copy()
@@ -130,7 +125,7 @@ def fetch_pcs_data(race_name, riders_df, progress_callback=None):
 
         # Update progress
         progress = (i + 1) / total_riders
-        current_status = f"🔄 Processing rider {i+1}/{total_riders}: {full_name}"
+        current_status = f"🔄 Processing rider {i + 1}/{total_riders}: {full_name}"
         logging.info(current_status)
         if progress_callback:
             progress_callback(progress, current_status)
@@ -142,7 +137,9 @@ def fetch_pcs_data(race_name, riders_df, progress_callback=None):
             matched_pcs_rider = rider_mappings[full_name]
 
             rider_url = matched_pcs_rider.get("pcs_rider_url", None)
-            logging.info(f"✅ Matched {full_name} with {matched_pcs_rider['pcs_matched_name']}")
+            logging.info(
+                f"✅ Matched {full_name} with {matched_pcs_rider['pcs_matched_name']}"
+            )
 
         # Check if we have cached data for this rider URL
         if rider_url in cached_rider_data and matched_pcs_rider:
@@ -159,7 +156,9 @@ def fetch_pcs_data(race_name, riders_df, progress_callback=None):
 
                 # Add the PCS data to the rider
                 rider["pcs_data"] = pcs_data
-                rider["pcs_matched_name"] = matched_pcs_rider.get("pcs_matched_name", "")
+                rider["pcs_matched_name"] = matched_pcs_rider.get(
+                    "pcs_matched_name", ""
+                )
                 rider["pcs_rider_url"] = rider_url
 
                 # Update cache with rider URL as key
@@ -169,14 +168,17 @@ def fetch_pcs_data(race_name, riders_df, progress_callback=None):
                 # FIXME: This is catching an "index out of range" error
                 # I'm not sure why exactly, but it's happening a lot
                 logging.error(
-                    f"❌ Error fetching data for {matched_pcs_rider['pcs_matched_name']} ({rider_url}): {e}"
+                    f"❌ Error fetching data for \
+                    {matched_pcs_rider['pcs_matched_name']} ({rider_url}): {e}"
                 )
                 # Add empty PCS data to avoid breaking the dataframe
                 rider["pcs_data"] = {
                     "error": str(e),
                     "fetched_at": datetime.now().isoformat(),
                 }
-                rider["pcs_matched_name"] = matched_pcs_rider.get("pcs_matched_name", "")
+                rider["pcs_matched_name"] = matched_pcs_rider.get(
+                    "pcs_matched_name", ""
+                )
                 rider["pcs_rider_url"] = rider_url
 
         updated_riders.append(rider)

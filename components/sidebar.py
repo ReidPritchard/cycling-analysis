@@ -3,54 +3,57 @@ Sidebar components for the Fantasy Cycling Stats app.
 """
 
 import streamlit as st
+
 from config.settings import PCS_CACHE_FILE, RACE_CACHE_FILE, SUPPORTED_RACES
-from utils.cache_manager import get_cache_info
-from data.pcs_data import fetch_pcs_data, refresh_pcs_cache, refresh_startlist_cache
-from data.race_data import refresh_race_cache
 from data.fantasy_data import load_fantasy_data
+from data.pcs_data import fetch_pcs_data, refresh_pcs_cache
+from utils.cache_manager import get_cache_info
 
 
-def render_sidebar_controls(riders):
+def _render_sidebar_controls(riders):
+    """Render sidebar controls and return filter values"""
+    st.header("🎛️ Controls")
+
+    # Race selection
+    race = st.selectbox(
+        "Selected Race:",
+        [race["name"] for race in SUPPORTED_RACES.values()],
+    )
+
+    # Cache management
+    st.subheader("Cache Management")
+    if st.button("🌐 Fetch PCS Data", use_container_width=True):
+        with st.spinner("Fetching ProCyclingStats data..."):
+            # FIXME: Use the race from the selectbox
+            refresh_pcs_cache()
+            riders = fetch_pcs_data("TDF_FEMMES_2025", load_fantasy_data())
+            st.success("✅ PCS data fetched successfully!")
+
+    # if st.button("🗑️ Clear Cache", use_container_width=True):
+    #     refresh_pcs_cache()
+    #     refresh_startlist_cache()
+
+    # Race data management
+    # st.subheader("🚴‍♀️ TdF Femmes 2025")
+    # if st.button("🏁 Fetch Race Data", use_container_width=True):
+    #     with st.spinner("Fetching Tour de France Femmes 2025 data..."):
+    #         race_data = fetch_tdf_femmes_2025_data()
+    #         if "error" not in race_data:
+    #             st.success("✅ Race data fetched successfully!")
+    #         else:
+    #             st.error("❌ Failed to fetch race data")
+
+    # if st.button("🗑️ Clear Race Cache", use_container_width=True):
+    #     refresh_race_cache()
+
+    # Display cache info
+    _display_cache_info()
+
+
+def render_sidebar(riders):
     """Render all sidebar controls and return filter values"""
     with st.sidebar:
-        st.header("🎛️ Controls")
-
-        # Race selection
-        race = st.selectbox(
-            "Selected Race:",
-            [race['name'] for race in SUPPORTED_RACES.values()],
-        )
-
-        # Cache management
-        st.subheader("Cache Management")
-        if st.button("🌐 Fetch PCS Data", use_container_width=True):
-            with st.spinner("Fetching ProCyclingStats data..."):
-                # FIXME: Use the race from the selectbox
-                refresh_pcs_cache()
-                riders = fetch_pcs_data("TDF_FEMMES_2025", load_fantasy_data())
-                st.success("✅ PCS data fetched successfully!")
-
-        # if st.button("🗑️ Clear Cache", use_container_width=True):
-        #     refresh_pcs_cache()
-        #     refresh_startlist_cache()
-
-        # Race data management
-        # st.subheader("🚴‍♀️ TdF Femmes 2025")
-        # if st.button("🏁 Fetch Race Data", use_container_width=True):
-        #     with st.spinner("Fetching Tour de France Femmes 2025 data..."):
-        #         race_data = fetch_tdf_femmes_2025_data()
-        #         if "error" not in race_data:
-        #             st.success("✅ Race data fetched successfully!")
-        #         else:
-        #             st.error("❌ Failed to fetch race data")
-
-        # if st.button("🗑️ Clear Race Cache", use_container_width=True):
-        #     refresh_race_cache()
-
-        # Display cache info
-        _display_cache_info()
-
-        # Filters
+        # _render_sidebar_controls(riders)
         st.header("🔍 Filters")
 
     return _render_filters(riders)

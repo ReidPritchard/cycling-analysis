@@ -8,7 +8,7 @@ and Tour de France Femmes 2025 race data.
 import streamlit as st
 
 # Import UI components
-from components.sidebar import render_sidebar_controls
+from components.sidebar import render_sidebar
 from components.tabs import (
     show_analytics_tab,
     show_overview_tab,
@@ -78,7 +78,7 @@ def main():
     race_data = load_race_data("TDF_FEMMES_2025")
 
     # Render sidebar and get filter values
-    filters = render_sidebar_controls(riders)
+    filters = render_sidebar(riders)
 
     # Load and filter data
     filtered_riders = apply_filters(riders, filters)
