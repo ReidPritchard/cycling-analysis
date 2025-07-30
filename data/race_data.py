@@ -4,10 +4,11 @@ Race data fetching and caching for Tour de France Femmes.
 
 import logging
 from datetime import datetime
+
 from procyclingstats import Race, RaceClimbs, Stage
 
 from config.settings import RACE_CACHE_FILE, SUPPORTED_RACES
-from utils.cache_manager import load_cache, save_cache, refresh_cache
+from utils.cache_manager import load_cache, refresh_cache, save_cache
 
 
 def load_race_cache():
@@ -23,6 +24,13 @@ def save_race_cache(race_data):
 def refresh_race_cache():
     """Force refresh of race cache by deleting the cache file."""
     refresh_cache(RACE_CACHE_FILE, "Race")
+
+
+def load_race_data(race_key):
+    """
+    Loads the race data for the specified race key.
+    """
+    # TODO: Implement
 
 
 def fetch_tdf_femmes_2025_data():

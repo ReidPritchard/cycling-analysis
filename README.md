@@ -13,6 +13,8 @@ A Streamlit web application for analyzing fantasy cycling rider statistics and T
 2. **Run the app:**
 
    ```bash
+   uv run streamlit run main.py
+    # or if you have streamlit installed globally
    streamlit run app.py
    ```
 

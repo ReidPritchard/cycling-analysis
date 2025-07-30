@@ -63,7 +63,7 @@ def show_analytics_tab(filtered_riders):
     show_detailed_analytics(filtered_riders)
 
 
-def show_race_tab():
+def show_race_tab(race_data):
     """Display the TdF Femmes 2025 tab content"""
     st.header("🏁 Tour de France Femmes 2025")
 

@@ -59,20 +59,28 @@ def process_season_results(pcs_data):
     # Calculate consistency and trend metrics
     consistency_score = 0.0
     trend_score = 0.0
-    
+
     if not df_results.empty and len(df_results) >= 2:
         # Consistency: coefficient of variation of results (lower is more consistent)
-        results_positions = pd.to_numeric(df_results["result"], errors="coerce").dropna()
+        results_positions = pd.to_numeric(
+            df_results["result"], errors="coerce"
+        ).dropna()
         if len(results_positions) >= 2:
-            consistency_score = results_positions.std() / results_positions.mean() if results_positions.mean() > 0 else 0
-        
+            consistency_score = (
+                results_positions.std() / results_positions.mean()
+                if results_positions.mean() > 0
+                else 0
+            )
+
         # Trend: linear regression slope of results over time (negative = improving)
         if len(results_positions) >= 2:
             # Sort by date ascending for trend calculation
             df_trend = df_results.copy()
-            df_trend["result_numeric"] = pd.to_numeric(df_trend["result"], errors="coerce")
+            df_trend["result_numeric"] = pd.to_numeric(
+                df_trend["result"], errors="coerce"
+            )
             df_trend = df_trend.dropna(subset=["result_numeric"]).sort_values("date")
-            
+
             if len(df_trend) >= 2:
                 x_days = (df_trend["date"] - df_trend["date"].min()).dt.days.values
                 y_results = df_trend["result_numeric"].values
@@ -83,17 +91,23 @@ def process_season_results(pcs_data):
         # Only drop columns that exist
         columns_to_drop = ["stage_url", "distance"]
         df_results = df_results.drop(columns=columns_to_drop)
-        
+
         df_results.columns = [
             "Name",
-            "Date", 
+            "Date",
             "Result",
             "GC Position",
             "PCS Points",
             "UCI Points",
         ]
 
-    return df_results, total_pcs_points, total_uci_points, consistency_score, trend_score
+    return (
+        df_results,
+        total_pcs_points,
+        total_uci_points,
+        consistency_score,
+        trend_score,
+    )
 
 
 def calculate_rider_demographics(pcs_data):
@@ -149,7 +163,9 @@ def calculate_rider_metrics(df):
         pcs_data = row.get("pcs_data", {})
 
         # Process season results
-        season_results, total_pcs, total_uci, consistency, trend = process_season_results(pcs_data)
+        season_results, total_pcs, total_uci, consistency, trend = (
+            process_season_results(pcs_data)
+        )
         df.at[idx, "total_pcs_points"] = total_pcs
         df.at[idx, "total_uci_points"] = total_uci
         df.at[idx, "consistency_score"] = consistency
@@ -184,13 +200,12 @@ def prepare_rider_data(df):
 @st.cache_data(show_spinner=True, ttl=60 * 60 * 24, max_entries=10)
 def load_fantasy_data():
     """
-        Load the riders fantasy data into a pandas dataframe and merge with
-        cached PCS data
+    Load the riders fantasy data into a pandas dataframe and merge with
+    cached PCS data
     """
     # Load basic fantasy data
     with open(FANTASY_DATA_FILE, "r") as f:
         riders = json.load(f)
-
 
     # TODO: Get info for the selected race (remove hardcoded)
     race_info = SUPPORTED_RACES["TDF_FEMMES_2025"]
@@ -199,25 +214,19 @@ def load_fantasy_data():
 
     # Load cached PCS data
     cached_rider_data = load_cache(PCS_CACHE_FILE, "riders_data")
-    cached_startlist_data = load_cache(
-        startlist_cache_path, "startlist_data"
-    )
+    cached_startlist_data = load_cache(startlist_cache_path, "startlist_data")
 
     # Get startlist for race (if available)
     startlist_riders = []
     if startlist_cache_key in cached_startlist_data:
-        startlist_riders = cached_startlist_data[startlist_cache_key][
-            "startlist"
-        ]
+        startlist_riders = cached_startlist_data[startlist_cache_key]["startlist"]
 
     # Log a little bit about the cached data
     # st.write(f"Cached PCS data: {len(cached_rider_data)} riders")
     # st.write(f"Cached startlist data: {len(startlist_riders)} riders")
 
     # Create the name mappings
-    rider_mappings = match_rider_names(
-        riders, startlist_riders
-    )
+    rider_mappings = match_rider_names(riders, startlist_riders)
 
     matched_pcs_rider_count = 0
 
@@ -236,12 +245,18 @@ def load_fantasy_data():
             matched_pcs_rider_count += 1
             matched_startlist_rider = rider_mappings[full_name]
             # Save the matched startlist data
-            rider["matched_startlist_rider"] = matched_startlist_rider.get("matched_startlist_rider", {})
-            rider["pcs_matched_name"] = matched_startlist_rider.get("pcs_matched_name", "")
+            rider["matched_startlist_rider"] = matched_startlist_rider.get(
+                "matched_startlist_rider", {}
+            )
+            rider["pcs_matched_name"] = matched_startlist_rider.get(
+                "pcs_matched_name", ""
+            )
             rider["pcs_rider_url"] = matched_startlist_rider.get("pcs_rider_url", "")
             # Check if the cached PCS data exists for this rider
             if matched_startlist_rider.get("pcs_rider_url") in cached_rider_data:
-                rider["pcs_data"] = cached_rider_data[matched_startlist_rider["pcs_rider_url"]]
+                rider["pcs_data"] = cached_rider_data[
+                    matched_startlist_rider["pcs_rider_url"]
+                ]
 
     # Log matching results
     if matched_pcs_rider_count > 0:

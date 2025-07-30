@@ -7,21 +7,21 @@ and Tour de France Femmes 2025 race data.
 
 import streamlit as st
 
-# Import configuration and styling
-from config.settings import PAGE_CONFIG
-from config.styling import MAIN_CSS, FOOTER_HTML
-
-# Import data modules
-from data.fantasy_data import load_fantasy_data
-
 # Import UI components
 from components.sidebar import render_sidebar_controls
 from components.tabs import (
+    show_analytics_tab,
     show_overview_tab,
     show_riders_tab,
-    show_analytics_tab,
-    show_race_tab,
 )
+
+# Import configuration and styling
+from config.settings import PAGE_CONFIG
+from config.styling import FOOTER_HTML, MAIN_CSS
+
+# Import data modules
+from data.fantasy_data import load_fantasy_data
+from data.race_data import load_race_data
 
 # Configure page
 st.set_page_config(**PAGE_CONFIG)
@@ -73,18 +73,19 @@ def main():
     # We should only do this once
     riders = load_fantasy_data()
 
+    # Load race data (also only once)
+    race_data = load_race_data("tdf_femmes_2025")
+
     # Render sidebar and get filter values
     filters = render_sidebar_controls(riders)
 
     # Load and filter data
     filtered_riders = apply_filters(riders, filters)
 
-    # st.dataframe(filtered_riders, use_container_width=True)
-
     # Main content area
     # TODO: Add support for other races?
-    tab1, tab2, tab3 = st.tabs(
-        ["📊 Overview", "🏆 Riders", "📈 Analytics"]
+    tab1, tab2, tab3, tab4 = st.tabs(
+        ["📊 Overview", "🏆 Riders", "📈 Analytics", "🏁 Race Data"]
     )
 
     with tab1:
@@ -96,8 +97,9 @@ def main():
     with tab3:
         show_analytics_tab(filtered_riders)
 
-#     with tab4:
-#         show_race_tab()
+    with tab4:
+        st.header("🏁 Coming Soon!")
+        # show_race_tab(race_data)
 
     # Footer
     st.divider()

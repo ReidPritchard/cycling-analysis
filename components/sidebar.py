@@ -26,12 +26,13 @@ def render_sidebar_controls(riders):
         if st.button("🌐 Fetch PCS Data", use_container_width=True):
             with st.spinner("Fetching ProCyclingStats data..."):
                 # FIXME: Use the race from the selectbox
+                refresh_pcs_cache()
                 riders = fetch_pcs_data("TDF_FEMMES_2025", load_fantasy_data())
                 st.success("✅ PCS data fetched successfully!")
 
-        if st.button("🗑️ Clear Cache", use_container_width=True):
-            refresh_pcs_cache()
-            refresh_startlist_cache()
+        # if st.button("🗑️ Clear Cache", use_container_width=True):
+        #     refresh_pcs_cache()
+        #     refresh_startlist_cache()
 
         # Race data management
         st.subheader("🚴‍♀️ TdF Femmes 2025")
@@ -49,10 +50,8 @@ def render_sidebar_controls(riders):
         # Display cache info
         _display_cache_info()
 
-        st.divider()
-
         # Filters
-        st.subheader("🔍 Filters")
+        st.header("🔍 Filters")
 
     return _render_filters(riders)
 
@@ -66,8 +65,8 @@ def _display_cache_info():
             f"""
         <div class="cache-info">
             <strong>📅 PCS Rider Cache</strong><br>
-            Last updated: {pcs_cache_info['last_updated']}<br>
-            Riders cached: {pcs_cache_info['data_count']}
+            Last updated: {pcs_cache_info["last_updated"]}<br>
+            Riders cached: {pcs_cache_info["data_count"]}
         </div>
         """,
             unsafe_allow_html=True,
@@ -75,14 +74,16 @@ def _display_cache_info():
 
     # PCS startlist cache info
     # FIXME: Make dynamic based on race selection
-    startlist_cache_info = get_cache_info(SUPPORTED_RACES["TDF_FEMMES_2025"]["startlist_cache_path"])
+    startlist_cache_info = get_cache_info(
+        SUPPORTED_RACES["TDF_FEMMES_2025"]["startlist_cache_path"]
+    )
     if startlist_cache_info:
         st.markdown(
             f"""
         <div class="cache-info">
             <strong>📋 PCS Startlist Cache</strong><br>
-            Last updated: {startlist_cache_info['last_updated']}<br>
-            Startlists cached: {startlist_cache_info['data_count']}
+            Last updated: {startlist_cache_info["last_updated"]}<br>
+            Startlists cached: {startlist_cache_info["data_count"]}
         </div>
         """,
             unsafe_allow_html=True,
@@ -95,8 +96,8 @@ def _display_cache_info():
             f"""
         <div class="cache-info">
             <strong>🏁 Race Cache Info</strong><br>
-            Last updated: {race_cache_info['last_updated']}<br>
-            Races cached: {race_cache_info['data_count']}
+            Last updated: {race_cache_info["last_updated"]}<br>
+            Races cached: {race_cache_info["data_count"]}
         </div>
         """,
             unsafe_allow_html=True,
