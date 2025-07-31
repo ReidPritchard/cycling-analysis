@@ -1,45 +1,12 @@
 """
-Fantasy data loading and processing.
+Rider data processing and analytics calculations.
 """
 
-import json
 import logging
 from datetime import datetime
-from typing import Any, TypedDict
 
 import numpy as np
 import pandas as pd
-
-from config.settings import (
-    FANTASY_DATA_FILE,
-    PCS_CACHE_FILE,
-    SUPPORTED_RACES,
-)
-from utils.cache_manager import load_cache
-from utils.name_utils import match_rider_names
-from utils.url_patterns import startlist_path
-
-# =============================================================================
-# Types
-# =============================================================================
-
-
-class RiderData(TypedDict):
-    """TypedDict for rider data structure."""
-
-    full_name: str
-    fantasy_name: str
-    team: str
-    stars: int
-    pcs_data: dict[str, Any] | None
-    pcs_matched_name: str | None
-    pcs_rider_url: str | None
-    matched_startlist_rider: dict[str, Any] | None
-
-
-# =============================================================================
-# DATA PROCESSING FUNCTIONS
-# =============================================================================
 
 
 def process_season_results(pcs_data):
@@ -208,83 +175,3 @@ def calculate_rider_metrics(df):
             df.at[idx, "season_results_count"] = len(pcs_data["season_results"])
 
     return df
-
-
-def prepare_rider_data(df):
-    """Main data preparation function."""
-    return calculate_rider_metrics(df)
-
-
-# @st.cache_data(show_spinner=True, ttl=60 * 60 * 24, max_entries=10)
-def load_fantasy_data():
-    """
-    Load the riders fantasy data into a pandas dataframe and merge with
-    cached PCS data
-    """
-    # Load basic fantasy data
-    with open(FANTASY_DATA_FILE) as f:
-        riders = json.load(f)
-
-    # TODO: Get info for the selected race (remove hardcoded)
-    race_info = SUPPORTED_RACES["TDF_FEMMES_2025"]
-    startlist_cache_path = race_info["startlist_cache_path"]
-    startlist_cache_key = startlist_path(race_info["url_path"])
-
-    # Load cached PCS data
-    cached_rider_data = load_cache(PCS_CACHE_FILE, "riders_data")
-    cached_startlist_data = load_cache(startlist_cache_path, "startlist_data")
-
-    # Get startlist for race (if available)
-    startlist_riders = []
-    if startlist_cache_key in cached_startlist_data:
-        startlist_riders = cached_startlist_data[startlist_cache_key]["startlist"]
-
-    # Log a little bit about the cached data
-    # st.write(f"Cached PCS data: {len(cached_rider_data)} riders")
-    # st.write(f"Cached startlist data: {len(startlist_riders)} riders")
-
-    # Create the name mappings
-    rider_mappings = match_rider_names(riders, startlist_riders)
-
-    matched_pcs_rider_count = 0
-
-    # Process each rider to add cached PCS data if available
-    for rider in riders:
-        full_name = rider.get("full_name", "")
-
-        # Initialize PCS data fields
-        rider["pcs_data"] = None
-        rider["pcs_matched_name"] = None
-        rider["pcs_rider_url"] = None
-
-        # Try to find matching rider in startlist
-        matched_startlist_rider = None
-        if full_name in rider_mappings:
-            matched_pcs_rider_count += 1
-            matched_startlist_rider = rider_mappings[full_name]
-            # Save the matched startlist data
-            rider["matched_startlist_rider"] = matched_startlist_rider.get(
-                "matched_startlist_rider", {}
-            )
-            rider["pcs_matched_name"] = matched_startlist_rider.get(
-                "pcs_matched_name", ""
-            )
-            rider["pcs_rider_url"] = matched_startlist_rider.get("pcs_rider_url", "")
-            # Check if the cached PCS data exists for this rider
-            if matched_startlist_rider.get("pcs_rider_url") in cached_rider_data:
-                rider["pcs_data"] = cached_rider_data[
-                    matched_startlist_rider["pcs_rider_url"]
-                ]
-
-    # Log matching results
-    if matched_pcs_rider_count > 0:
-        logging.info(f"✅ Matched {matched_pcs_rider_count} riders")
-    else:
-        logging.warning("❌ No riders matched")
-
-    riders_df = pd.DataFrame(riders)
-
-    # Process the rider's data
-    riders_df = prepare_rider_data(riders_df)
-
-    return riders_df

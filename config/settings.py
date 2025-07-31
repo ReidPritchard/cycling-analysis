@@ -28,7 +28,6 @@ PAGE_CONFIG = {
     "page_title": "Fantasy Cycling Stats",
     "page_icon": "🚴",
     "layout": "wide",
-    "initial_sidebar_state": "expanded",
 }
 
 # Position icons mapping

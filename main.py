@@ -8,8 +8,8 @@ and Tour de France Femmes 2025 race data.
 import streamlit as st
 
 # Import UI components
-from components.sidebar import render_sidebar
-from components.tabs import (
+from components.layout.sidebar import render_sidebar
+from components.layout.tabs import (
     show_analytics_tab,
     show_overview_tab,
     show_race_tab,
@@ -21,8 +21,7 @@ from config.settings import PAGE_CONFIG
 from config.styling import FOOTER_HTML, MAIN_CSS
 
 # Import data modules
-from data.fantasy_data import load_fantasy_data
-from data.race_data import load_race_data
+from data import load_fantasy_data, load_race_data
 
 # Configure page
 st.set_page_config(**PAGE_CONFIG)

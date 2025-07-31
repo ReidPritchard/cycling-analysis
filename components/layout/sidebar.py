@@ -5,8 +5,7 @@ Sidebar components for the Fantasy Cycling Stats app.
 import streamlit as st
 
 from config.settings import PCS_CACHE_FILE, RACE_CACHE_FILE, SUPPORTED_RACES
-from data.fantasy_data import load_fantasy_data
-from data.pcs_data import fetch_pcs_data, refresh_pcs_cache
+from data import load_fantasy_data, fetch_pcs_data, refresh_pcs_cache
 from utils.cache_manager import get_cache_info
 
 
@@ -53,7 +52,7 @@ def _render_sidebar_controls(riders):
 def render_sidebar(riders):
     """Render all sidebar controls and return filter values"""
     with st.sidebar:
-        # _render_sidebar_controls(riders)
+        _render_sidebar_controls(riders)
         st.header("🔍 Filters")
 
     return _render_filters(riders)

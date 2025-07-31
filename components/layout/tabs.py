@@ -7,20 +7,12 @@ from typing import Any
 
 import streamlit as st
 
-from components.rider_display import (
-    display_rider_cards,
-    display_rider_table,
-    display_summary_stats,
-)
-from components.visualizations import (
-    create_star_cost_distribution_chart,
-    create_stats_overview,
-    show_detailed_analytics,
-)
-from data.race_data import (
-    RaceData,
-    refresh_race_cache,
-)
+from ..display.rider_cards import display_rider_cards
+from ..display.rider_tables import display_rider_table
+from ..display.summary_stats import display_summary_stats
+from ..charts.overview import create_star_cost_distribution_chart, create_stats_overview
+from ..analytics.main import show_detailed_analytics
+from data import RaceData, refresh_race_cache
 
 
 def show_overview_tab(filtered_riders):
@@ -101,9 +93,9 @@ def show_race_tab(race_data: RaceData):
 
     _ = st.divider()
 
-    # # Debug display race data
-    # with st.expander("Details"):
-    #     st.json(race_data)
+    # Debug display race data
+    with st.expander("Details"):
+        st.json(race_data)
 
     # Main content tabs for better organization
     tab1, tab2, tab3 = st.tabs(
