@@ -6,11 +6,12 @@ import json
 import logging
 import os
 from datetime import datetime
+from typing import Any
 
 from config.settings import CACHE_EXPIRY_DELTA
 
 
-def load_cache(cache_file, data_key="data"):
+def load_cache(cache_file: str, data_key: str = "data") -> dict[str, Any]:
     """Load data from cache file if it exists and is not expired."""
     if not os.path.exists(cache_file):
         return {}
@@ -31,7 +32,7 @@ def load_cache(cache_file, data_key="data"):
         return {}
 
 
-def save_cache(cache_file, data, data_key="data"):
+def save_cache(cache_file: str, data: Any, data_key: str = "data") -> None:
     """Save data to cache file with timestamp."""
     cache_data = {"cached_at": datetime.now().isoformat(), data_key: data}
 
@@ -43,7 +44,7 @@ def save_cache(cache_file, data, data_key="data"):
         logging.error(f"❌ Error saving cache: {e}")
 
 
-def refresh_cache(cache_file, cache_type=""):
+def refresh_cache(cache_file: str, cache_type: str = "") -> None:
     """Force refresh of cache by deleting the cache file."""
     if os.path.exists(cache_file):
         os.remove(cache_file)
@@ -54,7 +55,7 @@ def refresh_cache(cache_file, cache_type=""):
         logging.info(f"ℹ️ No {cache_type.lower()} cache file found to clear.")
 
 
-def get_cache_info(cache_file):
+def get_cache_info(cache_file: str) -> dict[str, Any] | None:
     """Get cache information for display."""
     if not os.path.exists(cache_file):
         return None

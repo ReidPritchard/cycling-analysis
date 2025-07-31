@@ -5,6 +5,9 @@ A Streamlit application for analyzing fantasy cycling rider statistics
 and Tour de France Femmes 2025 race data.
 """
 
+from typing import Any
+
+import pandas as pd
 import streamlit as st
 
 # Import UI components
@@ -17,7 +20,7 @@ from components.layout.tabs import (
 )
 
 # Import configuration and styling
-from config.settings import PAGE_CONFIG, SUPPORTED_RACES
+from config.settings import SUPPORTED_RACES
 from config.styling import FOOTER_HTML, MAIN_CSS
 
 # Import data modules
@@ -30,7 +33,7 @@ from data import load_fantasy_data, load_race_data
 st.markdown(MAIN_CSS, unsafe_allow_html=True)
 
 
-def apply_filters(riders, filters):
+def apply_filters(riders: pd.DataFrame, filters: dict[str, Any]) -> pd.DataFrame:
     """Apply filters to the riders dataframe."""
     filtered_riders = riders.copy()
 
@@ -58,7 +61,7 @@ def apply_filters(riders, filters):
     return filtered_riders
 
 
-def main():
+def main() -> None:
     """Main application logic."""
     # Main App Layout
     st.title("🚴‍♀️ Fantasy Cycling Stats Dashboard")

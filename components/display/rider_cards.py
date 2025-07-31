@@ -2,6 +2,9 @@
 Rider card display components.
 """
 
+from typing import Any
+
+import pandas as pd
 import streamlit as st
 
 from ..common.calculations import calculate_percentiles
@@ -12,7 +15,7 @@ from .performance import render_compact_performance_summary, render_season_resul
 from .rider_info import render_rider_info
 
 
-def render_single_rider_card(rider, percentiles=None):
+def render_single_rider_card(rider: pd.Series, percentiles: dict[str, Any] | None = None) -> None:
     """Render a single rider card with improved layout."""
     with st.container(border=True):
         # Better 2-column layout for improved readability
@@ -29,7 +32,7 @@ def render_single_rider_card(rider, percentiles=None):
         st.markdown("---")  # Subtle separator instead of heavy divider
 
 
-def display_rider_cards(df, page_size=10):
+def display_rider_cards(df: pd.DataFrame, page_size: int = 10) -> None:
     """Display riders in card format with unified controls and pagination."""
     # Calculate percentiles for fantasy value assessment
     percentiles = calculate_percentiles(df)

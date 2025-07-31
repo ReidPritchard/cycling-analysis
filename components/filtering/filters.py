@@ -2,10 +2,14 @@
 Filter application logic for rider data.
 """
 
+from typing import Any
+
+import pandas as pd
+
 from .search import filter_riders_by_search
 
 
-def apply_filters(df, filters):
+def apply_filters(df: pd.DataFrame, filters: dict[str, Any]) -> pd.DataFrame:
     """Apply all filters to the dataframe."""
     filtered_df = df.copy()
 

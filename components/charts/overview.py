@@ -2,12 +2,13 @@
 Overview charts and basic statistics visualizations.
 """
 
+import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 from plotly.subplots import make_subplots
 
 
-def create_stats_overview(df):
+def create_stats_overview(df: pd.DataFrame) -> None:
     """Create an enhanced overview of key statistics with outlier insights"""
     col1, col2, col3, col4 = st.columns(4)
 
@@ -40,7 +41,7 @@ def create_stats_overview(df):
         show_performance_insights(df)
 
 
-def create_star_cost_distribution_chart(df):
+def create_star_cost_distribution_chart(df: pd.DataFrame) -> None:
     """Create an enhanced chart of the star cost distribution with performance overlay"""
     star_counts = df["stars"].value_counts().sort_index(ascending=False)
 

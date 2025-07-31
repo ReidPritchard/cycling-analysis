@@ -2,10 +2,11 @@
 Summary statistics display components.
 """
 
+import pandas as pd
 import streamlit as st
 
 
-def display_summary_stats(df):
+def display_summary_stats(df: pd.DataFrame) -> None:
     """Display enhanced summary statistics for the rider data."""
     if df.empty:
         st.warning("No data available for summary statistics.")

@@ -6,6 +6,7 @@ This module provides the main public API for loading data in the application.
 
 import logging
 import time
+from collections.abc import Callable
 
 import pandas as pd
 
@@ -25,7 +26,7 @@ from data.sources.race_api import fetch_race_data, load_race_cache, save_race_ca
 from utils.url_patterns import startlist_path
 
 
-def load_fantasy_data():
+def load_fantasy_data() -> pd.DataFrame:
     """
     Load the riders fantasy data into a pandas dataframe and merge with
     cached PCS data
@@ -94,7 +95,11 @@ def load_fantasy_data():
     return riders_df
 
 
-def fetch_pcs_data(race_name, riders_df, progress_callback=None):
+def fetch_pcs_data(
+    race_name: str, 
+    riders_df: pd.DataFrame, 
+    progress_callback: Callable[[float, str], None] | None = None
+) -> pd.DataFrame:
     """
     Fetch ProCyclingStats data for each rider.
     First fetches the Tour de France 2025 startlist to get rider URLs,

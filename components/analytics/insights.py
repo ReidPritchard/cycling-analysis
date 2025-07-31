@@ -8,7 +8,7 @@ import streamlit as st
 from .outliers import identify_performance_outliers, identify_value_picks
 
 
-def show_performance_insights(df):
+def show_performance_insights(df: pd.DataFrame) -> None:
     """Show key performance insights and outliers"""
     col1, col2, col3 = st.columns(3)
 
@@ -47,7 +47,7 @@ def show_performance_insights(df):
             st.metric("💎 Value Picks", "0")
 
 
-def show_outlier_analysis(df):
+def show_outlier_analysis(df: pd.DataFrame) -> None:
     """Show detailed outlier analysis with actionable insights"""
     col1, col2, col3 = st.columns(3)
 
@@ -92,7 +92,7 @@ def show_outlier_analysis(df):
             st.info("No value picks identified")
 
 
-def show_statistical_insights(df):
+def show_statistical_insights(df: pd.DataFrame) -> None:
     """Show statistical insights and correlations"""
     col1, col2 = st.columns(2)
 

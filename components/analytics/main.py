@@ -2,16 +2,16 @@
 Main analytics orchestration and display.
 """
 
+import pandas as pd
 import streamlit as st
 
 from ..charts.performance import create_performance_distribution_charts
-from ..charts.stage_performance import create_stage_performance_charts
 from ..charts.team_analysis import create_team_analysis_charts
 from ..charts.value_analysis import create_value_analysis_charts
 from .insights import show_outlier_analysis, show_statistical_insights
 
 
-def create_visualizations(df):
+def create_visualizations(df: pd.DataFrame) -> None:
     """Create reorganized interactive charts with outlier highlighting"""
 
     # Section 1: Value Analysis - Most Important Charts
@@ -43,7 +43,7 @@ def create_visualizations(df):
     )
 
 
-def show_detailed_analytics(filtered_riders):
+def show_detailed_analytics(filtered_riders: pd.DataFrame) -> None:
     """Show enhanced detailed analytics section"""
     if len(filtered_riders) > 0:
         create_visualizations(filtered_riders)

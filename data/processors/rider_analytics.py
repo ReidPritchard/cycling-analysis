@@ -3,12 +3,15 @@ Rider data processing and analytics calculations.
 """
 
 from datetime import datetime
+from typing import Any
 
 import numpy as np
 import pandas as pd
 
 
-def process_season_results(pcs_data):
+def process_season_results(
+    pcs_data: dict[str, Any] | None,
+) -> tuple[pd.DataFrame, int, int, float, float]:
     """Process and clean season results from PCS data."""
     if not pcs_data or "season_results" not in pcs_data:
         return pd.DataFrame(), 0, 0, 0.0, 0.0
@@ -94,7 +97,7 @@ def process_season_results(pcs_data):
     )
 
 
-def calculate_rider_demographics(pcs_data):
+def calculate_rider_demographics(pcs_data: dict[str, Any] | None) -> dict[str, Any]:
     """Calculate demographic information from PCS data."""
     demographics = {}
 
@@ -126,7 +129,7 @@ def calculate_rider_demographics(pcs_data):
     return demographics
 
 
-def calculate_rider_metrics(df):
+def calculate_rider_metrics(df: pd.DataFrame) -> pd.DataFrame:
     """Add calculated fields to the rider dataframe."""
     df = df.copy()
 

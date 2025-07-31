@@ -2,8 +2,12 @@
 Calculation utilities for performance metrics and fantasy values.
 """
 
+from typing import Any
 
-def get_fantasy_value_tier(pcs_per_star, percentiles):
+import pandas as pd
+
+
+def get_fantasy_value_tier(pcs_per_star: float, percentiles: dict[str, float]) -> tuple[str, str, str]:
     """Determine fantasy value tier based on PCS efficiency."""
     if pcs_per_star >= percentiles["90th"]:
         return (
@@ -21,7 +25,7 @@ def get_fantasy_value_tier(pcs_per_star, percentiles):
         return "❓ No Data", "red", "No points earned this season"
 
 
-def calculate_percentiles(df):
+def calculate_percentiles(df: pd.DataFrame) -> dict[str, float]:
     """Calculate performance percentiles for value assessment."""
     riders_with_points = df[df["pcs_per_star"] > 0]
     if riders_with_points.empty:
@@ -35,7 +39,7 @@ def calculate_percentiles(df):
     }
 
 
-def get_consistency_interpretation(score):
+def get_consistency_interpretation(score: float) -> tuple[str, str, str]:
     """Interpret consistency score with proper logic (lower is better)."""
     if score < 0.3:
         return "Excellent", "green", "Very consistent performance"
@@ -47,7 +51,7 @@ def get_consistency_interpretation(score):
         return "Unpredictable", "red", "Highly variable performance"
 
 
-def get_trend_interpretation(score):
+def get_trend_interpretation(score: float) -> tuple[str, str, str, str]:
     """Interpret trend score (negative = improving, positive = declining)."""
     if score < -0.5:
         return "Improving", "green", "📈", "Strong upward trend in performance"
