@@ -2,6 +2,9 @@
 Sidebar components for the Fantasy Cycling Stats app.
 """
 
+from typing import Any
+
+import pandas as pd
 import streamlit as st
 
 from config.settings import PCS_CACHE_FILE, RACE_CACHE_FILE, SUPPORTED_RACES
@@ -9,7 +12,7 @@ from data import fetch_pcs_data, load_fantasy_data, refresh_pcs_cache
 from utils.cache_manager import get_cache_info
 
 
-def _render_sidebar_controls(riders):
+def _render_sidebar_controls(riders: pd.DataFrame) -> dict[str, Any]:
     """Render sidebar controls and return filter values"""
     st.header("🎛️ Controls")
 
@@ -49,7 +52,7 @@ def _render_sidebar_controls(riders):
     _display_cache_info()
 
 
-def render_sidebar(riders):
+def render_sidebar(riders: pd.DataFrame) -> dict[str, Any]:
     """Render all sidebar controls and return filter values"""
     with st.sidebar:
         _render_sidebar_controls(riders)
@@ -58,7 +61,7 @@ def render_sidebar(riders):
     return _render_filters(riders)
 
 
-def _display_cache_info():
+def _display_cache_info() -> None:
     """Display cache information in the sidebar"""
     # PCS cache info
     pcs_cache_info = get_cache_info(PCS_CACHE_FILE)
@@ -106,7 +109,7 @@ def _display_cache_info():
         )
 
 
-def _render_filters(riders):
+def _render_filters(riders: pd.DataFrame) -> dict[str, Any]:
     """Render filter controls and return selected values"""
     with st.sidebar:
         # Position filter

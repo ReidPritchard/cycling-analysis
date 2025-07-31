@@ -7,7 +7,7 @@ import plotly.express as px
 import streamlit as st
 
 
-def create_performance_distribution_charts(df):
+def create_performance_distribution_charts(df: pd.DataFrame) -> None:
     """Create charts showing performance distributions"""
     col1, col2 = st.columns(2)
 
@@ -33,7 +33,7 @@ def create_performance_distribution_charts(df):
             st.info("No performance data available")
 
 
-def create_performance_tiers_chart(df):
+def create_performance_tiers_chart(df: pd.DataFrame) -> None:
     """Create a clearer performance visualization using tiers and rankings"""
     df_with_points = df[df["total_pcs_points"] > 0].copy()
 
@@ -48,7 +48,7 @@ def create_performance_tiers_chart(df):
     q75 = points_data.quantile(0.75)
 
     # Assign performance tiers
-    def assign_tier(points):
+    def assign_tier(points: float) -> str:
         if points >= q75:
             return "Elite (Top 25%)"
         elif points >= q50:

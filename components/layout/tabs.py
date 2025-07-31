@@ -5,6 +5,7 @@ Tab content components for the Fantasy Cycling Stats app.
 from datetime import datetime
 from typing import Any
 
+import pandas as pd
 import streamlit as st
 
 from data import RaceData, refresh_race_cache
@@ -16,7 +17,7 @@ from ..display.rider_tables import display_rider_table
 from ..display.summary_stats import display_summary_stats
 
 
-def show_overview_tab(filtered_riders):
+def show_overview_tab(filtered_riders: pd.DataFrame) -> None:
     """Display the overview tab content"""
     st.subheader("📈 Key Statistics")
     create_stats_overview(filtered_riders)
@@ -36,7 +37,7 @@ def show_overview_tab(filtered_riders):
         create_star_cost_distribution_chart(filtered_riders)
 
 
-def show_riders_tab(filtered_riders):
+def show_riders_tab(filtered_riders: pd.DataFrame) -> None:
     """Display the riders tab content"""
     st.subheader(f"🏆 Riders ({len(filtered_riders)} found)")
 
@@ -51,7 +52,7 @@ def show_riders_tab(filtered_riders):
         display_rider_table(filtered_riders)
 
 
-def show_analytics_tab(filtered_riders):
+def show_analytics_tab(filtered_riders: pd.DataFrame) -> None:
     """Display the analytics tab content"""
     show_detailed_analytics(filtered_riders)
 

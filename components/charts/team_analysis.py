@@ -2,11 +2,12 @@
 Team-focused analysis and comparison charts.
 """
 
+import pandas as pd
 import plotly.express as px
 import streamlit as st
 
 
-def create_team_analysis_charts(df):
+def create_team_analysis_charts(df: pd.DataFrame) -> None:
     """Create team-focused analysis charts"""
     col1, col2 = st.columns(2)
 

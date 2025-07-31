@@ -3,6 +3,7 @@ Value analysis and outlier identification charts.
 """
 
 import numpy as np
+import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
@@ -10,7 +11,7 @@ import streamlit as st
 from ..analytics.outliers import identify_performance_outliers
 
 
-def create_value_analysis_charts(df):
+def create_value_analysis_charts(df: pd.DataFrame) -> None:
     """Create charts focused on value and outlier identification"""
     col1, col2 = st.columns(2)
 
@@ -23,7 +24,7 @@ def create_value_analysis_charts(df):
         create_efficiency_chart(df)
 
 
-def create_outlier_scatter_plot(df):
+def create_outlier_scatter_plot(df: pd.DataFrame) -> None:
     """Create scatter plot highlighting overperformers and underperformers"""
     if len(df) == 0 or df["total_pcs_points"].sum() == 0:
         st.info("No performance data available for scatter plot")
@@ -124,7 +125,7 @@ def create_outlier_scatter_plot(df):
     st.plotly_chart(fig, use_container_width=True)
 
 
-def create_efficiency_chart(df):
+def create_efficiency_chart(df: pd.DataFrame) -> None:
     """Create efficiency chart showing points per star by position"""
     if len(df) == 0 or df["total_pcs_points"].sum() == 0:
         st.info("No performance data available for efficiency chart")
