@@ -20,7 +20,7 @@ from components.layout.tabs import (
 )
 
 # Import configuration and styling
-from config.settings import PAGE_CONFIG, SUPPORTED_RACES
+from config.settings import SUPPORTED_RACES
 from config.styling import FOOTER_HTML, MAIN_CSS
 
 # Import data modules

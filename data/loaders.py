@@ -6,7 +6,7 @@ This module provides the main public API for loading data in the application.
 
 import logging
 import time
-from typing import Any, Callable
+from collections.abc import Callable
 
 import pandas as pd
 

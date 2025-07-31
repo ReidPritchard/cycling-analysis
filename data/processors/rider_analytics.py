@@ -9,7 +9,9 @@ import numpy as np
 import pandas as pd
 
 
-def process_season_results(pcs_data: dict[str, Any] | None) -> tuple[pd.DataFrame, int, int, float, float]:
+def process_season_results(
+    pcs_data: dict[str, Any] | None,
+) -> tuple[pd.DataFrame, int, int, float, float]:
     """Process and clean season results from PCS data."""
     if not pcs_data or "season_results" not in pcs_data:
         return pd.DataFrame(), 0, 0, 0.0, 0.0

@@ -2,10 +2,12 @@
 Search functionality for filtering riders.
 """
 
+from typing import Any
+
 import pandas as pd
 
 
-def get_sort_options():
+def get_sort_options() -> dict[str, str]:
     """Get available sorting options."""
     return {
         "Best Value (PCS/Star)": "pcs_per_star",
@@ -23,7 +25,7 @@ def get_sort_options():
     }
 
 
-def filter_riders_by_search(df, search_term):
+def filter_riders_by_search(df: pd.DataFrame, search_term: str) -> pd.DataFrame:
     """Filter riders based on search term."""
     if not search_term:
         return df

@@ -6,7 +6,6 @@ import pandas as pd
 import streamlit as st
 
 from ..charts.performance import create_performance_distribution_charts
-from ..charts.stage_performance import create_stage_performance_charts
 from ..charts.team_analysis import create_team_analysis_charts
 from ..charts.value_analysis import create_value_analysis_charts
 from .insights import show_outlier_analysis, show_statistical_insights
