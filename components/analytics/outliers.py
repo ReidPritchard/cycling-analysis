@@ -5,7 +5,9 @@ Outlier detection and value identification analytics.
 import pandas as pd
 
 
-def identify_performance_outliers(df, z_threshold=1.5):
+def identify_performance_outliers(
+    df: pd.DataFrame, z_threshold: float = 1.5
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Identify riders who are performing significantly better or worse than expected"""
     if len(df) < 5 or df["total_pcs_points"].sum() == 0:
         return [], []
@@ -38,7 +40,9 @@ def identify_performance_outliers(df, z_threshold=1.5):
     return overperformers, underperformers
 
 
-def identify_value_picks(df, min_points=10, max_stars=4):
+def identify_value_picks(
+    df: pd.DataFrame, min_points: int = 10, max_stars: int = 4
+) -> pd.DataFrame:
     """Identify riders with high performance relative to low star cost"""
     if len(df) == 0:
         return pd.DataFrame()
