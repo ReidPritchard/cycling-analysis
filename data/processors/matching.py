@@ -2,10 +2,11 @@
 Name matching utilities for matching fantasy riders with PCS/startlist riders.
 """
 
-import unicodedata
 import logging
-from typing import Dict, List, Optional, Union, Any
+import unicodedata
 from difflib import SequenceMatcher as SM
+from typing import Any
+
 import pandas as pd
 
 
@@ -79,7 +80,7 @@ def format_rider_name_for_pcs(full_name: str) -> str:
             return full_name.replace(" ", "-").lower()
 
 
-def find_best_match(search_string: str, choices: List[str]) -> Optional[str]:
+def find_best_match(search_string: str, choices: list[str]) -> str | None:
     """
     Find the best match for a search string in a list of choices using fuzzy matching.
 
@@ -117,9 +118,9 @@ def find_best_match(search_string: str, choices: List[str]) -> Optional[str]:
 
 
 def match_rider_names(
-    riders: Union[pd.DataFrame, List[Dict[str, Any]]],
-    startlist_riders: List[Dict[str, Any]],
-) -> Dict[str, Dict[str, Any]]:
+    riders: pd.DataFrame | list[dict[str, Any]],
+    startlist_riders: list[dict[str, Any]],
+) -> dict[str, dict[str, Any]]:
     """
     Match fantasy riders with PCS/startlist riders using team and name fuzzy matching.
 
@@ -172,8 +173,8 @@ def match_rider_names(
 
 
 def _match_by_team_and_name(
-    riders_list: List[Dict[str, Any]], startlist_riders: List[Dict[str, Any]]
-) -> Dict[str, Dict[str, Any]]:
+    riders_list: list[dict[str, Any]], startlist_riders: list[dict[str, Any]]
+) -> dict[str, dict[str, Any]]:
     """Helper function to match riders by team and name."""
     matched_riders = {}
 
@@ -245,8 +246,8 @@ def _match_by_team_and_name(
 
 
 def _match_by_name_only(
-    riders_list: List[Dict[str, Any]], startlist_riders: List[Dict[str, Any]]
-) -> Dict[str, Dict[str, Any]]:
+    riders_list: list[dict[str, Any]], startlist_riders: list[dict[str, Any]]
+) -> dict[str, dict[str, Any]]:
     """Helper function to match riders by name only."""
     matched_riders = {}
 
@@ -257,9 +258,9 @@ def _match_by_name_only(
 
 
 def _try_match_rider_by_name(
-    rider: Dict[str, Any],
-    startlist_riders: List[Dict[str, Any]],
-    matched_riders: Dict[str, Dict[str, Any]],
+    rider: dict[str, Any],
+    startlist_riders: list[dict[str, Any]],
+    matched_riders: dict[str, dict[str, Any]],
 ) -> None:
     """Helper function to attempt matching a single rider by name."""
     full_name = rider.get("full_name", "")

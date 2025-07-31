@@ -3,10 +3,8 @@ ProCyclingStats API data fetching.
 """
 
 import logging
-import time
 from datetime import datetime
 
-import pandas as pd
 from procyclingstats import RaceStartlist, Rider
 
 from config.settings import PCS_CACHE_FILE, SUPPORTED_RACES

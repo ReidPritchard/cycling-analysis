@@ -4,6 +4,7 @@ Performance and results display components.
 
 import pandas as pd
 import streamlit as st
+
 from ..common.calculations import (
     get_consistency_interpretation,
     get_trend_interpretation,

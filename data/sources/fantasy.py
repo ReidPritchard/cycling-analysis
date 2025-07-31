@@ -3,6 +3,7 @@ Fantasy data loading from JSON files.
 """
 
 import json
+
 from config.settings import FANTASY_DATA_FILE
 
 

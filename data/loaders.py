@@ -6,21 +6,22 @@ This module provides the main public API for loading data in the application.
 
 import logging
 import time
+
 import pandas as pd
 
 from config.settings import SUPPORTED_RACES
 from data.models.race import RaceData
+from data.processors.matching import match_rider_names
+from data.processors.race_analytics import prepare_race_data
+from data.processors.rider_analytics import calculate_rider_metrics
 from data.sources.fantasy import load_fantasy_json
 from data.sources.pcs_api import (
-    fetch_startlist_data,
     fetch_rider_pcs_data,
+    fetch_startlist_data,
     load_pcs_cache,
     save_pcs_cache,
 )
-from data.sources.race_api import load_race_cache, save_race_cache, fetch_race_data
-from data.processors.rider_analytics import calculate_rider_metrics
-from data.processors.race_analytics import prepare_race_data
-from data.processors.matching import match_rider_names
+from data.sources.race_api import fetch_race_data, load_race_cache, save_race_cache
 from utils.url_patterns import startlist_path
 
 
@@ -34,7 +35,7 @@ def load_fantasy_data():
 
     # TODO: Get info for the selected race (remove hardcoded)
     race_info = SUPPORTED_RACES["TDF_FEMMES_2025"]
-    startlist_cache_path = race_info["startlist_cache_path"]
+    race_info["startlist_cache_path"]
     startlist_cache_key = startlist_path(race_info["url_path"])
 
     # Load cached PCS data

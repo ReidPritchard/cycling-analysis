@@ -9,7 +9,7 @@ from typing import Any
 from procyclingstats import Race, RaceClimbs, Stage
 
 from config.settings import RACE_CACHE_FILE, SUPPORTED_RACES
-from data.models.race import StageData, RaceData
+from data.models.race import RaceData, StageData
 from utils.cache_manager import load_cache, refresh_cache, save_cache
 from utils.url_patterns import race_climbs_path
 

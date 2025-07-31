@@ -5,7 +5,7 @@ Sidebar components for the Fantasy Cycling Stats app.
 import streamlit as st
 
 from config.settings import PCS_CACHE_FILE, RACE_CACHE_FILE, SUPPORTED_RACES
-from data import load_fantasy_data, fetch_pcs_data, refresh_pcs_cache
+from data import fetch_pcs_data, load_fantasy_data, refresh_pcs_cache
 from utils.cache_manager import get_cache_info
 
 
@@ -14,7 +14,7 @@ def _render_sidebar_controls(riders):
     st.header("🎛️ Controls")
 
     # Race selection
-    race = st.selectbox(
+    st.selectbox(
         "Selected Race:",
         [race["name"] for race in SUPPORTED_RACES.values()],
     )
@@ -25,7 +25,7 @@ def _render_sidebar_controls(riders):
         with st.spinner("Fetching ProCyclingStats data..."):
             # FIXME: Use the race from the selectbox
             refresh_pcs_cache()
-            riders = fetch_pcs_data("TDF_FEMMES_2025", load_fantasy_data())
+            fetch_pcs_data("TDF_FEMMES_2025", load_fantasy_data())
             st.success("✅ PCS data fetched successfully!")
 
     # if st.button("🗑️ Clear Cache", use_container_width=True):

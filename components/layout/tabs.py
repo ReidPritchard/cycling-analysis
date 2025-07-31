@@ -7,12 +7,13 @@ from typing import Any
 
 import streamlit as st
 
+from data import RaceData, refresh_race_cache
+
+from ..analytics.main import show_detailed_analytics
+from ..charts.overview import create_star_cost_distribution_chart, create_stats_overview
 from ..display.rider_cards import display_rider_cards
 from ..display.rider_tables import display_rider_table
 from ..display.summary_stats import display_summary_stats
-from ..charts.overview import create_star_cost_distribution_chart, create_stats_overview
-from ..analytics.main import show_detailed_analytics
-from data import RaceData, refresh_race_cache
 
 
 def show_overview_tab(filtered_riders):

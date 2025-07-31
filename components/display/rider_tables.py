@@ -3,6 +3,7 @@ Rider table display components.
 """
 
 import streamlit as st
+
 from ..common.calculations import calculate_percentiles, get_fantasy_value_tier
 from ..common.pagination import paginate_dataframe
 from ..filtering.controls import render_unified_controls

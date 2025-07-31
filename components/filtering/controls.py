@@ -3,6 +3,7 @@ Filter control UI components.
 """
 
 import streamlit as st
+
 from .search import get_sort_options
 
 

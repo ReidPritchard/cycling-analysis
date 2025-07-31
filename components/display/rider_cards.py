@@ -3,12 +3,13 @@ Rider card display components.
 """
 
 import streamlit as st
-from .rider_info import render_rider_info
-from .performance import render_compact_performance_summary, render_season_results
+
 from ..common.calculations import calculate_percentiles
 from ..common.pagination import paginate_dataframe
 from ..filtering.controls import render_unified_controls
 from ..filtering.filters import apply_filters
+from .performance import render_compact_performance_summary, render_season_results
+from .rider_info import render_rider_info
 
 
 def render_single_rider_card(rider, percentiles=None):

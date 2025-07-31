@@ -3,9 +3,10 @@ Cache management utilities for the Fantasy Cycling Stats app.
 """
 
 import json
-import os
 import logging
+import os
 from datetime import datetime
+
 from config.settings import CACHE_EXPIRY_DELTA
 
 
@@ -15,13 +16,13 @@ def load_cache(cache_file, data_key="data"):
         return {}
 
     try:
-        with open(cache_file, "r") as f:
+        with open(cache_file) as f:
             cache_data = json.load(f)
 
         # Check if cache is expired
         cache_date = datetime.fromisoformat(cache_data.get("cached_at", "1970-01-01"))
         if datetime.now() - cache_date > CACHE_EXPIRY_DELTA:
-            logging.info(f"🔄 Cache expired. Will refresh data.")
+            logging.info("🔄 Cache expired. Will refresh data.")
             return {}
 
         return cache_data.get(data_key, {})
@@ -59,7 +60,7 @@ def get_cache_info(cache_file):
         return None
 
     try:
-        with open(cache_file, "r") as f:
+        with open(cache_file) as f:
             cache_info = json.load(f)
 
         cache_date = datetime.fromisoformat(cache_info.get("cached_at", "1970-01-01"))

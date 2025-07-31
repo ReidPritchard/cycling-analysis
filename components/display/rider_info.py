@@ -3,9 +3,11 @@ Basic rider information display components.
 """
 
 import streamlit as st
+
 from config.settings import POSITION_ICONS
-from ..common.formatting import emoji_flag
+
 from ..common.calculations import get_fantasy_value_tier
+from ..common.formatting import emoji_flag
 
 
 def render_fantasy_value_indicator(rider, percentiles):
