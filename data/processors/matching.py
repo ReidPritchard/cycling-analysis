@@ -127,8 +127,8 @@ def match_rider_names(
     Args:
         riders (pd.DataFrame or list): DataFrame or list of rider dictionaries with
                                      'full_name' field and optionally 'team' field
-        startlist_riders (list): List of PCS rider dictionaries with
-                               'rider_name', 'rider_url', and optionally 'team_name' fields
+        startlist_riders (list): List of PCS rider dictionaries with 'rider_name',
+                               'rider_url', and optionally 'team_name' fields
 
     Returns:
         dict: Dictionary mapping fantasy rider names to matched PCS rider data

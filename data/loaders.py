@@ -74,15 +74,11 @@ def load_fantasy_data():
             rider["matched_startlist_rider"] = matched_startlist_rider.get(
                 "matched_startlist_rider", {}
             )
-            rider["pcs_matched_name"] = matched_startlist_rider.get(
-                "pcs_matched_name", ""
-            )
+            rider["pcs_matched_name"] = matched_startlist_rider.get("pcs_matched_name", "")
             rider["pcs_rider_url"] = matched_startlist_rider.get("pcs_rider_url", "")
             # Check if the cached PCS data exists for this rider
             if matched_startlist_rider.get("pcs_rider_url") in cached_rider_data:
-                rider["pcs_data"] = cached_rider_data[
-                    matched_startlist_rider["pcs_rider_url"]
-                ]
+                rider["pcs_data"] = cached_rider_data[matched_startlist_rider["pcs_rider_url"]]
 
     # Log matching results
     if matched_pcs_rider_count > 0:
@@ -142,9 +138,7 @@ def fetch_pcs_data(race_name, riders_df, progress_callback=None):
             matched_pcs_rider = rider_mappings[full_name]
 
             rider_url = matched_pcs_rider.get("pcs_rider_url", None)
-            logging.info(
-                f"✅ Matched {full_name} with {matched_pcs_rider['pcs_matched_name']}"
-            )
+            logging.info(f"✅ Matched {full_name} with {matched_pcs_rider['pcs_matched_name']}")
 
         # Check if we have cached data for this rider URL
         if rider_url in cached_rider_data and matched_pcs_rider:

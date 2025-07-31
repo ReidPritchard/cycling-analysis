@@ -17,14 +17,14 @@ from components.layout.tabs import (
 )
 
 # Import configuration and styling
-from config.settings import PAGE_CONFIG
+from config.settings import PAGE_CONFIG, SUPPORTED_RACES
 from config.styling import FOOTER_HTML, MAIN_CSS
 
 # Import data modules
 from data import load_fantasy_data, load_race_data
 
 # Configure page
-st.set_page_config(**PAGE_CONFIG)
+# st.set_page_config(**PAGE_CONFIG)
 
 # Apply custom CSS styling
 st.markdown(MAIN_CSS, unsafe_allow_html=True)
@@ -35,9 +35,7 @@ def apply_filters(riders, filters):
     filtered_riders = riders.copy()
 
     if filters["position"] != "All":
-        filtered_riders = filtered_riders[
-            filtered_riders["position"] == filters["position"]
-        ]
+        filtered_riders = filtered_riders[filtered_riders["position"] == filters["position"]]
 
     if filters["team"] != "All":
         filtered_riders = filtered_riders[filtered_riders["team"] == filters["team"]]
@@ -49,15 +47,11 @@ def apply_filters(riders, filters):
 
     if filters["search_term"]:
         mask = (
-            filtered_riders["full_name"].str.contains(
-                filters["search_term"], case=False, na=False
-            )
+            filtered_riders["full_name"].str.contains(filters["search_term"], case=False, na=False)
             | filtered_riders["fantasy_name"].str.contains(
                 filters["search_term"], case=False, na=False
             )
-            | filtered_riders["team"].str.contains(
-                filters["search_term"], case=False, na=False
-            )
+            | filtered_riders["team"].str.contains(filters["search_term"], case=False, na=False)
         )
         filtered_riders = filtered_riders[mask]
 
@@ -69,12 +63,33 @@ def main():
     # Main App Layout
     st.title("🚴‍♀️ Fantasy Cycling Stats Dashboard")
 
+    # Display the header
+    st.markdown("""
+    Welcome to the Fantasy Cycling Stats Dashboard! This application provides insights into rider
+    statistics.
+    """)
+
+    # Race selection
+    selected_race_name = st.selectbox(
+        "Race:",
+        [race["name"] for race in SUPPORTED_RACES.values()],
+    )
+    # Find the selected race in supported races
+    selected_race_key = next(
+        (key for key, value in SUPPORTED_RACES.items() if value["name"] == selected_race_name),
+        None,
+    )
+
+    if selected_race_key is None:
+        st.info("Plese select a race to continue.")
+        return
+
     # Load rider data
     # We should only do this once
     riders = load_fantasy_data()
 
     # Load race data (also only once)
-    race_data = load_race_data("TDF_FEMMES_2025")
+    race_data = load_race_data(selected_race_key)
 
     # Render sidebar and get filter values
     filters = render_sidebar(riders)
@@ -84,9 +99,7 @@ def main():
 
     # Main content area
     # TODO: Add support for other races?
-    tab1, tab2, tab3, tab4 = st.tabs(
-        ["📊 Overview", "🏆 Riders", "📈 Analytics", "🏁 Race Data"]
-    )
+    tab1, tab2, tab3, tab4 = st.tabs(["📊 Overview", "🏆 Riders", "📈 Analytics", "🏁 Race Data"])
 
     with tab1:
         show_overview_tab(filtered_riders)

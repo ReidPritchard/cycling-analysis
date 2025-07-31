@@ -99,9 +99,7 @@ def show_race_tab(race_data: RaceData):
         st.json(race_data)
 
     # Main content tabs for better organization
-    tab1, tab2, tab3 = st.tabs(
-        ["📊 Race Overview", "🏁 Stage Analysis", "🎯 Fantasy Strategy"]
-    )
+    tab1, tab2, tab3 = st.tabs(["📊 Race Overview", "🏁 Stage Analysis", "🎯 Fantasy Strategy"])
 
     with tab1:
         _show_race_progress_overview(race_data)
@@ -174,9 +172,7 @@ def _show_race_progress_overview(race_data: RaceData):
                 help="Total vertical meters across all stages",
             )
         else:
-            st.metric(
-                "Elevation", "Loading...", help="Calculating total elevation gain"
-            )
+            st.metric("Elevation", "Loading...", help="Calculating total elevation gain")
 
     # Visual progress bar
     if total_stages > 0:
@@ -254,11 +250,9 @@ def _show_stage_timeline(stages: list[dict[str, Any]], computed_info: dict[str, 
         if stage_date:
             try:
                 # Assuming date format is "MM-DD" for 2025
-                stage_date_obj = datetime.strptime(
-                    f"2025-{stage_date}", "%Y-%m-%d"
-                ).date()
+                stage_date_obj = datetime.strptime(f"2025-{stage_date}", "%Y-%m-%d").date()
                 is_completed = stage_date_obj <= today
-            except:
+            except Exception:
                 # Check for alternative completion indicators
                 is_completed = (
                     stage.get("results") is not None
@@ -288,9 +282,7 @@ def _show_stage_timeline(stages: list[dict[str, Any]], computed_info: dict[str, 
 
         with col4:
             if vertical and vertical > 0:
-                _ = st.markdown(
-                    f"↗️ {vertical:,}m ({len(stage.get('climbs', []))} climbs)"
-                )
+                _ = st.markdown(f"↗️ {vertical:,}m ({len(stage.get('climbs', []))} climbs)")
             else:
                 _ = st.markdown("↗️ Flat")
 
@@ -322,9 +314,7 @@ def _show_fantasy_strategy_insights(race_data: RaceData):
         # Check for sprint stages
         flat_stages = [s for s in stages if s.get("profile_icon") == "p1"]
         if len(flat_stages) > 2:
-            st.success(
-                f"🏃 **{len(flat_stages)} sprint stages** - Sprinters are valuable picks"
-            )
+            st.success(f"🏃 **{len(flat_stages)} sprint stages** - Sprinters are valuable picks")
 
         # Mountain stage analysis
         mountain_stages = [s for s in stages if s.get("profile_icon") in ["p4", "p5"]]
@@ -369,9 +359,7 @@ def _show_upcoming_stages_focus(race_data: RaceData):
         # Check completion status
         if stage_date:
             try:
-                stage_date_obj = datetime.strptime(
-                    f"2025-{stage_date}", "%Y-%m-%d"
-                ).date()
+                stage_date_obj = datetime.strptime(f"2025-{stage_date}", "%Y-%m-%d").date()
                 is_completed = stage_date_obj <= today
             except:
                 is_completed = (
@@ -407,9 +395,7 @@ def _show_upcoming_stages_focus(race_data: RaceData):
                         "p4": "Mountain",
                         "p5": "High Mountain",
                     }
-                    st.markdown(
-                        f"**Profile**: {difficulty_map.get(profile, 'Unknown')}"
-                    )
+                    st.markdown(f"**Profile**: {difficulty_map.get(profile, 'Unknown')}")
 
                     vertical = stage.get("vertical_meters", 0)
                     if vertical > 0:
@@ -419,13 +405,9 @@ def _show_upcoming_stages_focus(race_data: RaceData):
                 if profile in ["p1", "p2"]:
                     st.info("🏃 **Fantasy tip**: Favor sprinters and classics riders")
                 elif profile in ["p4", "p5"]:
-                    st.warning(
-                        "🏔️ **Fantasy tip**: Essential to have climbers in your team"
-                    )
+                    st.warning("🏔️ **Fantasy tip**: Essential to have climbers in your team")
                 else:
-                    st.info(
-                        "🚴 **Fantasy tip**: All-rounders and puncheurs are good picks"
-                    )
+                    st.info("🚴 **Fantasy tip**: All-rounders and puncheurs are good picks")
     else:
         st.info("All stages completed! Check results for final standings.")
 
@@ -459,6 +441,4 @@ def _show_race_info_tab(race_data: RaceData):
         # with st.expander("📄 Detailed Race Information"):
         #     st.json(race_info)
     else:
-        _ = st.info(
-            "ℹ️ Detailed race information will be available when the race data is loaded."
-        )
+        _ = st.info("ℹ️ Detailed race information will be available when the race data is loaded.")
