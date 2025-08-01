@@ -42,7 +42,10 @@ def create_performance_tiers_chart(df: pd.DataFrame) -> None:
         return
 
     # Calculate performance tiers based on quartiles
-    points_data = df_with_points["total_pcs_points"]
+    points_data = df_with_points.get("total_pcs_points", pd.Series([]))
+    if points_data is None or points_data.empty:
+        st.info("No PCS points data available")
+        return
     q25 = points_data.quantile(0.25)
     q50 = points_data.quantile(0.50)  # median
     q75 = points_data.quantile(0.75)
@@ -58,15 +61,14 @@ def create_performance_tiers_chart(df: pd.DataFrame) -> None:
         else:
             return "Struggling (Bottom 25%)"
 
-    df_with_points["performance_tier"] = df_with_points["total_pcs_points"].apply(
-        assign_tier
-    )
+    df_with_points["performance_tier"] = points_data.apply(assign_tier)
 
     # Create a stacked bar chart showing position distribution within each tier
     tier_position_counts = (
         df_with_points.groupby(["performance_tier", "position"])
         .size()
-        .reset_index(name="count")
+        .reset_index()
+        .rename(columns={0: "count"})
     )
 
     # Define tier order for proper display
@@ -76,9 +78,10 @@ def create_performance_tiers_chart(df: pd.DataFrame) -> None:
         "Average (50-75%)",
         "Struggling (Bottom 25%)",
     ]
-    tier_position_counts["performance_tier"] = pd.Categorical(
+    performance_tiers = pd.Categorical(
         tier_position_counts["performance_tier"], categories=tier_order, ordered=True
     )
+    tier_position_counts["performance_tier"] = performance_tiers
     tier_position_counts = tier_position_counts.sort_values("performance_tier")
 
     # Create the visualization
@@ -96,14 +99,6 @@ def create_performance_tiers_chart(df: pd.DataFrame) -> None:
         color_discrete_sequence=px.colors.qualitative.Set2,
     )
 
-    # Add tier threshold annotations
-    fig.add_hline(
-        y=0,
-        annotation_text=f"Thresholds: Elite ≥{q75:.0f} | Strong ≥{q50:.0f} | Average ≥{q25:.0f} pts",
-        annotation_position="top right",
-        line_width=0,
-    )
-
     fig.update_layout(
         height=400,
         xaxis_tickangle=-45,
@@ -111,24 +106,3 @@ def create_performance_tiers_chart(df: pd.DataFrame) -> None:
     )
 
     st.plotly_chart(fig, use_container_width=True)
-
-    # Add summary stats below the chart
-    col1, col2, col3, col4 = st.columns(4)
-
-    tier_counts = df_with_points["performance_tier"].value_counts()
-
-    with col1:
-        elite_count = tier_counts.get("Elite (Top 25%)", 0)
-        st.metric("🏆 Elite", elite_count, help=f"≥{q75:.0f} PCS points")
-
-    with col2:
-        strong_count = tier_counts.get("Strong (25-50%)", 0)
-        st.metric("💪 Strong", strong_count, help=f"{q50:.0f}-{q75:.0f} PCS points")
-
-    with col3:
-        average_count = tier_counts.get("Average (50-75%)", 0)
-        st.metric("📊 Average", average_count, help=f"{q25:.0f}-{q50:.0f} PCS points")
-
-    with col4:
-        struggling_count = tier_counts.get("Struggling (Bottom 25%)", 0)
-        st.metric("📉 Struggling", struggling_count, help=f"<{q25:.0f} PCS points")

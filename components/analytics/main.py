@@ -5,7 +5,10 @@ Main analytics orchestration and display.
 import pandas as pd
 import streamlit as st
 
+from data.models.race import RaceData
+
 from ..charts.performance import create_performance_distribution_charts
+from ..charts.stage_performance import create_stage_performance_charts
 from ..charts.team_analysis import create_team_analysis_charts
 from ..charts.value_analysis import create_value_analysis_charts
 from .insights import show_outlier_analysis, show_statistical_insights
@@ -30,23 +33,20 @@ def create_visualizations(df: pd.DataFrame) -> None:
     st.subheader("🏆 Team Analysis")
     create_team_analysis_charts(df)
 
-    # Section 4: Stage Performance
-    st.subheader("🚴 Stage Performance")
-    st.markdown("""
-    Analyze how riders perform across different stage types and conditions.
-    Which riders excel in mountain stages, flat sprints, or time trials?
-    This section provides insights into rider adaptability and specialization.
-    """)
-    # create_stage_performance_charts(df)
-    st.caption(
-        "Stage performance analysis is currently under development. Stay tuned for updates!"
-    )
 
-
-def show_detailed_analytics(filtered_riders: pd.DataFrame) -> None:
+def show_detailed_analytics(filtered_riders: pd.DataFrame, race_data: RaceData) -> None:
     """Show enhanced detailed analytics section"""
     if len(filtered_riders) > 0:
         create_visualizations(filtered_riders)
+
+        # Section 4: Stage Performance
+        st.subheader("🚴 Stage Performance")
+        st.markdown("""
+        Analyze how riders perform across different stage types and conditions.
+        Which riders excel in mountain stages, flat sprints, or time trials?
+        This section provides insights into rider adaptability and specialization.
+        """)
+        create_stage_performance_charts(filtered_riders, race_data)
 
         # Outlier Analysis Section
         st.subheader("🎯 Outlier Analysis")

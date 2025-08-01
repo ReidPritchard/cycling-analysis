@@ -13,6 +13,9 @@ from ..common.calculations import (
 
 def render_season_results(rider):
     """Render season results table with better organization."""
+    # st.dataframe(rider, use_container_width=True, hide_index=True)
+    # return
+
     pcs_data = rider.get("pcs_data", {})
     if not pcs_data or "error" in pcs_data:
         st.info("🔍 No PCS data available - rider may not be in startlist")
@@ -26,9 +29,7 @@ def render_season_results(rider):
 
     # Show results count and context
     results_count = len(season_results)
-    st.markdown(
-        f"**Recent Results** ({results_count} race{'s' if results_count != 1 else ''})"
-    )
+    st.markdown(f"**Recent Results** ({results_count} race{'s' if results_count != 1 else ''})")
 
     st.dataframe(
         season_results,
@@ -43,9 +44,7 @@ def render_season_results(rider):
         use_container_width=True,
         hide_index=True,
         column_config={
-            "Date": st.column_config.DateColumn(
-                "Date", width="small", help="Race date"
-            ),
+            "Date": st.column_config.DateColumn("Date", width="small", help="Race date"),
             "Name": st.column_config.TextColumn(
                 "Race", pinned=True, width="medium", help="Race name"
             ),
@@ -73,12 +72,7 @@ def render_compact_performance_summary(rider):
     trend_score = rider.get("trend_score", 0.0)
 
     # Only show section if there's meaningful data
-    if (
-        total_pcs == 0
-        and total_uci == 0
-        and consistency_score == 0
-        and trend_score == 0
-    ):
+    if total_pcs == 0 and total_uci == 0 and consistency_score == 0 and trend_score == 0:
         st.caption("📊 No performance data available")
         return
 
@@ -101,15 +95,11 @@ def render_compact_performance_summary(rider):
 
     if consistency_score > 0:
         consistency_label, _, _ = get_consistency_interpretation(consistency_score)
-        analysis_items.append(
-            f"📊 **Consistency:** {consistency_label} ({consistency_score:.2f})"
-        )
+        analysis_items.append(f"📊 **Consistency:** {consistency_label} ({consistency_score:.2f})")
 
     if trend_score != 0.0:
         trend_label, _, trend_icon, _ = get_trend_interpretation(trend_score)
-        analysis_items.append(
-            f"{trend_icon} **Trend:** {trend_label} ({-trend_score:.3f})"
-        )
+        analysis_items.append(f"{trend_icon} **Trend:** {trend_label} ({-trend_score:.3f})")
 
     # Display analysis items compactly
     for item in analysis_items:

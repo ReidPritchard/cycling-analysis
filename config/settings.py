@@ -3,6 +3,7 @@ Configuration settings for the Fantasy Cycling Stats app.
 """
 
 from datetime import timedelta
+from typing import Any
 
 # Fantasy data file scraped from TdF site (star data)
 FANTASY_DATA_FILE = "fantasy-data.json"
@@ -24,7 +25,7 @@ SUPPORTED_RACES = {
 }
 
 # Streamlit page configuration
-PAGE_CONFIG = {
+PAGE_CONFIG: dict[str, Any] = {
     "page_title": "Fantasy Cycling Stats",
     "page_icon": "🚴",
     "layout": "wide",

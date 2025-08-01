@@ -27,6 +27,26 @@ class StageData(TypedDict, total=False):
     climbs: list[dict[str, Any]]
     results: list[dict[str, Any]] | None
     general_classification: list[dict[str, Any]] | None
+    """
+    Example:
+    points_classification: [
+        {
+            "rider_name": "Wiebes Lorena",
+            "rider_url": "rider/lorena-wiebes",
+            "rider_number": 47,
+            "team_name": "Team SD Worx - Protime",
+            "team_url": "team/team-sd-worx-protime-2025",
+            "rank": 1,
+            "prev_rank": 1,
+            "points": 197,
+            "age": 26,
+            "nationality": "NL",
+            "pcs_points": 197,
+            "uci_points": 0
+        },
+        ...
+    ]
+    """
     points_classification: list[dict[str, Any]] | None
     kom_classification: list[dict[str, Any]] | None
     youth_classification: list[dict[str, Any]] | None

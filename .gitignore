@@ -1,8 +1,12 @@
+.DS_Store
+.venv
+.ruff_cache
 .vscode
 
 __pycache__
 */**/__pycache__
 
 CLAUDE.md
+PLAN.md
 
 fantasy-data-raw.json

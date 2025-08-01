@@ -36,4 +36,5 @@ select = [
 [dependency-groups]
 dev = [
     "ruff>=0.12.7",
+    "watchdog>=6.0.0",
 ]

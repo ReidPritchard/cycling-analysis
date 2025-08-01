@@ -5,13 +5,16 @@ A Streamlit application for analyzing fantasy cycling rider statistics
 and Tour de France Femmes 2025 race data.
 """
 
-from typing import Any
+import logging
 
 import pandas as pd
 import streamlit as st
 
-# Import UI components
+from components.filtering.controls import render_unified_controls
+from components.filtering.filters import apply_filters
 from components.layout.sidebar import render_sidebar
+
+# Import UI components
 from components.layout.tabs import (
     show_analytics_tab,
     show_overview_tab,
@@ -20,57 +23,43 @@ from components.layout.tabs import (
 )
 
 # Import configuration and styling
-from config.settings import SUPPORTED_RACES
+from config.settings import PAGE_CONFIG, SUPPORTED_RACES
 from config.styling import FOOTER_HTML, MAIN_CSS
 
 # Import data modules
-from data import load_fantasy_data, load_race_data
+from data.models.unified import PipelineConfig
+from data.pipeline import run_pipeline
 
-# Configure page
-# st.set_page_config(**PAGE_CONFIG)
-
-# Apply custom CSS styling
-st.markdown(MAIN_CSS, unsafe_allow_html=True)
-
-
-def apply_filters(riders: pd.DataFrame, filters: dict[str, Any]) -> pd.DataFrame:
-    """Apply filters to the riders dataframe."""
-    filtered_riders = riders.copy()
-
-    if filters["position"] != "All":
-        filtered_riders = filtered_riders[filtered_riders["position"] == filters["position"]]
-
-    if filters["team"] != "All":
-        filtered_riders = filtered_riders[filtered_riders["team"] == filters["team"]]
-
-    filtered_riders = filtered_riders[
-        (filtered_riders["stars"] >= filters["min_stars"])
-        & (filtered_riders["stars"] <= filters["max_stars"])
-    ]
-
-    if filters["search_term"]:
-        mask = (
-            filtered_riders["full_name"].str.contains(filters["search_term"], case=False, na=False)
-            | filtered_riders["fantasy_name"].str.contains(
-                filters["search_term"], case=False, na=False
-            )
-            | filtered_riders["team"].str.contains(filters["search_term"], case=False, na=False)
-        )
-        filtered_riders = filtered_riders[mask]
-
-    return filtered_riders
+logger = logging.getLogger(__name__)
 
 
 def main() -> None:
     """Main application logic."""
+    # Set up logging
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        handlers=[logging.StreamHandler()],
+    )
+
+    logger.info("Starting Fantasy Cycling Stats Dashboard")
+
+    # Configure page
+    st.set_page_config(**PAGE_CONFIG)
+
+    # Apply custom CSS styling
+    st.markdown(MAIN_CSS, unsafe_allow_html=True)
+
     # Main App Layout
     st.title("🚴‍♀️ Fantasy Cycling Stats Dashboard")
 
     # Display the header
-    st.markdown("""
+    st.markdown(
+        """
     Welcome to the Fantasy Cycling Stats Dashboard! This application provides insights into rider
     statistics.
-    """)
+    """
+    )
 
     # Race selection
     selected_race_name = st.selectbox(
@@ -84,24 +73,96 @@ def main() -> None:
     )
 
     if selected_race_key is None:
-        st.info("Plese select a race to continue.")
+        st.info("Please select a race to continue.")
+        logger.warning("No race slected.")
         return
 
-    # Load rider data
-    # We should only do this once
-    riders = load_fantasy_data()
+    progress_bar = st.progress(0.0, text="Loading data...")
 
-    # Load race data (also only once)
-    race_data = load_race_data(selected_race_key)
+    def display_loading_progress(progress: float, text: str) -> None:
+        """Display loading progress in the sidebar."""
+        logger.debug(f"Loading progress: {progress * 100:.2f}% - {text}")
+        progress_bar.progress(progress, text=text)
 
-    # Render sidebar and get filter values
-    filters = render_sidebar(riders)
+    pipeline_config = PipelineConfig(
+        {
+            "race_key": selected_race_key,
+            "use_cache": True,
+            "force_refresh": False,
+            "fuzzy_threshold": 0.9,
+            "require_team_match": True,
+            "include_debug_info": True,
+            "verbose_logging": True,
+            "use_enhanced_analytics": True,
+            "include_comparisons": True,
+            "calculate_trends": True,
+            "parallel_processing": True,
+        }
+    )
 
-    # Load and filter data
-    filtered_riders = apply_filters(riders, filters)
+    logger.info("Running data pipeline")
+
+    result = run_pipeline(
+        selected_race_key, config=pipeline_config, progress_callback=display_loading_progress
+    )
+
+    riders = result.get("riders_df", pd.DataFrame())
+    summary = result.get("summary", {})
+    race_data = result.get("raw_data", {}).get("race_data", {})
+    warnings = result.get("warnings", None)
+    errors = result.get("errors", None)
+
+    # Display summary information
+    # st.markdown("### Summary Statistics")
+    # st.json(summary)
+
+    if warnings:
+        warning_notice = "⚠️ Warnings encountered during data loading:"
+        for warning in warnings:
+            warning_notice += f"\n- {warning}"
+        st.warning(warning_notice)
+
+    if errors:
+        error_notice = "❌ Errors encountered during data loading:"
+        for error in errors:
+            error_notice += f"\n- {error}"
+        st.error(error_notice)
+        return
+
+    # match_data = result.get("matched_data")
+    # # st.json(match_data.get("race_data", pd.DataFrame()))
+    # st.json(match_data.get("match_summary", pd.DataFrame()))
+    # # st.json(match_data.get("riders", pd.DataFrame()))
+
+    # return
+
+    # Render the sidebar
+    render_sidebar(selected_race_key)
+
+    # Global filtering controls
+    with st.expander("🔍 Global Filters", expanded=True):
+        if not riders.empty:
+            st.markdown("## 🔍 Global Filters")
+            st.markdown("*These filters will apply across all tabs*")
+
+            # Render unified controls for global filtering
+            filters = render_unified_controls(riders, "global")
+
+            # Apply filters globally
+            filtered_riders = apply_filters(riders, filters)
+
+            # Show filter results summary
+            total_riders = len(riders)
+            filtered_count = len(filtered_riders)
+
+            if filtered_count != total_riders:
+                st.info(f"🔍 Showing {filtered_count} of {total_riders} riders across all tabs")
+            else:
+                st.info(f"👥 Showing all {total_riders} riders")
+        else:
+            filtered_riders = riders.copy()
 
     # Main content area
-    # TODO: Add support for other races?
     tab1, tab2, tab3, tab4 = st.tabs(["📊 Overview", "🏆 Riders", "📈 Analytics", "🏁 Race Data"])
 
     with tab1:
@@ -111,7 +172,7 @@ def main() -> None:
         show_riders_tab(filtered_riders)
 
     with tab3:
-        show_analytics_tab(filtered_riders)
+        show_analytics_tab(filtered_riders, race_data)
 
     with tab4:
         show_race_tab(race_data)
@@ -119,6 +180,9 @@ def main() -> None:
     # Footer
     st.divider()
     st.markdown(FOOTER_HTML, unsafe_allow_html=True)
+
+    # Clear the progress bar
+    progress_bar.empty()
 
 
 if __name__ == "__main__":

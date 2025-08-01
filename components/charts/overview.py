@@ -29,9 +29,7 @@ def create_stats_overview(df: pd.DataFrame) -> None:
 
     with col4:
         positions = df["position"].nunique()
-        st.metric(
-            "Styles", positions, help="Number of different rider styles/positions"
-        )
+        st.metric("Styles", positions, help="Number of different rider styles/positions")
 
     # Add performance insights
     if len(df) > 0 and df["total_pcs_points"].sum() > 0:
@@ -79,8 +77,6 @@ def create_star_cost_distribution_chart(df: pd.DataFrame) -> None:
     fig.update_xaxes(title_text="Star Cost")
     fig.update_yaxes(title_text="Number of Riders", secondary_y=False)
     fig.update_yaxes(title_text="Average PCS Points", secondary_y=True)
-    fig.update_layout(
-        title="Star Cost Distribution vs Performance", height=400, showlegend=True
-    )
+    fig.update_layout(title="Star Cost Distribution vs Performance", height=400, showlegend=True)
 
     st.plotly_chart(fig, use_container_width=True)

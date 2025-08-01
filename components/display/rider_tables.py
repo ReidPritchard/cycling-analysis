@@ -6,48 +6,32 @@ import streamlit as st
 
 from ..common.calculations import calculate_percentiles, get_fantasy_value_tier
 from ..common.pagination import paginate_dataframe
-from ..filtering.controls import render_unified_controls
-from ..filtering.filters import apply_filters
 
 
 def display_rider_table(df, page_size=50):
-    """Display riders in enhanced table format with unified controls and pagination."""
+    """Display riders in enhanced table format with pagination."""
     # Calculate percentiles for value indicators
     percentiles = calculate_percentiles(df)
 
-    # Render unified controls
-    filters = render_unified_controls(df, "table")
-
-    # Apply filters and sorting
-    df_filtered = apply_filters(df, filters)
-
-    if df_filtered.empty:
+    # Handle empty dataframe (after global filtering)
+    if df.empty:
         st.warning(
-            "🔍 No riders match your search criteria. Try adjusting your filters."
+            "🔍 No riders match the current filters. Try adjusting the global filters above."
         )
         return
 
-    # Pagination for large datasets
-    df_page, current_page, total_pages = paginate_dataframe(
-        df_filtered, page_size, "table_page"
-    )
+    # Pagination for large datasets (no local filtering since it's now handled globally)
+    df_page, current_page, total_pages = paginate_dataframe(df, page_size, "table_page")
 
     # Show results summary with pagination info
     total_riders = len(df)
-    filtered_count = len(df_filtered)
 
     if total_pages > 1:
         start_idx = (current_page - 1) * page_size + 1
-        end_idx = min(current_page * page_size, filtered_count)
-        st.info(
-            f"📊 Showing riders {start_idx}-{end_idx} of {filtered_count} "
-            f"({'filtered from ' + str(total_riders) + ' total' if filtered_count != total_riders else 'total'})"
-        )
+        end_idx = min(current_page * page_size, total_riders)
+        st.info(f"📊 Showing riders {start_idx}-{end_idx} of {total_riders}")
     else:
-        if filtered_count != total_riders:
-            st.info(f"🔍 Showing {filtered_count} of {total_riders} riders")
-        else:
-            st.info(f"👥 Showing all {total_riders} riders")
+        st.info(f"👥 Showing all {total_riders} riders")
 
     # Add fantasy value indicators to the dataframe
     df_with_value = df_page.copy()

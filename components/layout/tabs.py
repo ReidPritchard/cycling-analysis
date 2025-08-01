@@ -52,9 +52,9 @@ def show_riders_tab(filtered_riders: pd.DataFrame) -> None:
         display_rider_table(filtered_riders)
 
 
-def show_analytics_tab(filtered_riders: pd.DataFrame) -> None:
+def show_analytics_tab(filtered_riders: pd.DataFrame, race_data: RaceData) -> None:
     """Display the analytics tab content"""
-    show_detailed_analytics(filtered_riders)
+    show_detailed_analytics(filtered_riders, race_data)
 
 
 def show_race_tab(race_data: RaceData):

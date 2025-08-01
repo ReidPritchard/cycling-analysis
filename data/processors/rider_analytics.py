@@ -8,6 +8,9 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from ..models.race import RaceData
+from .combined_rider_analytics import calculate_race_specific_analytics
+
 
 def process_season_results(
     pcs_data: dict[str, Any] | None,
@@ -32,16 +35,12 @@ def process_season_results(
         df_results["stage_url"].str.startswith("race/tour-de-france-femmes/2025/")
     ]
 
-    # Sort by date (most recent first) and limit to 5 results
-    df_results = df_results.sort_values(by="date", ascending=False).head(5)
+    # Sort by date (most recent first) and limit to 10 results
+    df_results = df_results.sort_values(by="date", ascending=False).head(10)
 
     # Calculate totals
-    total_pcs_points = (
-        int(df_results["pcs_points"].sum()) if not df_results.empty else 0
-    )
-    total_uci_points = (
-        int(df_results["uci_points"].sum()) if not df_results.empty else 0
-    )
+    total_pcs_points = int(df_results["pcs_points"].sum()) if not df_results.empty else 0
+    total_uci_points = int(df_results["uci_points"].sum()) if not df_results.empty else 0
 
     # Calculate consistency and trend metrics
     consistency_score = 0.0
@@ -49,9 +48,7 @@ def process_season_results(
 
     if not df_results.empty and len(df_results) >= 2:
         # Consistency: coefficient of variation of results (lower is more consistent)
-        results_positions = pd.to_numeric(
-            df_results["gc_position"], errors="coerce"
-        ).dropna()
+        results_positions = pd.to_numeric(df_results["gc_position"], errors="coerce").dropna()
         if len(results_positions) >= 2:
             consistency_score = (
                 results_positions.std() / results_positions.mean()
@@ -63,9 +60,7 @@ def process_season_results(
         if len(results_positions) >= 2:
             # Sort by date ascending for trend calculation
             df_trend = df_results.copy()
-            df_trend["result_numeric"] = pd.to_numeric(
-                df_trend["gc_position"], errors="coerce"
-            )
+            df_trend["result_numeric"] = pd.to_numeric(df_trend["gc_position"], errors="coerce")
             df_trend = df_trend.dropna(subset=["result_numeric"]).sort_values("date")
 
             if len(df_trend) >= 2:
@@ -129,8 +124,20 @@ def calculate_rider_demographics(pcs_data: dict[str, Any] | None) -> dict[str, A
     return demographics
 
 
-def calculate_rider_metrics(df: pd.DataFrame) -> pd.DataFrame:
-    """Add calculated fields to the rider dataframe."""
+def calculate_rider_metrics(
+    df: pd.DataFrame,
+    race_data: RaceData | None = None,
+    race_key: str | None = None,
+    use_combined_analytics: bool = True,
+) -> pd.DataFrame:
+    """Add calculated fields to the rider dataframe.
+
+    Args:
+        df: Rider dataframe
+        race_data: Optional race data for enhanced analytics
+        race_key: Race identifier for enhanced analytics
+        use_combined_analytics: Whether to use combined race analytics
+    """
     df = df.copy()
 
     # Initialize calculated columns
@@ -145,20 +152,94 @@ def calculate_rider_metrics(df: pd.DataFrame) -> pd.DataFrame:
     df["consistency_score"] = 0.0
     df["trend_score"] = 0.0
 
+    # Enhanced analytics columns (when combined analytics available)
+    df["stage_analytics_available"] = False
+    df["avg_stage_position"] = None
+    df["best_stage_position"] = None
+    df["stage_wins"] = 0
+    df["gc_current_rank"] = None
+    df["gc_best_rank"] = None
+    df["rider_type"] = None
+    df["data_completeness_score"] = 0.0
+
     # Process each rider
     for idx, row in df.iterrows():
         pcs_data = row.get("pcs_data", {})
 
-        # Process season results
-        season_results, total_pcs, total_uci, consistency, trend = (
-            process_season_results(pcs_data)
-        )
+        # Use combined analytics if available, otherwise fall back to season results
+        if use_combined_analytics and race_data and race_key:
+            try:
+                # Calculate enhanced analytics using race stage data
+                combined_analytics = calculate_race_specific_analytics(
+                    row.to_dict(), race_data, race_key
+                )
+
+                # Extract enhanced metrics
+                df.at[idx, "stage_analytics_available"] = combined_analytics.get(
+                    "has_stage_data", False
+                )
+                df.at[idx, "data_completeness_score"] = combined_analytics.get(
+                    "data_completeness_score", 0.0
+                )
+
+                # Use stage-based point totals (more accurate than season results)
+                total_pcs = combined_analytics.get("total_stage_pcs_points", 0)
+                total_uci = combined_analytics.get("total_stage_uci_points", 0)
+
+                # Enhanced stage performance metrics
+                df.at[idx, "avg_stage_position"] = combined_analytics.get("avg_stage_position")
+                df.at[idx, "best_stage_position"] = combined_analytics.get("best_stage_position")
+                df.at[idx, "stage_wins"] = combined_analytics.get("stage_wins", 0)
+
+                # GC analytics
+                gc_analytics = combined_analytics.get("gc_analytics")
+                if gc_analytics:
+                    df.at[idx, "gc_current_rank"] = gc_analytics.get("current_rank")
+                    df.at[idx, "gc_best_rank"] = gc_analytics.get("best_rank")
+
+                # Rider classification
+                df.at[idx, "rider_type"] = combined_analytics.get("rider_type_classification")
+
+                # Use combined consistency score if available
+                consistency = combined_analytics.get("consistency_score")
+                trend = combined_analytics.get("stage_position_trend")
+
+                # Get season results for display (still useful for historical context)
+                season_results, _, _, fallback_consistency, fallback_trend = (
+                    process_season_results(pcs_data)
+                )
+                if season_results is not None:
+                    df.at[idx, "season_results"] = season_results
+
+                # Use combined metrics if available, otherwise fall back
+                df.at[idx, "consistency_score"] = (
+                    consistency if consistency is not None else fallback_consistency
+                )
+                df.at[idx, "trend_score"] = trend if trend is not None else fallback_trend
+
+            except Exception as e:
+                # Fall back to season results if combined analytics fail
+                print(
+                    f"Warning: Combined analytics failed for {row.get('fantasy_name', 'unknown')}: {e}"
+                )
+                season_results, total_pcs, total_uci, consistency, trend = process_season_results(
+                    pcs_data
+                )
+                df.at[idx, "season_results"] = season_results
+                df.at[idx, "consistency_score"] = consistency
+                df.at[idx, "trend_score"] = trend
+        else:
+            # Fall back to original season results processing
+            season_results, total_pcs, total_uci, consistency, trend = process_season_results(
+                pcs_data
+            )
+            df.at[idx, "season_results"] = season_results
+            df.at[idx, "consistency_score"] = consistency
+            df.at[idx, "trend_score"] = trend
+
+        # Set point totals
         df.at[idx, "total_pcs_points"] = total_pcs
         df.at[idx, "total_uci_points"] = total_uci
-        df.at[idx, "consistency_score"] = consistency
-        df.at[idx, "trend_score"] = trend
-        if season_results is not None:
-            df.at[idx, "season_results"] = season_results
 
         # Calculate per-star ratios
         stars = row["stars"]
